@@ -1,5 +1,6 @@
-from flask import request, jsonify
-from AI.api.api import app
+# from flask import request, jsonify
+# from AI.api.api import app
+from AI.Generate.ChatResponse import get_Responce
 
 messages = []
 

@@ -21,7 +21,7 @@ def parse():
 
     return json1, json2, json3
 
-def get_Responce(NPC_data, Offer_Data, Messages):
+def get_Responce_gemma(NPC_data, Offer_Data, Messages):
 
     Messages["messages"].insert(0, {"role": "system", "content": ""})
 
@@ -42,19 +42,10 @@ def get_Responce(NPC_data, Offer_Data, Messages):
         Messages["messages"][0]["content"] += f"{attribute}: {value}\n"
 
     Messages["messages"][0]["content"] += (
-        # "\n**Be short with your answer as the NPC. After your answer, append a endl for final line that contains just the final price for clarity.**"
-        # "\n**Be short with your answer to the user. If this is your final answer of the negotiation, tell your \"Final Price\", and if not ask a question.**"
-        # "\n**If this is your final answer of the negotiation, say your \"Final Price\" as a number, and if not ask a question.**"
         "\n**Output the string of your message to the player and if you accept the offer, output the final price.**"
     )
 
-    # For debugging, you might print the prompt to check it
-    print(Messages["messages"][0]["content"])    # Messages["messages"][0]["content"] = (
-    #     f"You are an NPC in a videogame about trading and you are negotiating with the player. "
-    #     f"You are selling a {Offer_Data['item']['name']} to {NPC_data['name']} for {Offer_Data['price']} "
-    #     f"- the actual price of the {Offer_Data['item']['name']} {Offer_Data['item']['price']}, "
-    #     "which is unknown to the player."
-    # )
+    print(Messages["messages"][0]["content"])    
 
     json_schema = {
         "type": "object",
@@ -71,14 +62,9 @@ def get_Responce(NPC_data, Offer_Data, Messages):
 
 
     data = {
-        # "model": "llama3.2:1b",
-        "model": "deepseek-r1:14b",
-        # "model": "deepseek-r1:7b",
-        # "prompt": question,
+        "model": "gemma3:12b",
         "seed": random.randint(0, 10000),
-        "messages": [
-            # {"role": "user", "content": question}
-        ],
+        "messages": [ ],
         "keep_alive": "30m",
         "stream": False,
         # "format": json_schema,
@@ -87,30 +73,11 @@ def get_Responce(NPC_data, Offer_Data, Messages):
     for message in Messages["messages"]:
         data["messages"].append(message)
 
-    # url  = "http://localhost:11434/api/generate"
-    # url = "http://localhost:11434/api/chat"  # important
-    url = "http://192.168.100.99:11434/api/chat"  # important
+    url = "http://192.168.100.99:11434/api/chat"  
 
     response = requests.post(url, json=data)
 
-    # answer = ""
-    # for line in response.text.strip().split("\n"):
-    #     if line:
-    #         part = json.loads(line)
-    #         # content = part.get("response", {})
-    #         content = part.get("message", {}).get("content", "")
-    #         answer += content
-    #
-    #         # removfe the last line
-
     answer = response.json().get("message", "").get("content", "")
-    # answer = response.json().get("response", "")
-
-    print("---------------")
-    print(answer)
-    print(response)
-    print("---------------")
-    # print(response.json())
 
     lines = answer.splitlines()
 
