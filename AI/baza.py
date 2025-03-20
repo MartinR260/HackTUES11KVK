@@ -4,28 +4,48 @@ from enum import Enum
 
 
 class Deceitful(Enum):
-    LOW = "low",
-    MEDIUM = "medium",
+    LOW = "low"
+    MEDIUM = "medium"
     HIGH = "high"
 
 
 class Personality(Enum):
-    AGGRESSIVE = "aggressive",
-    PASSIVE = "passive",
-    FRIENDLY = "friendly",
-    UNHELPFUL = "unhelpful",
-    HOSTILE = "hostile",
+    AGGRESSIVE = "aggressive"
+    PASSIVE = "passive"
+    FRIENDLY = "friendly"
+    UNHELPFUL = "unhelpful"
+    HOSTILE = "hostile"
     ANXIOUS = "anxious"
 
 
 class TalkingStyle(Enum):
-    PSUVACH = "psuvach"
+    NORMAL = "normal"
+    CURSING = "cursing"
+    FORMAL = "formal"
+    INFORMAL = "informal"
 
 
 class Naivety(Enum):
-    LOW = "low",
-    MEDIUM = "medium",
+    LOW = "low"
+    MEDIUM = "medium"
     HIGH = "high"
+
+
+class Attributes:
+    def __init__(self, deceitful: Deceitful, personality: Personality, naivety: Naivety, talking_style: TalkingStyle):
+        self.deceitful = deceitful
+        self.personality = personality
+        self.naivety = naivety
+        self.talking_style = talking_style
+
+    def __str__(self):
+        return (f"{{\n"
+                f"  Deceitful: { self.deceitful.value },\n"
+                f"  Personality: { self.personality.value },\n"
+                f"  Naivety: { self.naivety.value },\n"
+                f"  TalkingStyle: { self.talking_style.value }\n"
+                f"}}")
+
 
 
 dir_path = "baza/"
@@ -40,10 +60,7 @@ def create_person(
         info: str,
         description: str,
         temperature: float,
-        deceitful: Deceitful,
-        personality: Personality,
-        naivety: Naivety,
-        talking_style: TalkingStyle):
+        attributes: Attributes):
     save_person(name, {
         "image_id": image_id,
         "name": name,
@@ -51,10 +68,10 @@ def create_person(
         "description": description,
         "temperature": temperature,
         "attributes": {
-            "deceitful": deceitful,
-            "personality": personality,
-            "naivety": naivety,
-            "talking_style": talking_style
+            "deceitful": attributes.deceitful.value,
+            "personality": attributes.personality.value,
+            "naivety": attributes.naivety.value,
+            "talking_style": attributes.talking_style.value,
         },
         "memories": []
     })

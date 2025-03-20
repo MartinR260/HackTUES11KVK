@@ -1,63 +1,45 @@
-# {"name":,"info":,"description":,}
 import json
 import requests
+import random
 
-if __name__ == "__main__":
-    question = "Genereta a name for an NPC in a real life simulation game. Return only the name."
+from lldb import INT32_MAX
+
+# url  = "http://localhost:11434/api/chat"
+url  = "http://localhost:11434/api/generate"
+
+def ask_question(question):
     data = {
         "model": "llama3.2:1b",
         "prompt": question,
-        "steal": False,
-    }
-    # url  = "http://localhost:11434/api/chat"
-    url  = "http://localhost:11434/api/generate"
-
-    response = requests.post(url, json=data)
-
-    name = ""
-    for line in response.text.strip().split("\n"):
-        if line:
-            part = json.loads(line)
-            content = part.get("response", {})
-            name += content
-
-    print(name)
-
-    question = "Generate info for a NPC named" + name + " - where its born, what his/her job is, what it does and some random data. Be really short and return only the info."
-
-    data = {
-        "model": "llama3.2:1b",
-        "prompt": question,
-        "steal": False,
+        "seed": random.randint(0, INT32_MAX),
+        "keep_alive": "30m",
     }
 
     response = requests.post(url, json=data)
 
-    info = ""
+    value = ""
     for line in response.text.strip().split("\n"):
         if line:
             part = json.loads(line)
             content = part.get("response", {})
-            info += content
+            value += content
 
-    print(info)
+    return value
 
-    question = "Generate talking style and character description for a NPC named" + name + ". Be super short"
+def generate_npc_data(attributes) -> list: # TODO: pol
+    name = ask_question("Create a random name that fits a normal person. Write it to be only a name, without any additional text.")
 
-    data = {
-        "model": "llama3.2:1b",
-        "prompt": question,
-        "steal": False,
-    }
+    info = ask_question("For an NPC called " + name + "\n"
+                        "write a short description that describes where they live (country, town), who they are, where they work, etc. "
+                        "Don't write about personality and write only that description and no excess text. "
+                        "The description should be 1-2 sentences long at max written in first person. Make it match their talking style."
+                        "These are their attributes: " + str(attributes))
 
-    response = requests.post(url, json=data)
+    description = ask_question("For a NPC called " + name + " with this description:\n" + info + "\n"
+                               "Expand on their personality, how they act, talk, etc. "
+                               "Don't write about their appearance and write only that description and no excess text. "
+                               "Don't copy everything verbatim, expand on the data I give you for a more rich and detailed personality description. "                                                                  
+                               "Make it short and concise, Don't write extra stuff. "
+                               "These are their attributes: " + str(attributes))
 
-    description = ""
-    for line in response.text.strip().split("\n"):
-        if line:
-            part = json.loads(line)
-            content = part.get("response", {})
-            description += content
-
-    print(description)
-
+    return [name, info, description]

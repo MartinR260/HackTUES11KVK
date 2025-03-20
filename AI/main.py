@@ -1,21 +1,20 @@
 import baza
-from baza import Deceitful, Personality, Naivety, TalkingStyle
+from baza import Deceitful, Personality, Naivety, TalkingStyle, Attributes
 import random
+
+import Generate.NPC as npc_gen
 
 from enum import Enum
 
 def generate_random_npc(image_id):
-    # TODO: anton
-    name = ""
-    description = ""
-    descriptive_personality = ""
+    attributes = Attributes(
+        random.choice(list(Deceitful)),
+        random.choice(list(Personality)),
+        random.choice(list(Naivety)),
+        random.choice(list(TalkingStyle)))
 
-    baza.create_person(image_id, name, description, descriptive_personality,
-                       random.uniform(0, 1),
-                       random.choice(list(Deceitful)),
-                       random.choice(list(Personality)),
-                       random.choice(list(Naivety)),
-                       random.choice(list(TalkingStyle)))
+    name, info, description = npc_gen.generate_npc_data(attributes)
+    baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
 
 
@@ -30,10 +29,10 @@ class Condition(Enum):
 
 items = []
 class Item:
-    def __init__(self, name, image_id, base_price):
+    def __init__(self, name, image_id, price):
         self.name = name
         self.image_id = image_id
-        self.base_price = base_price
+        self.price = price
 
         items.append(self)
 
@@ -44,18 +43,23 @@ class Item:
                 return item
 
 
+Item("ciagane", "snimka2", 100)
+
 def generate_offer(npc):
     item = {
         "id": items[random.randint(0, len(items) - 1)],
         "condition": random.choice(list(Condition)),
     }
 
-    # TODO: anton
     offer = {
-        "price": 0,
+        "price": 0, # TODO: anton
         "item": item,
-        "description": "",
-        "quantity": 1
+        "description": "", # TODO: anton
+        "quantity": 1 # zar nqkoj den != 1
     }
 
     return offer
+
+
+if __name__ == "__main__":
+    generate_random_npc(0)
