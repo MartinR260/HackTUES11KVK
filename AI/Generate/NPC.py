@@ -1,63 +1,112 @@
-# {"name":,"info":,"description":,}
 import json
+
 import requests
+import random
 
-if __name__ == "__main__":
-    question = "Genereta a name for an NPC in a real life simulation game. Return only the name."
+from AI.baza import baza
+from AI.utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Condition
+import AI.utils as utils
+
+# url  = "http://localhost:11434/api/chat"
+url  = "http://localhost:11434/api/generate"
+
+def ask_question(question, fmt=None):
     data = {
         "model": "llama3.2:1b",
         "prompt": question,
-        "steal": False,
-    }
-    # url  = "http://localhost:11434/api/chat"
-    url  = "http://localhost:11434/api/generate"
-
-    response = requests.post(url, json=data)
-
-    name = ""
-    for line in response.text.strip().split("\n"):
-        if line:
-            part = json.loads(line)
-            content = part.get("response", {})
-            name += content
-
-    print(name)
-
-    question = "Generate info for a NPC named" + name + " - where its born, what his/her job is, what it does and some random data. Be really short and return only the info."
-
-    data = {
-        "model": "llama3.2:1b",
-        "prompt": question,
-        "steal": False,
+        "seed": random.randint(1, 10 ** 18),
+        "keep_alive": "30m",
+        "stream": False
     }
 
+    if fmt:
+        data["format"] = fmt
+
     response = requests.post(url, json=data)
+    return response.json().get("response", "")
 
-    info = ""
-    for line in response.text.strip().split("\n"):
-        if line:
-            part = json.loads(line)
-            content = part.get("response", {})
-            info += content
+def generate_npc_data(attributes): # TODO: pol
+    name_prompt = (
+        "Generate a random name for a typical person. "
+        "Output only the name with no additional text."
+    )
+    name = ask_question(name_prompt).strip()
 
-    print(info)
+    info_prompt = (
+        f"For an NPC named '{name}', provide a brief background description. "
+        "Include where they live (e.g., country and town), their occupation, and a bit about who they are. "
+        "Do NOT mention personality traits. "
+        "Keep the description to 1-2 sentences in first person. Give me only the description, no additional text. "
+        f"Attributes to consider: {attributes}"
+    )
+    info = ask_question(info_prompt).strip()
 
-    question = "Generate talking style and character description for a NPC named" + name + ". Be super short"
+    personality_prompt = (
+        f"Given the NPC named '{name}' with the following background:\n'{info}'\n\n"
+        "Now, expand on their personality. Describe how they behave, speak, and interact, "
+        "focusing on personality traits and talking style without mentioning appearance. "
+        "Do not repeat the background details verbatim — create a richer, more detailed personality description. "
+        "Keep it concise and to the point. Give me only the description, no additional text. "
+        f"Attributes to consider: {attributes}"
+    )
+    description = ask_question(personality_prompt).strip()
 
-    data = {
-        "model": "llama3.2:1b",
-        "prompt": question,
-        "steal": False,
+    return name, info, description
+
+def generate_offer_data(npc_parsed, item_parsed):
+    prompt = (
+            f"You have this NPC:\n{npc_parsed}.\n"
+            f"That wants to sell this item:\n{item_parsed}\n"
+            "Provide an offer for the item in JSON format with the following keys:\n"
+            "- 'price': a number in USD formatted as $0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
+            "- 'description': a short description of the item as if the NPC is trying to sell it. Use the language the NPC would use.\n"
+            "Return only the JSON, with no extra text."
+    )
+
+    json_schema = {
+        "type": "object",
+        "properties": {
+            "price": {"type": "string"},
+            "description": {"type": "string"}
+        },
+        "required": ["price", "description"]
     }
 
-    response = requests.post(url, json=data)
+    response_text = ask_question(prompt, fmt=json_schema)
+    result = json.loads(response_text)
+    return result["price"], result["description"]
 
-    description = ""
-    for line in response.text.strip().split("\n"):
-        if line:
-            part = json.loads(line)
-            content = part.get("response", {})
-            description += content
 
-    print(description)
+def generate_random_npc(image_id):
+    attributes = Attributes(
+        random.choice(list(Deceitful)),
+        random.choice(list(Personality)),
+        random.choice(list(Naivety)),
+        random.choice(list(TalkingStyle)))
 
+    name, info, description = generate_npc_data(attributes)
+    return baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
+
+def generate_offer(npc_name):
+    print(utils.items)
+
+    item = {
+        "id": utils.items[random.randint(0, len(utils.items) - 1)].name,
+        "condition": random.choice(list(Condition)).value,
+    }
+
+    price, description = generate_offer_data(
+        baza.get_person_str(npc_name),
+        f"Name: {item['id']}\n"
+        f"Condition: {item['condition']}\n"
+    )
+
+    offer = {
+        "price": price,
+        "item": item,
+        "description": description,
+        "quantity": 1 # zar nqkoj den != 1
+    }
+
+
+    return offer
