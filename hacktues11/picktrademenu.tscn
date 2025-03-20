@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=10 format=3 uid="uid://dg546urm48nit"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
 [ext_resource type="Texture2D" uid="uid://c3lm0kq6bdae4" path="res://assets/user-frame.png" id="4_gppls"]
 [ext_resource type="Script" uid="uid://dq3i2rwsri0uj" path="res://RejectTradeButton.gd" id="4_l1kfb"]
+[ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
 
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
@@ -21,7 +22,7 @@ offset_left = -1107.0
 offset_top = -797.0
 offset_right = 1058.0
 offset_bottom = 741.0
-color = Color(0.0278273, 0.221976, 0.300315, 1)
+color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
 offset_left = -300.0
@@ -79,6 +80,8 @@ offset_right = 288.0
 offset_bottom = 96.0
 texture = ExtResource("4_gppls")
 stretch_mode = 5
+
+[node name="PauseButton" parent="." instance=ExtResource("9_0t6gn")]
 
 [connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
 [connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
