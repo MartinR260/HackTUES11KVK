@@ -27,16 +27,32 @@ if __name__ == "__main__":
     NPC_data, Offer_Data, Messages = parse()
 
     Messages["messages"].insert(0, {"role": "system", "content": ""})
-    Messages["messages"][0]["content"] = "You are an NPC in a videogame about trading and you are negotiating with the player." + " You are selling a " + Offer_Data["item"]["name"] + " to " + NPC_data["name"] + " for"+ Offer_Data["price"] + " - the actual price of the" + Offer_Data["item"]["name"] + " " + Offer_Data["item"]["price"] + ", which is unknown to the player."
-    # TODO: actual price
 
-    # print(Messages,"\n-----------")
-    # print(Offer_Data,"\n-----------")
-    # print(NPC_data,"\n-----------")
+    Messages["messages"][0]["content"] = (
+        "You are an NPC in a videogame about trading and you are negotiating with the player."
+        + " You are selling a "
+        + Offer_Data["item"]["name"]
+        + " to "
+        + NPC_data["name"]
+        + " for"
+        + Offer_Data["price"]
+        + " - the actual price of the"
+        + Offer_Data["item"]["name"]
+        + " "
+        + Offer_Data["item"]["price"]
+        + ", which is unknown to the player. Be short with your answer as the npc. After your answer append last line that should be the final price - nothing else just the price."
+    )
 
+    # Messages["messages"][0]["content"] = (
+    #     f"You are an NPC in a videogame about trading and you are negotiating with the player. "
+    #     f"You are selling a {Offer_Data['item']['name']} to {NPC_data['name']} for {Offer_Data['price']} "
+    #     f"- the actual price of the {Offer_Data['item']['name']} {Offer_Data['item']['price']}, "
+    #     "which is unknown to the player."
+    # )
 
     data = {
-        "model": "llama3.2:1b",
+        # "model": "llama3.2:1b",
+        "model": "deepseek-r1:14b",
         # "prompt": question,
         "seed": random.randint(0, 10000),
         "messages": [
@@ -46,20 +62,14 @@ if __name__ == "__main__":
         "steal": False,
     }
 
-    # print("-------------------1")
     for message in Messages["messages"]:
         data["messages"].append(message)
-    # print("-------------------2")
-    # print(data)
 
     # url  = "http://localhost:11434/api/generate"
-    url = "http://localhost:11434/api/chat"  # important
+    # url = "http://localhost:11434/api/chat"  # important
+    url = "http://192.168.100.99:11434/api/chat"  # important
 
     response = requests.post(url, json=data)
-
-    # print("-------------------3")
-    # print(response.text)
-    # print("-------------------4")
 
     answer = ""
     for line in response.text.strip().split("\n"):
@@ -69,10 +79,30 @@ if __name__ == "__main__":
             content = part.get("message", {}).get("content", "")
             answer += content
 
+            # removfe the last line
+
     print(answer)
-    # print("-------------------")
+    print("---------------")
+
+    lines = answer.splitlines()
+
+    try:
+        end_think_index = lines.index('</think>')
+    except ValueError:
+        raise ValueError("The closing </think> tag was not found in the response.")
+
+    extracted_lines = lines[end_think_index + 1:-1]
+
+    result = "\n".join(line.strip() for line in extracted_lines if line.strip())
+
+    print(result)
+    print("--------------")
+
+
+    final_price = answer.split()[-1]
+    print(final_price)
 
 
 """
-python ChatResponce.py '{"name": "Gosho"}' '{"item":{"name": "Lada", "price": 1000}}, "description": "Old but gold"}' '{"messages": [ { "role": "user", "contentg": "Can you sell me this for half the price if i give you a old watch" }, { "role": "assistant", "content": "I don't need old watches" }, { "role": "user", "content": "Ok how about getting 10% off for me this time but i contact you again if need more" }]}'
+python ChatResponce.py "{\"name\": \"Gosho\"}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1000\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Can you sell me this for half the price if i give you a old watch\" }, { \"role\": \"assistant\", \"content\": \"I dont need old watches\" }, { \"role\": \"user\", \"content\": \"Ok how about getting 10% off for me this time but i contact you again if need more\" }]}"
 """
