@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://tarpkya5hskk"]
+
+[ext_resource type="Script" uid="uid://f77hf1d77sui" path="res://PauseButton.gd" id="1_0xo2d"]
+[ext_resource type="Texture2D" uid="uid://d34d81nabeoqm" path="res://assets/pause_button.png" id="2_dv2ah"]
+[ext_resource type="Texture2D" uid="uid://ohoq28hkb0n" path="res://assets/pause_button_pressed.png" id="3_s4vjv"]
+[ext_resource type="Texture2D" uid="uid://dcrfkoxi4ljw1" path="res://assets/pause_button_hover.png" id="4_pq00w"]
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="5_dv2ah"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_r2gvh"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_sev4g"]
+events = [SubResource("InputEventKey_r2gvh")]
+
+[sub_resource type="GDScript" id="GDScript_dv2ah"]
+script/source = "extends Node2D
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_s4vjv"]
+font = ExtResource("5_dv2ah")
+font_size = 56
+
+[node name="PauseButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xo2d")
+
+[node name="PauseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -376.0
+offset_top = -208.0
+offset_right = -320.0
+offset_bottom = -152.0
+shortcut = SubResource("Shortcut_sev4g")
+texture_normal = ExtResource("2_dv2ah")
+texture_pressed = ExtResource("3_s4vjv")
+texture_hover = ExtResource("4_pq00w")
+stretch_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="PauseMenu" type="Node2D" parent="."]
+process_mode = 3
+visible = false
+script = SubResource("GDScript_dv2ah")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+color = Color(0.588235, 0.807843, 0.878431, 0.490196)
+
+[node name="Continue" type="Button" parent="PauseMenu"]
+offset_left = -128.0
+offset_top = -48.0
+offset_bottom = -8.0
+scale = Vector2(2, 2)
+text = "Continue"
+
+[node name="Label" type="Label" parent="PauseMenu"]
+offset_left = -148.0
+offset_top = -152.0
+offset_right = 148.0
+offset_bottom = -96.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_s4vjv")
+
+[node name="Quit" type="Button" parent="PauseMenu"]
+offset_left = -128.0
+offset_top = 48.0
+offset_right = 43.0
+offset_bottom = 101.0
+scale = Vector2(1.5, 1.5)
+text = "Quit to Main Menu"
+
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="button_up" from="PauseMenu/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="PauseMenu/Quit" to="." method="_on_quit_button_up"]
