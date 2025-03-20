@@ -1,6 +1,6 @@
 import os
 import json
-from AI.utils import *
+from utils import *
 
 dir_path = "baza/bazi/"
 

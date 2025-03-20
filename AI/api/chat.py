@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from AI.api.api import app
+from api.api import app
 
 messages = []
 
