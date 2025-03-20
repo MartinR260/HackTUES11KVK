@@ -3,6 +3,16 @@ extends TextureButton
 var button_click_sfx : AudioStreamRandomizer = AudioStreamRandomizer.new()
 var audio_player = AudioStreamPlayer.new()
 
+func is_audio_playing(node: Node) -> bool:
+	for child in node.get_children():
+		if child is AudioStreamPlayer:
+			if child.playing:
+				return true
+		elif child.get_child_count() > 0:
+			if is_audio_playing(child):
+				return true
+	return false
+
 func _ready() -> void:
 	button_click_sfx.add_stream(0, load("res://sfx/mouseclicks/mouse-button-click-308449.mp3"))
 	button_click_sfx.add_stream(1, load("res://sfx/mouseclicks/mouse-click-sound-233951.mp3"))
@@ -13,6 +23,8 @@ func _ready() -> void:
 func _on_button_up() -> void:
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
+	while is_audio_playing(get_tree().current_scene): pass
+	
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
 	else:
