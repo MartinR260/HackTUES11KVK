@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd7lfp5cx1hoj"]
+
+[ext_resource type="Script" uid="uid://bgqqc43m7xs0k" path="res://na_misho_ne_baraj/api_test.gd" id="1_1k5k4"]
+
+[node name="API_test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1k5k4")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 250.0
+offset_right = 872.0
+offset_bottom = 477.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Button"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 83.0
+offset_right = 575.0
+offset_bottom = 376.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="request_completed" from="Button/HTTPRequest" to="." method="_on_http_request_request_completed"]
