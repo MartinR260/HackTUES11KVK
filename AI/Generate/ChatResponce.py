@@ -21,7 +21,6 @@ def parse():
 
     return json1, json2, json3
 
-
 if __name__ == "__main__":
 
     NPC_data, Offer_Data, Messages = parse()
@@ -29,21 +28,27 @@ if __name__ == "__main__":
     Messages["messages"].insert(0, {"role": "system", "content": ""})
 
     Messages["messages"][0]["content"] = (
-        "You are an NPC in a videogame about trading and you are negotiating with the player."
-        + " You are selling a "
-        + Offer_Data["item"]["name"]
-        + " to "
-        + NPC_data["name"]
-        + " for"
-        + Offer_Data["price"]
-        + " - the actual price of the"
-        + Offer_Data["item"]["name"]
-        + " "
-        + Offer_Data["item"]["price"]
-        + ", which is unknown to the player. Be short with your answer as the npc. After your answer append last line that should be the final price - nothing else just the price."
+        "You are an NPC in a videogame about trading and you are negotiating with the player. "
+        "You are selling a " + Offer_Data["item"]["name"] +
+        # " to " + NPC_data["name"] +
+        " to the player " +
+        " for " + str(Offer_Data["price"]) +
+        " - the actual price of the " + Offer_Data["item"]["name"] +
+        " is " + str(Offer_Data["item"]["price"]) + ", which is unknown to the player. "
+        "This is the info for you:\n" + NPC_data["info"] + "\n"
+        "This is your personal description: " + NPC_data["description"] + "\n"
+        "These are your attributes as NPC that should be followed:\n\n"
     )
 
-    # Messages["messages"][0]["content"] = (
+    for attribute, value in NPC_data["attributes"].items():
+        Messages["messages"][0]["content"] += f"{attribute}: {value}\n"
+
+    Messages["messages"][0]["content"] += (
+        "\nBe short with your answer as the NPC. After your answer, append a final line that contains just the final price."
+    )
+
+    # For debugging, you might print the prompt to check it
+    print(Messages["messages"][0]["content"])    # Messages["messages"][0]["content"] = (
     #     f"You are an NPC in a videogame about trading and you are negotiating with the player. "
     #     f"You are selling a {Offer_Data['item']['name']} to {NPC_data['name']} for {Offer_Data['price']} "
     #     f"- the actual price of the {Offer_Data['item']['name']} {Offer_Data['item']['price']}, "
@@ -87,22 +92,24 @@ if __name__ == "__main__":
     lines = answer.splitlines()
 
     try:
-        end_think_index = lines.index('</think>')
+        end_think_index = lines.index("</think>")
     except ValueError:
         raise ValueError("The closing </think> tag was not found in the response.")
 
-    extracted_lines = lines[end_think_index + 1:-1]
+    extracted_lines = lines[end_think_index + 1 : -1]
 
     result = "\n".join(line.strip() for line in extracted_lines if line.strip())
 
     print(result)
     print("--------------")
 
-
     final_price = answer.split()[-1]
     print(final_price)
 
 
 """
-python ChatResponce.py "{\"name\": \"Gosho\"}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1000\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Can you sell me this for half the price if i give you a old watch\" }, { \"role\": \"assistant\", \"content\": \"I dont need old watches\" }, { \"role\": \"user\", \"content\": \"Ok how about getting 10% off for me this time but i contact you again if need more\" }]}"
+python ChatResponce.py "{\"name\": \"Gosho\"}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1500\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Can you sell me this for half the price if i give you a old watch\" }, { \"role\": \"assistant\", \"content\": \"I dont need old watches\" }, { \"role\": \"user\", \"content\": \"Ok how about getting 10% off for me this time but i contact you again if need more\" }]}"
+
+
+python ChatResponce.py "{\"image_id\": null, \"name\": \"Bradley Jenkins\", \"info\": \"Lives in Boston. Works as a teacher in middle school\", \"description\": \"You like to think logically and in the long term\", \"temperature\": 0.987018549049676, \"attributes\": {\"deceitful\": \"high\", \"personality\": \"hostile\", \"naivety\": \"high\", \"talking_style\": \"informal\"}, \"memories\": []}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1500\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Can you sell me this for half the price if i give you a old watch\" }, { \"role\": \"assistant\", \"content\": \"I dont need old watches\" }, { \"role\": \"user\", \"content\": \"Ok how about getting 10% off for me this time but i contact you again if need more\" }]}"
 """
