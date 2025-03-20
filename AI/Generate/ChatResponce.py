@@ -27,7 +27,7 @@ if __name__ == "__main__":
     NPC_data, Offer_Data, Messages = parse()
 
     Messages["messages"].insert(0, {"role": "system", "content": ""})
-    Messages["messages"][0]["content"] = "You are an NPC in a videogame about trading and you are negotiating with the player." + " You are selling a " + Offer_Data["item"]["name"] + " to " + NPC_data["name"] + " for"+ Offer_Data["price"] +"."
+    Messages["messages"][0]["content"] = "You are an NPC in a videogame about trading and you are negotiating with the player." + " You are selling a " + Offer_Data["item"]["name"] + " to " + NPC_data["name"] + " for"+ Offer_Data["price"] + " - the actual price of the" + Offer_Data["item"]["name"] + " " + Offer_Data["item"]["price"] + ", which is unknown to the player."
     # TODO: actual price
 
     # print(Messages,"\n-----------")

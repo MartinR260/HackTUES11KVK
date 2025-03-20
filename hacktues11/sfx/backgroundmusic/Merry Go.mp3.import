@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tgex0s5qahwr"
+path="res://.godot/imported/Merry Go.mp3-15f205fcccc20076e16d8174ef2a0ca2.mp3str"
+
+[deps]
+
+source_file="res://sfx/backgroundmusic/Merry Go.mp3"
+dest_files=["res://.godot/imported/Merry Go.mp3-15f205fcccc20076e16d8174ef2a0ca2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
