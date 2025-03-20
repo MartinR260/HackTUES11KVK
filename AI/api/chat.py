@@ -1,8 +1,6 @@
 from flask import request, jsonify
 from api.api import app
 
-messages = []
-
 @app.route('/api/chat', methods=['POST'])
 def chat():
     message = request.get_json().get('message')
