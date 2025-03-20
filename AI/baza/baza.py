@@ -1,54 +1,8 @@
 import os
 import json
-from enum import Enum
+from AI.utils import *
 
-
-class Deceitful(Enum):
-    LOW = "low"
-    MEDIUM = "medium"
-    HIGH = "high"
-
-
-class Personality(Enum):
-    AGGRESSIVE = "aggressive"
-    PASSIVE = "passive"
-    FRIENDLY = "friendly"
-    UNHELPFUL = "unhelpful"
-    HOSTILE = "hostile"
-    ANXIOUS = "anxious"
-
-
-class TalkingStyle(Enum):
-    NORMAL = "normal"
-    CURSING = "cursing"
-    FORMAL = "formal"
-    INFORMAL = "informal"
-
-
-class Naivety(Enum):
-    LOW = "low"
-    MEDIUM = "medium"
-    HIGH = "high"
-
-
-class Attributes:
-    def __init__(self, deceitful: Deceitful, personality: Personality, naivety: Naivety, talking_style: TalkingStyle):
-        self.deceitful = deceitful
-        self.personality = personality
-        self.naivety = naivety
-        self.talking_style = talking_style
-
-    def __str__(self):
-        return (f"{{\n"
-                f"  Deceitful: { self.deceitful.value },\n"
-                f"  Personality: { self.personality.value },\n"
-                f"  Naivety: { self.naivety.value },\n"
-                f"  TalkingStyle: { self.talking_style.value }\n"
-                f"}}")
-
-
-
-dir_path = "baza/"
+dir_path = "baza/bazi/"
 
 if not os.path.exists(dir_path):
     os.makedirs(dir_path)
