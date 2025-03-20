@@ -1,6 +1,6 @@
 from flask import request, jsonify
-from AI.Generate import NPC as npc_gen
-from AI.api.api import app
+from Generate import NPC as npc_gen
+from api.api import app
 
 active_offer = None
 money = 1000
@@ -26,9 +26,14 @@ def get_offer():
 @app.route('/api/offer/accept', methods=['POST'])
 def accept_offer():
     global active_offer
+    global money
+
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
-    response = {"money": money}
+
+    money -= active_offer["offer"]["price"]
+    response = {"success": True, "money": money}
+
     active_offer = None
     return jsonify(response)
 
@@ -36,9 +41,11 @@ def accept_offer():
 @app.route('/api/offer/decline', methods=['POST'])
 def decline_offer():
     global active_offer
+
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
-    response = {"money": money}
+
+    response = {"success": True}
     active_offer = None
     return jsonify(response)
 
@@ -48,7 +55,7 @@ def report_scam():
     global active_offer
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
-    response = {"message": f"Offer from {active_offer['npc']['name']} reported as scam.", "offer": active_offer}
+    response = {"success": True}
     active_offer = None
     return jsonify(response)
 

@@ -3,9 +3,9 @@ import json
 import requests
 import random
 
-from AI.baza import baza
-from AI.utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Condition
-import AI.utils as utils
+from baza import baza
+from utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Condition
+import utils as utils
 
 # url  = "http://localhost:11434/api/chat"
 url  = "http://localhost:11434/api/generate"
