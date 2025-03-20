@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dg546urm48nit"]
 
-[ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
+[ext_resource type="Script" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
 [ext_resource type="Script" uid="uid://cm3i5qv5wtnl3" path="res://AcceptTradeButton.gd" id="2_0t6gn"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="2_gppls"]

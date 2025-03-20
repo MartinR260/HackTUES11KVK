@@ -25,7 +25,7 @@ def ask_question(question, fmt=None):
     response = requests.post(url, json=data)
     return response.json().get("response", "")
 
-def generate_npc_data(attributes): # TODO: pol
+def generate_npc_data(attributes): # TODO: pol (muz/zena/treto)
     name_prompt = (
         "Generate a random name for a typical person. "
         "Output only the name with no additional text."

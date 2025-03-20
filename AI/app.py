@@ -1,5 +1,8 @@
 from AI.utils import Item
-from AI.api.offers import app
+from AI.api.api import app
+
+import AI.api.offers
+import AI.api.chat
 
 if __name__ == "__main__":
     Item("leather jacket", "jacket_img", 250)
