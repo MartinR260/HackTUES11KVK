@@ -61,7 +61,7 @@ def create_person(
         description: str,
         temperature: float,
         attributes: Attributes):
-    save_person(name, {
+    value = {
         "image_id": image_id,
         "name": name,
         "info": info,
@@ -74,7 +74,9 @@ def create_person(
             "talking_style": attributes.talking_style.value,
         },
         "memories": []
-    })
+    }
+    save_person(name, value)
+    return value
 
 
 def get_person(name):
@@ -97,3 +99,10 @@ def save_memory(name, memory):
     person = get_person(name)
     person["memories"].append(memory)
     save_person(name, person)
+
+def get_person_str(name):
+    person = get_person(name)
+    return (f"Name: {person['name']}\n"
+            f"Info: {person['info']}\n"
+            f"Description: {person['description']}\n"
+            f"Attributes: {person['attributes']}\n")

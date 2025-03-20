@@ -14,7 +14,7 @@ def generate_random_npc(image_id):
         random.choice(list(TalkingStyle)))
 
     name, info, description = npc_gen.generate_npc_data(attributes)
-    baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
+    return baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
 
 
@@ -43,23 +43,40 @@ class Item:
                 return item
 
 
-Item("ciagane", "snimka2", 100)
+Item("leather jacket", "jacket_img", 250)
+Item("antique watch", "watch_img", 500)
+Item("silver necklace", "necklace_img", 180)
+Item("vintage record", "record_img", 75)
+Item("smartphone", "phone_img", 350)
+Item("handcrafted vase", "vase_img", 120)
+Item("gaming console", "console_img", 400)
+Item("rare book", "book_img", 150)
+Item("mountain bike", "bike_img", 320)
+Item("wooden sculpture", "sculpture_img", 200)
 
-def generate_offer(npc):
+def generate_offer(npc_name):
     item = {
-        "id": items[random.randint(0, len(items) - 1)],
+        "id": items[random.randint(0, len(items) - 1)].name,
         "condition": random.choice(list(Condition)),
     }
 
+    price, description = npc_gen.generate_offer_data(
+        baza.get_person_str(npc_name),
+        f"Name: {item["id"]}\n"
+        f"Condition: {item['condition'].value}\n"
+    )
+
     offer = {
-        "price": 0, # TODO: anton
+        "price": price,
         "item": item,
-        "description": "", # TODO: anton
+        "description": description,
         "quantity": 1 # zar nqkoj den != 1
     }
+
 
     return offer
 
 
 if __name__ == "__main__":
-    generate_random_npc(0)
+    npc = generate_random_npc(0)
+    print(generate_offer(npc["name"]))
