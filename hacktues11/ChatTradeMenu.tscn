@@ -32,12 +32,12 @@ offset_left = -1157.0
 offset_top = -826.0
 offset_right = 1008.0
 offset_bottom = 712.0
-color = Color(0.027451, 0.223529, 0.301961, 1)
+color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 32.0
+offset_left = 40.0
 offset_top = 72.0
-offset_right = 352.0
+offset_right = 360.0
 offset_bottom = 136.0
 theme = SubResource("Theme_a5ogm")
 theme_override_font_sizes/font_size = 16

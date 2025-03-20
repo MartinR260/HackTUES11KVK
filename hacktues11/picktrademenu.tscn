@@ -1,14 +1,90 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=12 format=3 uid="uid://dg546urm48nit"]
 
 [ext_resource type="Script" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
-[ext_resource type="Script" uid="uid://cm3i5qv5wtnl3" path="res://AcceptTradeButton.gd" id="2_0t6gn"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="2_gppls"]
 [ext_resource type="Texture2D" uid="uid://db8831rxhj1yf" path="res://assets/big-frame.png" id="2_w86nt"]
 [ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
 [ext_resource type="Texture2D" uid="uid://c3lm0kq6bdae4" path="res://assets/user-frame.png" id="4_gppls"]
-[ext_resource type="Script" uid="uid://dq3i2rwsri0uj" path="res://RejectTradeButton.gd" id="4_l1kfb"]
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
+
+[sub_resource type="Animation" id="Animation_85uty"]
+resource_name = "reroll"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-257, -201), Vector2(384, -201), Vector2(-896, -201), Vector2(-257, -201)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_d5g8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-257, -201)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0t6gn"]
+resource_name = "reroll2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d5g8s"]
+_data = {
+&"RESET": SubResource("Animation_d5g8s"),
+&"reroll": SubResource("Animation_85uty"),
+&"reroll2": SubResource("Animation_0t6gn")
+}
 
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
@@ -25,22 +101,20 @@ offset_bottom = 741.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
-offset_left = -300.0
-offset_top = 100.0
-offset_right = -172.0
-offset_bottom = 164.0
+offset_left = -24.0
+offset_top = 96.0
+offset_right = 104.0
+offset_bottom = 160.0
 texture_normal = ExtResource("1_g6ba8")
 stretch_mode = 0
-script = ExtResource("2_0t6gn")
 
 [node name="RejectTrade" type="TextureButton" parent="."]
-offset_left = 172.0
-offset_top = 100.0
-offset_right = 300.0
-offset_bottom = 164.0
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
 texture_normal = ExtResource("2_gppls")
 stretch_mode = 0
-script = ExtResource("4_l1kfb")
 
 [node name="TradeInfo" type="TextureRect" parent="."]
 offset_left = -257.0
@@ -81,7 +155,12 @@ offset_bottom = 96.0
 texture = ExtResource("4_gppls")
 stretch_mode = 5
 
+[node name="RerollAnimation" type="AnimationPlayer" parent="TradeInfo"]
+libraries = {
+&"": SubResource("AnimationLibrary_d5g8s")
+}
+
 [node name="PauseButton" parent="." instance=ExtResource("9_0t6gn")]
 
-[connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
-[connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
+[connection signal="button_up" from="AcceptTrade" to="." method="_on_accept_trade_button_up"]
+[connection signal="button_up" from="RejectTrade" to="." method="_on_reject_trade_button_up"]
