@@ -14,3 +14,8 @@ config/name="HackTUES11"
 run/main_scene="uid://bjrlfhewpghy3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+global_illumination/canvas_textures/default_texture_filter=0

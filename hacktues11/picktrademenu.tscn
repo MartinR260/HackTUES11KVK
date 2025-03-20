@@ -1,66 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjrlfhewpghy3"]
+[gd_scene load_steps=8 format=3 uid="uid://bjrlfhewpghy3"]
 
-[ext_resource type="Texture2D" uid="uid://c8rsd4p7e8555" path="res://icon.svg" id="1_vq8c3"]
+[ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
+[ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="2_gppls"]
+[ext_resource type="Texture2D" uid="uid://db8831rxhj1yf" path="res://assets/big-frame.png" id="2_w86nt"]
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
+[ext_resource type="Texture2D" uid="uid://443xejgjjxlf" path="res://assets/yellow_button.png" id="3_gppls"]
+[ext_resource type="Texture2D" uid="uid://c3lm0kq6bdae4" path="res://assets/user-frame.png" id="4_gppls"]
+
+[sub_resource type="GDScript" id="GDScript_gppls"]
+script/source = "extends TextureButton
+
+
+
+func _on_button_down() -> void:
+	position.y -= 20
+
+
+func _on_button_up() -> void:
+	pass # Replace with function body.
+"
 
 [node name="PickTradeMenu" type="Node2D"]
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.751608, 0.928208, 0.950647, 1)
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -1107.0
+offset_top = -797.0
+offset_right = 1058.0
+offset_bottom = 741.0
+color = Color(0.0278273, 0.221976, 0.300315, 1)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
-offset_left = 64.0
-offset_top = 448.0
-offset_right = 320.0
-offset_bottom = 576.0
-texture_normal = ExtResource("1_vq8c3")
+offset_left = -300.0
+offset_top = 100.0
+offset_right = -172.0
+offset_bottom = 164.0
+texture_normal = ExtResource("1_g6ba8")
 stretch_mode = 0
+script = SubResource("GDScript_gppls")
 
 [node name="RejectTrade" type="TextureButton" parent="."]
-offset_left = 448.0
-offset_top = 448.0
-offset_right = 704.0
-offset_bottom = 576.0
-texture_normal = ExtResource("1_vq8c3")
+offset_left = 172.0
+offset_top = 100.0
+offset_right = 300.0
+offset_bottom = 164.0
+texture_normal = ExtResource("2_gppls")
 stretch_mode = 0
 
 [node name="StartChat" type="TextureButton" parent="."]
-offset_left = 840.0
-offset_top = 448.0
-offset_right = 1088.0
-offset_bottom = 576.0
-texture_normal = ExtResource("1_vq8c3")
+offset_left = -64.0
+offset_top = 100.0
+offset_right = 64.0
+offset_bottom = 164.0
+texture_normal = ExtResource("3_gppls")
 stretch_mode = 0
 
 [node name="TradeInfo" type="TextureRect" parent="."]
-offset_left = 256.0
-offset_top = 32.0
-offset_right = 888.0
-offset_bottom = 416.0
-texture = ExtResource("1_vq8c3")
+offset_left = -257.0
+offset_top = -201.0
+offset_right = 255.0
+offset_bottom = 55.0
+texture = ExtResource("2_w86nt")
+stretch_mode = 5
 
 [node name="TradeDescription" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 224.0
-offset_right = 576.0
-offset_bottom = 352.0
-text = "Placeholder description of the offer blah blah blah blah blah blah blah blah blah blah blah blah blah placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 200$."
+offset_left = 10.0
+offset_top = 159.0
+offset_right = 503.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("3_g6ba8")
+theme_override_font_sizes/font_size = 8
+text = "gfhjkh ghjgf hjg jhg jh gjhg  h kj ghjk"
 autowrap_mode = 2
 
 [node name="TraderName" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 184.0
-offset_right = 386.0
-offset_bottom = 207.0
+offset_left = 206.0
+offset_top = 104.0
+offset_right = 309.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("3_g6ba8")
+theme_override_font_sizes/font_size = 8
 text = "Placeholder Blah"
+horizontal_alignment = 1
 
 [node name="TraderIcon" type="TextureRect" parent="TradeInfo"]
 layout_mode = 0
 offset_left = 224.0
-offset_top = 16.0
-offset_right = 416.0
-offset_bottom = 176.0
-texture = ExtResource("1_vq8c3")
+offset_top = 32.0
+offset_right = 288.0
+offset_bottom = 96.0
+texture = ExtResource("4_gppls")
+stretch_mode = 5
+
+[connection signal="button_down" from="AcceptTrade" to="AcceptTrade" method="_on_button_down"]
+[connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
