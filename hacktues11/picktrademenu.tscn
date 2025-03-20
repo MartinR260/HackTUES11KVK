@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=8 format=3 uid="uid://dg546urm48nit"]
 
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
 [ext_resource type="Script" uid="uid://cm3i5qv5wtnl3" path="res://AcceptTradeButton.gd" id="2_0t6gn"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="2_gppls"]
 [ext_resource type="Texture2D" uid="uid://db8831rxhj1yf" path="res://assets/big-frame.png" id="2_w86nt"]
 [ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
-[ext_resource type="Texture2D" uid="uid://443xejgjjxlf" path="res://assets/yellow_button.png" id="3_gppls"]
 [ext_resource type="Texture2D" uid="uid://c3lm0kq6bdae4" path="res://assets/user-frame.png" id="4_gppls"]
 [ext_resource type="Script" uid="uid://dq3i2rwsri0uj" path="res://RejectTradeButton.gd" id="4_l1kfb"]
-[ext_resource type="Script" uid="uid://be1v0wg3snw87" path="res://StartChatButton.gd" id="6_v6ff6"]
 
 [node name="PickTradeMenu" type="Node2D"]
 
@@ -40,15 +38,6 @@ offset_bottom = 164.0
 texture_normal = ExtResource("2_gppls")
 stretch_mode = 0
 script = ExtResource("4_l1kfb")
-
-[node name="StartChat" type="TextureButton" parent="."]
-offset_left = -64.0
-offset_top = 100.0
-offset_right = 64.0
-offset_bottom = 164.0
-texture_normal = ExtResource("3_gppls")
-stretch_mode = 0
-script = ExtResource("6_v6ff6")
 
 [node name="TradeInfo" type="TextureRect" parent="."]
 offset_left = -257.0
@@ -91,4 +80,3 @@ stretch_mode = 5
 
 [connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
 [connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
-[connection signal="button_up" from="StartChat" to="StartChat" method="_on_button_up"]
