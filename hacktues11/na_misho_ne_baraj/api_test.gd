@@ -1,14 +1,19 @@
 extends Control
 
 @onready var http_request: HTTPRequest = $Button/HTTPRequest
-@onready var rich_text_label: RichTextLabel = $RichTextLabel
 
 
-var url = "http://127.0.0.1:5000/offer?npc_image=123"
 
 func _on_button_pressed() -> void:
+	#var url = "http://127.0.0.1:5000/api/offer?npc_image=123"
+	#http_request.use_threads = true
+	#http_request.request(url, [], HTTPClient.METHOD_GET)
+	
+	var url = "http://127.0.0.1:5000/api/chat"
 	http_request.use_threads = true
-	http_request.request(url, [], HTTPClient.METHOD_GET)
+	http_request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify({
+		"message": "skibidi"
+	}))
 	
 
 
@@ -25,23 +30,23 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		
 	var response_text = body.get_string_from_utf8().strip_edges()
 	print("Raw response: ", response_text)
-	
-	var json = JSON.new()
-	var parse_result = json.parse(response_text)
-	
-	if parse_result != OK:
-		print("JSON Parse Error: ", json.get_error_message(), " at line ", json.get_error_line())
-		return
-		
-	var response_data = json.get_data()
-	
-	print("Parsed response data: ", response_data)
-	
-	if response_data.has("npc") and response_data.has("offer"):
-		print("NPC Name: ", response_data.npc.name)
-		print("Offer price: ", response_data.offer.price)
-		print("Item condition: ", response_data.offer.item.condition)
-	
-	print("\nAll fields in response:")
-	for key in response_data.keys():
-		print(key, ": ", response_data[key])
+	#
+	#var json = JSON.new()
+	#var parse_result = json.parse(response_text)
+	#
+	#if parse_result != OK:
+		#print("JSON Parse Error: ", json.get_error_message(), " at line ", json.get_error_line())
+		#return
+		#
+	#var response_data = json.get_data()
+	#
+	#print("Parsed response data: ", response_data)
+	#
+	#if response_data.has("npc") and response_data.has("offer"):
+		#print("NPC Name: ", response_data.npc.name)
+		#print("Offer price: ", response_data.offer.price)
+		#print("Item condition: ", response_data.offer.item.condition)
+	#
+	#print("\nAll fields in response:")
+	#for key in response_data.keys():
+		#print(key, ": ", response_data[key])

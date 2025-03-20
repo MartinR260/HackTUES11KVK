@@ -1,17 +1,19 @@
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 from AI.Generate import NPC as npc_gen
-
-app = Flask(__name__)
+from AI.api.api import app
 
 active_offer = None
+money = 1000
+
 
 def initialize_offer(npc_image):
     global active_offer
     npc = npc_gen.generate_random_npc(npc_image)
     offer = npc_gen.generate_offer(npc["name"])
-    active_offer = { "npc": npc, "offer": offer }
+    active_offer = {"npc": npc, "offer": offer}
 
-@app.route('/offer', methods=['GET'])
+
+@app.route('/api/offer', methods=['GET'])
 def get_offer():
     npc_image = request.args.get('npc_image')
     global active_offer
@@ -20,25 +22,28 @@ def get_offer():
 
     return jsonify(active_offer)
 
-@app.route('/offer/accept', methods=['POST'])
+
+@app.route('/api/offer/accept', methods=['POST'])
 def accept_offer():
     global active_offer
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
-    response = {"message": f"Offer from {active_offer['npc']['name']} accepted.", "offer": active_offer}
+    response = {"money": money}
     active_offer = None
     return jsonify(response)
 
-@app.route('/offer/decline', methods=['POST'])
+
+@app.route('/api/offer/decline', methods=['POST'])
 def decline_offer():
     global active_offer
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
-    response = {"message": f"Offer from {active_offer['npc']['name']} declined.", "offer": active_offer}
+    response = {"money": money}
     active_offer = None
     return jsonify(response)
 
-@app.route('/offer/scam', methods=['POST'])
+
+@app.route('/api/offer/scam', methods=['POST'])
 def report_scam():
     global active_offer
     if active_offer is None:
@@ -47,7 +52,8 @@ def report_scam():
     active_offer = None
     return jsonify(response)
 
-@app.route('/offer/bargain', methods=['POST'])
+
+@app.route('/api/offer/bargain', methods=['POST'])
 def bargain_offer():
     global active_offer
     if active_offer is None:
@@ -60,7 +66,8 @@ def bargain_offer():
     response = {"message": f"Bargaining initiated with a counter offer of {counter_offer}.", "offer": active_offer}
     return jsonify(response)
 
-@app.route('/offer/message', methods=['POST'])
+
+@app.route('/api/offer/message', methods=['POST'])
 def message_offer():
     global active_offer
     if active_offer is None:
