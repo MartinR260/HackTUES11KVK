@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjrlfhewpghy3"]
+
+[ext_resource type="Texture2D" uid="uid://c8rsd4p7e8555" path="res://icon.svg" id="1_vq8c3"]
+
+[node name="PickTradeMenu" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.751608, 0.928208, 0.950647, 1)
+
+[node name="AcceptTrade" type="TextureButton" parent="."]
+offset_left = 64.0
+offset_top = 448.0
+offset_right = 320.0
+offset_bottom = 576.0
+texture_normal = ExtResource("1_vq8c3")
+stretch_mode = 0
+
+[node name="RejectTrade" type="TextureButton" parent="."]
+offset_left = 448.0
+offset_top = 448.0
+offset_right = 704.0
+offset_bottom = 576.0
+texture_normal = ExtResource("1_vq8c3")
+stretch_mode = 0
+
+[node name="StartChat" type="TextureButton" parent="."]
+offset_left = 840.0
+offset_top = 448.0
+offset_right = 1088.0
+offset_bottom = 576.0
+texture_normal = ExtResource("1_vq8c3")
+stretch_mode = 0
+
+[node name="TradeInfo" type="TextureRect" parent="."]
+offset_left = 256.0
+offset_top = 32.0
+offset_right = 888.0
+offset_bottom = 416.0
+texture = ExtResource("1_vq8c3")
+
+[node name="TradeDescription" type="Label" parent="TradeInfo"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 224.0
+offset_right = 576.0
+offset_bottom = 352.0
+text = "Placeholder description of the offer blah blah blah blah blah blah blah blah blah blah blah blah blah placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 200$."
+autowrap_mode = 2
+
+[node name="TraderName" type="Label" parent="TradeInfo"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 184.0
+offset_right = 386.0
+offset_bottom = 207.0
+text = "Placeholder Blah"
+
+[node name="TraderIcon" type="TextureRect" parent="TradeInfo"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 16.0
+offset_right = 416.0
+offset_bottom = 176.0
+texture = ExtResource("1_vq8c3")
