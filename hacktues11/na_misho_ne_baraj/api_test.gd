@@ -2,19 +2,17 @@ extends Control
 
 @onready var http_request: HTTPRequest = $Button/HTTPRequest
 
-
-
-func _on_button_pressed() -> void:
-	#var url = "http://127.0.0.1:5000/api/offer?npc_image=123"
-	#http_request.use_threads = true
-	#http_request.request(url, [], HTTPClient.METHOD_GET)
+func _ready() -> void:
+	var url = "http://127.0.0.1:5000/api/offer?npc_image=123"
+	http_request.use_threads = true
+	http_request.request(url, [], HTTPClient.METHOD_GET)
 	
+func _on_button_pressed() -> void:
 	var url = "http://127.0.0.1:5000/api/chat"
 	http_request.use_threads = true
 	http_request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify({
 		"message": "skibidi"
 	}))
-	
 
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:

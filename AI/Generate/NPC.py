@@ -12,7 +12,7 @@ url  = "http://localhost:11434/api/generate"
 
 def ask_question(question, fmt=None):
     data = {
-        "model": "llama3.2:1b",
+        "model": "gemma3:12b",
         "prompt": question,
         "seed": random.randint(1, 10 ** 18),
         "keep_alive": "30m",
