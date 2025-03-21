@@ -15,6 +15,13 @@ def get_purse():
     global money
     return jsonify({"money": money})
 
+@app.route('/api/purse', methods=['POST'])
+def set_purse():
+    global money
+    message = request.get_json().get('message')
+    money = int(message)
+    return jsonify({"money": money})
+
 @app.route('/api/offers', methods=['GET'])
 def get_offers():
     return jsonify({"content": random.choices(get_all_offers(), k=10)})

@@ -108,7 +108,25 @@ def generate_offer(npc_name):
         "quantity": 1 # zar nqkoj den != 1
     }
 
-
     save_offer(npc_name, offer)
+    return offer
+
+def generate_sellOffer(npc_name):
+    item_id = random.choice(get_all_item_idx())
+
+    price, description = generate_offer_data(
+        get_person_str(npc_name),
+        f"Name: {item_id}\n"
+        # f"Condition: {item['condition']}\n"
+    )
+
+    offer = {
+        "price": price,
+        "original_price": price,
+        "item_id": item_id,
+        "description": description,
+        "quantity": 1 # zar nqkoj den != 1
+    }
 
     return offer
+

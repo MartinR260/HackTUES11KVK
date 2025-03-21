@@ -4,7 +4,7 @@ import api.offers as offers
 from api.api import app
 from flask import jsonify, request
 from Generate.ChatResponce import get_Responce_gemma
-from utils import Item
+from baza.item import get_item
 
 
 @app.route("/api/sellChat", methods=["POST"])
@@ -17,16 +17,16 @@ def chat():
             "content": (
                 "You are an NPC in a videogame about trading and you are negotiating with the player. "
                 "You want to buy his "
-                + offers.active_offer["offer"]["item"]["id"]
+                + offers.active_offer["offer"]["item_id"]
                 + "."
                 +
                 # " to " + offers.active_offer["npc"]["name"] +
                 " for "
                 + str(offers.active_offer["offer"]["price"])
                 + " - the actual price of the "
-                + offers.active_offer["offer"]["item"]["id"]
+                + offers.active_offer["offer"]["item_id"]
                 + " is "
-                + str(Item.get_item(offers.active_offer["offer"]["item"]["id"]).price)
+                + str(get_item(offers.active_offer["offer"]["item_id"])["price"])
                 + ", which is unknown to the player. "
                 + offers.active_offer["npc"]["info"]
                 + "\nThis is your personal description: "
@@ -39,16 +39,16 @@ def chat():
             message["content"] = (
                 "You are an NPC in a videogame about trading and you are negotiating with the player. "
                 "You want to buy his "
-                + offers.active_offer["offer"]["item"]["id"]
+                + offers.active_offer["offer"]["item_id"]
                 + " for some profit."
                 +
                 # " to " + offers.active_offer["npc"]["name"] +
                 " for "
                 + str(offers.active_offer["offer"]["price"])
                 + " - the actual price of the "
-                + offers.active_offer["offer"]["item"]["id"]
+                + offers.active_offer["offer"]["item_id"]
                 + " is "
-                + str(Item.get_item(offers.active_offer["offer"]["item"]["id"]).price)
+                + str(get_item(offers.active_offer["offer"]["item_id"])["price"])
                 + ", which is unknown to the player. "
                 + offers.active_offer["npc"]["info"]
                 + "\nThis is your personal description: "
@@ -75,7 +75,7 @@ def chat():
     message = request.get_json().get("message")
     offers.active_offer["messages"].append({"role": "user", "content": message})
 
-    result = get_Responce_gemma()
+    result = get_Responce_gemma(offers.active_offer)
 
     offers.active_offer["messages"].append(
         {"role": "npc", "content": result["answer_to_player"]}
