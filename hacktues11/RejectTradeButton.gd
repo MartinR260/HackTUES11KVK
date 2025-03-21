@@ -15,7 +15,15 @@ func _on_button_up() -> void:
 	while audio_player.playing: pass
 	
 	await _decline_http()
-	get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+	# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+
+	if get_tree().current_scene.name == "ChatTradeMenu":
+		# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+		get_tree().change_scene_to_file("res://Redirect.tscn")
+	else:
+		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+
+
 
 	
 func _decline_http():

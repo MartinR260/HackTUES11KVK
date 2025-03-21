@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7cdgomj0jki2"]
+
+[ext_resource type="PackedScene" path="res://report.tscn" id="1_ol8ck"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Report" parent="." instance=ExtResource("1_ol8ck")]
+offset_left = 409.0
+offset_top = 79.0
+offset_right = 665.0
+offset_bottom = 591.0

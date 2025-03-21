@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://chketbhut3wqh"]
+[gd_scene load_steps=9 format=3 uid="uid://chketbhut3wqh"]
 
 [ext_resource type="Script" uid="uid://b68kabrkech7r" path="res://CreditMenu.gd" id="1_kmcdu"]
 [ext_resource type="Texture2D" uid="uid://443xejgjjxlf" path="res://assets/yellow_button.png" id="1_nsuqd"]
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="1_xy84p"]
+[ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="2_px004"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="3_bbn7m"]
 [ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="4_kmcdu"]
 [ext_resource type="Texture2D" uid="uid://cqgfornebtf67" path="res://assets/wheel.png" id="5_l8crg"]
@@ -18,6 +19,13 @@ offset_top = -496.0
 offset_right = 1181.0
 offset_bottom = 1042.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("2_px004")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -52,6 +60,10 @@ z_index = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 0
