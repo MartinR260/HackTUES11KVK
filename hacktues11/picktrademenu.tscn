@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=14 format=3 uid="uid://dg546urm48nit"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="2_gppls"]
 [ext_resource type="Texture2D" uid="uid://db8831rxhj1yf" path="res://assets/big-frame.png" id="2_w86nt"]
 [ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
+[ext_resource type="Texture2D" uid="uid://cu7etao1qltd3" path="res://assets/green_button_press.png" id="3_whtp2"]
 [ext_resource type="Texture2D" uid="uid://c3lm0kq6bdae4" path="res://assets/user-frame.png" id="4_gppls"]
+[ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="5_wiyrn"]
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
@@ -106,6 +108,7 @@ offset_top = 96.0
 offset_right = 104.0
 offset_bottom = 160.0
 texture_normal = ExtResource("1_g6ba8")
+texture_pressed = ExtResource("3_whtp2")
 stretch_mode = 0
 
 [node name="RejectTrade" type="TextureButton" parent="."]
@@ -114,6 +117,7 @@ offset_top = 96.0
 offset_right = 256.0
 offset_bottom = 160.0
 texture_normal = ExtResource("2_gppls")
+texture_pressed = ExtResource("5_wiyrn")
 stretch_mode = 0
 
 [node name="TradeInfo" type="TextureRect" parent="."]
