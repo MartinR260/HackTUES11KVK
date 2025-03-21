@@ -12,10 +12,7 @@ def chat():
 
     # aktual response from AI
     result = {
-        "answer_to_player": "Look, I'm not running a charity here. $1500 is the price. I gotta think about my future, ya know? "
-                            "Middle school teachers don't exactly rake in the dough. A little wiggle room, maybe, but 10%? Nah. "
-                            "That's a lot off a perfectly good Lada. It's reliable, it's a classic... it's an investment! "
-                            "Seriously, think about it. You're getting a steal at $1500.",
+        "answer_to_player": "Otgovor",
         "is_final": False,
         "price": 1500
     }

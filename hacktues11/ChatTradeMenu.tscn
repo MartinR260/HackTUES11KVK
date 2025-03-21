@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="4_p4c4u"]
 [ext_resource type="Script" uid="uid://dq3i2rwsri0uj" path="res://RejectTradeButton.gd" id="5_pavjr"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="6_unygt"]
-[ext_resource type="Script" path="res://scroll_container.gd" id="8_pavjr"]
+[ext_resource type="Script" uid="uid://nd1n1dkpb1k1" path="res://scroll_container.gd" id="8_pavjr"]
 [ext_resource type="Texture2D" uid="uid://c78twwryoo1bh" path="res://assets/chat-output.png" id="9_os3wd"]
 
 [node name="ChatTradeMenu" type="Node2D"]
@@ -77,6 +77,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="HTTPRequest" type="HTTPRequest" parent="ScrollContainer"]
+
 [node name="TextEdit" type="TextEdit" parent="."]
 offset_left = 163.0
 offset_top = 145.0
@@ -85,4 +87,5 @@ offset_bottom = 182.0
 
 [connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
 [connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
+[connection signal="request_completed" from="ScrollContainer/HTTPRequest" to="ScrollContainer" method="_on_http_request_request_completed"]
 [connection signal="text_changed" from="TextEdit" to="ScrollContainer" method="_on_text_edit_text_changed"]
