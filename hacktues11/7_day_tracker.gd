@@ -1,7 +1,11 @@
 extends TextureRect
 const CROSS = preload("res://assets/cross.png")
 const TICK = preload("res://assets/tick.png")
-
+const F = preload("res://assets/f.png")
+const M = preload("res://assets/m.png")
+const S = preload("res://assets/s.png")
+const T = preload("res://assets/t.png")
+const W = preload("res://assets/w.png")
 var texture_array = []
 
 @onready var texture_rect: TextureRect = $TextureRect
@@ -25,6 +29,15 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+func clear_days():
+	texture_array[0].texture = M
+	texture_array[1].texture = T
+	texture_array[2].texture = W
+	texture_array[3].texture = T
+	texture_array[4].texture = F
+	texture_array[5].texture = S
+	texture_array[6].texture = S
 
 func add_cross_at_index(index):
 	texture_array[index].texture = CROSS
