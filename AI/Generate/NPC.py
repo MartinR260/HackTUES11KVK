@@ -129,7 +129,7 @@ def generate_sellOffer(npc_name):
 
     offer = {
         "price": price,
-        "original_price": price,
+        "starting_price": price,
         "item_id": item_id,
         "description": description,
         "quantity": 1 # zar nqkoj den != 1
