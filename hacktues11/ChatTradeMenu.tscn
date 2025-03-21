@@ -220,14 +220,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="NinePatchRect" parent="."]
 offset_left = 160.0
 offset_top = -200.0
 offset_right = 368.0
 offset_bottom = 202.0
 texture = ExtResource("9_os3wd")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="TextureRect4" type="TextureRect" parent="."]
 offset_left = -384.0
 offset_top = -216.0
 offset_right = 384.0
@@ -269,6 +273,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="TradeDescription" type="Label" parent="OfferInfo"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 72.0
 offset_right = 224.0
@@ -280,6 +285,7 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="OfferInfo"]
+layout_mode = 0
 offset_left = 20.0
 offset_top = 16.0
 offset_right = 46.0
@@ -289,6 +295,7 @@ texture = ExtResource("9_yqtma")
 stretch_mode = 4
 
 [node name="priceLabel" type="Label" parent="OfferInfo"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 48.0
 offset_right = 148.0
@@ -299,6 +306,7 @@ theme_override_font_sizes/font_size = 16
 text = "price:"
 
 [node name="priceAmount" type="Label" parent="OfferInfo"]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 49.0
 offset_right = 206.0
@@ -310,6 +318,7 @@ theme_override_font_sizes/font_size = 16
 text = "$500"
 
 [node name="priceLabel2" type="Label" parent="OfferInfo"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 24.0
 offset_right = 204.0
@@ -320,6 +329,7 @@ theme_override_font_sizes/font_size = 16
 text = "PC Monitor"
 
 [node name="moneyLabel" type="Label" parent="OfferInfo"]
+layout_mode = 0
 offset_left = -128.0
 offset_top = 40.0
 offset_right = -2.0
@@ -329,7 +339,8 @@ theme_override_fonts/font = ExtResource("8_ov344")
 theme_override_font_sizes/font_size = 24
 text = "Money:"
 
-[node name="priceAmmount" type="Label" parent="OfferInfo"]
+[node name="moneyAmount" type="Label" parent="OfferInfo"]
+layout_mode = 0
 offset_left = -112.0
 offset_top = 72.0
 offset_right = -8.0
