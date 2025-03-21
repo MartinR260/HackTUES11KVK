@@ -1,11 +1,7 @@
-import json
 import random
-
 import requests
-
-from utils import Item
-
 import model
+from baza.item import get_item
 
 
 def get_summary(Offer_Data):
@@ -13,7 +9,7 @@ def get_summary(Offer_Data):
 
     prompt = "Get a conclusion out of this trade bargaining conversation. You are the NPC assistant. Get with 1 sentance the conclusion of the conversation:\n"
 
-    prompt += "Offer: you are selling " + Offer_Data["offer"]["item"]["id"] + " for " + str(Offer_Data["offer"]["price"]) + ". (actual price: " + str(Item.get_item(Offer_Data["offer"]["item"]["id"]).price) + ")\n"
+    prompt += "Offer: you are selling " + Offer_Data["offer"]["item_id"] + " for " + str(Offer_Data["offer"]["price"]) + ". (actual price: " + str(get_item(Offer_Data["offer"]["item_id"])["price"]) + ")\n"
 
     for idx, message in enumerate(Messages):
         if idx == 0:  

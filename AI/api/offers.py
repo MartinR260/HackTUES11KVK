@@ -1,41 +1,47 @@
-from os import system
+import random
+
 from flask import request, jsonify
-from Generate import NPC as npc_gen
-from Generate import Memory as memo_gen 
+from Generate import Memory as memo_gen
 from api.api import app
-from baza import baza as baza
-from utils import Item
+from baza.item import get_item
+from baza.npc import save_person, get_person
+from baza.offers import get_all_offers, get_offer
 
-active_offer = None
 money = 1000
-
-
-def initialize_offer(npc_image):
-    global active_offer
-    npc = npc_gen.generate_random_npc(npc_image)
-    offer = npc_gen.generate_offer(npc["name"])
-    active_offer = {"npc": npc, "offer": offer, "messages": []}
-    print("initialized")
+active_offer = None
 
 @app.route('/api/purse', methods=['GET'])
 def get_purse():
     global money
     return jsonify({"money": money})
 
-@app.route('/api/offer', methods=['GET'])
-def get_offer():
-    npc_image = request.args.get('npc_image')
+@app.route('/api/offers', methods=['GET'])
+def get_offers():
+    return jsonify({"content": random.choices(get_all_offers(), k=10)})
+
+
+@app.route('/api/offer/select', methods=['POST'])
+def select_offer():
     global active_offer
-    if active_offer is None:
-        initialize_offer(npc_image)
 
-    return jsonify(active_offer)
+    offer_id = request.get_json().get('offer_id')
+    npc_name = request.get_json().get('npc_name')
 
+    offer = get_offer(npc_name, offer_id)
+    npc = get_person(npc_name)
+
+    active_offer = {
+        "npc": npc,
+        "offer": offer,
+        "messages": []
+    }
+
+    return jsonify({"success": True, "active_offer": active_offer})
 
 @app.route('/api/offer/accept', methods=['POST'])
 def accept_offer():
-    global active_offer
     global money
+    global active_offer
 
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
@@ -50,7 +56,7 @@ def accept_offer():
 
     # if active_offer["offer"]["price"] > 0.5 * active_offer["offer"]["original_price"]:
     system_message = {"role": "system", "content": ""}
-    if active_offer["offer"]["price"] > Item.get_item(active_offer["offer"]["item"]["id"]).price:
+    if active_offer["offer"]["price"] > get_item(active_offer["offer"]["item_id"])["price"]:
         system_message["content"] += "This was a profit"
     else:
         system_message["content"] += "This was a loss"
@@ -62,7 +68,7 @@ def accept_offer():
 
     active_offer["npc"]["memories"].append(summary)
 
-    baza.save_person(active_offer["npc"]["name"], active_offer["npc"])
+    save_person(active_offer["npc"]["name"], active_offer["npc"])
 
     active_offer = None
     return jsonify(response)
@@ -86,7 +92,7 @@ def decline_offer():
 
     active_offer["npc"]["memories"].append(summary)
 
-    baza.save_person(active_offer["npc"]["name"], active_offer["npc"])
+    save_person(active_offer["npc"]["name"], active_offer["npc"])
 
     active_offer = None
     return jsonify(response)

@@ -4,8 +4,10 @@ import requests
 import random
 
 import model
+from baza.item import get_all_item_idx
+from baza.npc import *
+from baza.offers import save_offer
 
-from baza import baza
 from utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Condition
 import utils as utils
 
@@ -81,12 +83,6 @@ def generate_offer_data(npc_parsed, item_parsed):
 
 
 def generate_random_npc(image_id):
-    #for testing only TODO: remove later
-
-    names = baza.get_all_people_names()
-    if len(names) != 0:
-        return baza.get_person(random.choice(names))
-
     attributes = Attributes(
         random.choice(list(Deceitful)),
         random.choice(list(Personality)),
@@ -94,27 +90,25 @@ def generate_random_npc(image_id):
         random.choice(list(TalkingStyle)))
 
     name, info, description = generate_npc_data(attributes)
-    return baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
+    return create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
 def generate_offer(npc_name):
-    item = {
-        "id": utils.items[random.randint(0, len(utils.items) - 1)].name,
-        "condition": random.choice(list(Condition)).value,
-    }
+    item_id = random.choice(get_all_item_idx())
 
     price, description = generate_offer_data(
-        baza.get_person_str(npc_name),
-        f"Name: {item['id']}\n"
-        # f"Condition: {item['condition']}\n"
+        get_person_str(npc_name),
+        f"Name: {item_id}\n"
     )
 
     offer = {
         "price": price,
-        "original_price": price,
-        "item": item,
+        "starting_price": price,
+        "item_id": item_id,
         "description": description,
         "quantity": 1 # zar nqkoj den != 1
     }
 
+
+    save_offer(npc_name, offer)
 
     return offer

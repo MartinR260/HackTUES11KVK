@@ -1,7 +1,5 @@
 from enum import Enum
 
-items = []
-
 class Deceitful(Enum):
     LOW = "low"
     MEDIUM = "medium"
@@ -56,18 +54,3 @@ class Attributes:
                 f"}}")
 
 
-
-
-class Item:
-    def __init__(self, name, image_id, price):
-        self.name = name
-        self.image_id = image_id
-        self.price = price
-
-        items.append(self)
-
-    @staticmethod
-    def get_item(name):
-        for item in items:
-            if item.name == name:
-                return item

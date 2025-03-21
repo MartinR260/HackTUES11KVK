@@ -2,11 +2,11 @@ import os
 import json
 from utils import *
 
-dir_path = "baza/bazi/"
 
-if not os.path.exists(dir_path):
-    os.makedirs(dir_path)
+people_path = "baza/people/"
 
+if not os.path.exists(people_path):
+    os.makedirs(people_path)
 
 def create_person(
         image_id: str,
@@ -34,15 +34,16 @@ def create_person(
 
 
 def get_all_people_names():
-    return [f[:-5] for f in os.listdir(dir_path) if f.endswith(".json")]
+    return [f[:-5] for f in os.listdir(people_path) if f.endswith(".json")]
+
 
 def get_person(name):
-    with open(dir_path + name + ".json", "r") as json_file:
+    with open(people_path + name + ".json", "r") as json_file:
         return json.load(json_file)
 
 
 def save_person(name, person):
-    with open(dir_path + name + ".json", "w") as json_file:
+    with open(people_path + name + ".json", "w") as json_file:
         json.dump(person, json_file)
 
 
@@ -57,9 +58,11 @@ def save_memory(name, memory):
     person["memories"].append(memory)
     save_person(name, person)
 
+
 def get_person_str(name):
     person = get_person(name)
     return (f"Name: {person['name']}\n"
             f"Info: {person['info']}\n"
             f"Description: {person['description']}\n"
             f"Attributes: {person['attributes']}\n")
+

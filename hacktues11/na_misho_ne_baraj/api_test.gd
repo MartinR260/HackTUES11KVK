@@ -3,7 +3,7 @@ extends Control
 @onready var http_request: HTTPRequest = $Button/HTTPRequest
 
 func _ready() -> void:
-	var url = "http://127.0.0.1:5000/api/offer?npc_image=123"
+	var url = "http://127.0.0.1:5000/api/offers"
 	http_request.use_threads = true
 	http_request.request(url, [], HTTPClient.METHOD_GET)
 	
@@ -14,6 +14,14 @@ func _on_button_pressed() -> void:
 		"message": "skibidi"
 	}))
 
+func _input(event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_SPACE):
+		var url = "http://127.0.0.1:5000/api/offer/select"
+		http_request.use_threads = true
+		http_request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify({
+			"offer_id": "0",
+			"npc_name": "Alexis"
+		}))
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	print("received something\n")

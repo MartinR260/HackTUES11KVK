@@ -23,7 +23,7 @@ import api.offers as offers
 #
 #     return json1, json2, json3
 
-def get_Responce_gemma():
+def get_Responce_gemma(offer):
     json_schema = {
         "type": "object",
         "properties": {
@@ -41,11 +41,11 @@ def get_Responce_gemma():
         "model": model.model,
         # "model": "gemma3:12b",
         "seed": random.randint(1, 10 ** 18),
-        "messages": offers.active_offer["messages"],
+        "messages": offer["messages"],
         "keep_alive": "30m",
         "stream": False,
         "format": json_schema,
-        "temperature":offers.active_offer["npc"]["temperature"],
+        "temperature":offer["npc"]["temperature"],
     }
 
     # url = "http://192.168.100.99:11434/api/chat"

@@ -1,4 +1,4 @@
 .idea/
-AI/baza/bazi/
+AI/baza/**/*.json
 hacktues11/.godot/
 hacktues11/android/
