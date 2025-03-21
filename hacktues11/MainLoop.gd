@@ -1,5 +1,8 @@
 extends Node
 
+var PickTradeMenu = preload("res://PickTradeMenu.gd") 
+var chat_trade_menu = preload("res://chat_trade_menu.gd")
+
 var purse = 0
 var http_request_main_purse
 var current_scene = null
