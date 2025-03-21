@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=16 format=3 uid="uid://do6jf1jg6j1ln"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="5_wiyrn"]
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
 [ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_wiyrn"]
+[ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
 length = 0.001
@@ -51,7 +52,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.266667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-363, -251), Vector2(550, -250), Vector2(-1400, -250), Vector2(-363, -250)]
+"values": [Vector2(-363, -251), Vector2(550, -251), Vector2(-1400, -251), Vector2(-363, -251)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -91,36 +92,6 @@ _data = {
 
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(29, 2)
-zoom = Vector2(1.2, 1.2)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-offset_left = -1008.0
-offset_top = -768.0
-offset_right = 1157.0
-offset_bottom = 770.0
-color = Color(0.588235, 0.807843, 0.878431, 1)
-
-[node name="AcceptTrade" type="TextureButton" parent="."]
-offset_left = 128.0
-offset_top = 168.0
-offset_right = 256.0
-offset_bottom = 232.0
-texture_normal = ExtResource("1_g6ba8")
-texture_pressed = ExtResource("3_whtp2")
-stretch_mode = 0
-
-[node name="RejectTrade" type="TextureButton" parent="."]
-offset_left = 320.0
-offset_top = 168.0
-offset_right = 448.0
-offset_bottom = 232.0
-texture_normal = ExtResource("2_gppls")
-texture_pressed = ExtResource("5_wiyrn")
-stretch_mode = 0
 
 [node name="TradeInfo" type="NinePatchRect" parent="."]
 offset_left = -363.0
@@ -230,14 +201,51 @@ theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 16
 text = "pe4eni 4u6ki"
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -451.0
+offset_top = -268.0
+offset_right = 509.0
+offset_bottom = 272.0
+texture = ExtResource("11_v6ff6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(29, 2)
+zoom = Vector2(1.2, 1.2)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -1008.0
+offset_top = -768.0
+offset_right = 1157.0
+offset_bottom = 770.0
+color = Color(0.588235, 0.807843, 0.878431, 1)
+
+[node name="AcceptTrade" type="TextureButton" parent="."]
+offset_left = 128.0
+offset_top = 168.0
+offset_right = 256.0
+offset_bottom = 232.0
+texture_normal = ExtResource("1_g6ba8")
+texture_pressed = ExtResource("3_whtp2")
+stretch_mode = 0
+
+[node name="RejectTrade" type="TextureButton" parent="."]
+offset_left = 320.0
+offset_top = 168.0
+offset_right = 448.0
+offset_bottom = 232.0
+texture_normal = ExtResource("2_gppls")
+texture_pressed = ExtResource("5_wiyrn")
+stretch_mode = 0
+
 [node name="PauseButton" parent="." instance=ExtResource("9_0t6gn")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -64.0
-offset_top = -48.0
-offset_right = -64.0
-offset_bottom = -48.0
+offset_left = -56.0
+offset_top = -40.0
+offset_right = -56.0
+offset_bottom = -40.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 0
