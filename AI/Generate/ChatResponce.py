@@ -46,7 +46,7 @@ def get_Responce_gemma(NPC_data, Offer_Data, Messages):
         "\n**Output the string of your message to the player and if you accept the offer, output the final price.**"
     )
 
-    print(Messages["messages"][0]["content"])    
+    # print(Messages["messages"][0]["content"])    
 
     json_schema = {
         "type": "object",
@@ -80,17 +80,15 @@ def get_Responce_gemma(NPC_data, Offer_Data, Messages):
 
     answer = response.json().get("message", "").get("content", "")
 
-    result = answer
+    result = json.loads(answer) 
 
-    # print(result)
-    # print("--------------")
-    #
-    # final_price = answer.split()[-1]
-    # final_price = "".join(re.findall(r'\d', final_price))
-    #
-    # print(final_price)
 
-    return result 
+    conversation = Messages["messages"]
+    conversation.append({"role": "assistant", "content": result["answer_to_player"]})
+
+
+
+    return result, conversation
 
 
 
@@ -100,7 +98,7 @@ if __name__ == "__main__":
 
     result = get_Responce_gemma(NPC_data, Offer_Data, Messages)
 
-    print(result)
+    # print(result)
 
 
     
