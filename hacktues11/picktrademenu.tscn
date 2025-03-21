@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cvtexwvb4brbv"]
+[gd_scene load_steps=27 format=3 uid="uid://cvtexwvb4brbv"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bn4hplw5tknpe" path="res://assets/people/person_1_1.png" id="4_qgkdj"]
 [ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="5_wiyrn"]
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
-[ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_wiyrn"]
+[ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/items/tech.png" id="9_wiyrn"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
 [ext_resource type="Texture2D" uid="uid://1l41o5f4cc0k" path="res://assets/7dayprogress.png" id="12_jhr2b"]
 [ext_resource type="Script" uid="uid://dghidyigs0i3d" path="res://7_day_tracker.gd" id="13_q26ml"]
@@ -246,6 +246,13 @@ offset_right = 1157.0
 offset_bottom = 770.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -451.0
+offset_top = -268.0
+offset_right = 509.0
+offset_bottom = 272.0
+texture = ExtResource("11_v6ff6")
+
 [node name="TradeInfo" type="NinePatchRect" parent="."]
 offset_left = -362.0
 offset_top = -190.0
@@ -373,13 +380,6 @@ layout_mode = 0
 offset_right = 256.0
 offset_bottom = 256.0
 texture = ExtResource("4_qgkdj")
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = -451.0
-offset_top = -268.0
-offset_right = 509.0
-offset_bottom = 272.0
-texture = ExtResource("11_v6ff6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(29, 2)

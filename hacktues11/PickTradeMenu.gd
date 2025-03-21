@@ -27,6 +27,7 @@ var audio_player = AudioStreamPlayer.new()
 @onready var item_name: Label = $TradeInfo/priceLabel2
 @onready var npc_icon: TextureRect = $TextureRect3/TraderIcon/TextureRect
 @onready var item_icon: TextureRect = $TradeInfo/TextureRect
+@onready var money_amount: Label = $moneyAmount
 
 @onready var transition_anim = $TextureRect3/AnimationPlayer
 
@@ -76,9 +77,32 @@ func load_items():
 	response_text.replacen("\\'", "'")
 	items = JSON.parse_string(response_text)["content"]
 	
+func get_money():
+	var url = "http://127.0.0.1:5000/api/purse"
+	http_request.request(url, [], HTTPClient.METHOD_GET)
+	var response = await http_request.request_completed
+
+	var result = response[0]
+	var response_code = response[1]
+	var body = response[3]
+
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("HTTP Request failed with result code: ", result)
+		return
+
+	if response_code != 200:
+		print("HTTP Request returned error code: ", response_code)
+		return
+
+	var response_text = body.get_string_from_utf8().strip_edges()
+	response_text.replacen("\\'", "'")
+	var money = JSON.parse_string(response_text)["money"] 
+	money_amount.text = "$" + str(int(money))
+	
 func _ready() -> void:
 	await load_offers()
 	await load_items()
+	await get_money()
 
 	idx = -1
 	reload()
@@ -100,7 +124,6 @@ func _on_accept_trade_button_up() -> void:
 
 	var result = response[0]
 	var response_code = response[1]
-	var body = response[3]
 
 	if result != HTTPRequest.RESULT_SUCCESS:
 		print("HTTP Request failed with result code: ", result)
@@ -136,8 +159,8 @@ func reload():
 	item_name.text = offers[idx]["offer"]["item_id"]
 	
 	var gender_idx = 1 if offers[idx]["npc"]["image_id"] < 3 else 2
-	var idx = (int(offers[idx]["npc"]["image_id"]) % 3) + 1
-	npc_icon.texture = load("res://assets/people/person_" + str(gender_idx) + "_" + str(idx) + ".png")
+	var idx_ = (int(offers[idx]["npc"]["image_id"]) % 3) + 1
+	npc_icon.texture = load("res://assets/people/person_" + str(gender_idx) + "_" + str(idx_) + ".png")
 	
 	var item_ = null
 	for item in items:
