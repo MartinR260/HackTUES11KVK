@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2gsondmjm0ra"]
+[gd_scene load_steps=12 format=3 uid="uid://d2gsondmjm0ra"]
 
 [ext_resource type="Texture2D" uid="uid://cgpbcwq881gc3" path="res://assets/background.png" id="1_kyjx3"]
+[ext_resource type="Texture2D" uid="uid://cu7etao1qltd3" path="res://assets/green_button_press.png" id="2_4g7jg"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="2_kyjx3"]
 [ext_resource type="Script" uid="uid://cm3i5qv5wtnl3" path="res://AcceptTradeButton.gd" id="3_unygt"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="4_p4c4u"]
+[ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="5_a5ogm"]
 [ext_resource type="Script" uid="uid://dq3i2rwsri0uj" path="res://RejectTradeButton.gd" id="5_pavjr"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="6_unygt"]
 [ext_resource type="Script" uid="uid://nd1n1dkpb1k1" path="res://scroll_container.gd" id="8_pavjr"]
 [ext_resource type="Texture2D" uid="uid://c78twwryoo1bh" path="res://assets/chat-output.png" id="9_os3wd"]
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="11_a5ogm"]
 
 [node name="ChatTradeMenu" type="Node2D"]
 
@@ -25,6 +28,7 @@ offset_top = 72.0
 offset_right = -200.0
 offset_bottom = 136.0
 texture_normal = ExtResource("2_kyjx3")
+texture_pressed = ExtResource("2_4g7jg")
 stretch_mode = 0
 script = ExtResource("3_unygt")
 
@@ -34,6 +38,7 @@ offset_top = 72.0
 offset_right = -16.0
 offset_bottom = 136.0
 texture_normal = ExtResource("4_p4c4u")
+texture_pressed = ExtResource("5_a5ogm")
 stretch_mode = 0
 script = ExtResource("5_pavjr")
 
@@ -67,9 +72,9 @@ texture = ExtResource("9_os3wd")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_left = 160.0
-offset_top = -193.0
+offset_top = -192.0
 offset_right = 332.0
-offset_bottom = 135.0
+offset_bottom = 144.0
 script = ExtResource("8_pavjr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
@@ -80,10 +85,13 @@ size_flags_vertical = 3
 [node name="HTTPRequest" type="HTTPRequest" parent="ScrollContainer"]
 
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 163.0
-offset_top = 145.0
-offset_right = 333.0
+offset_left = 160.0
+offset_top = 152.0
+offset_right = 336.0
 offset_bottom = 182.0
+theme_override_fonts/font = ExtResource("11_a5ogm")
+theme_override_font_sizes/font_size = 16
+text = "dasdasd"
 
 [connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
 [connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
