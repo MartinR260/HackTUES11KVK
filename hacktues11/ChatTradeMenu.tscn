@@ -32,6 +32,8 @@ texture_pressed = ExtResource("2_4g7jg")
 stretch_mode = 0
 script = ExtResource("3_unygt")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="AcceptTrade"]
+
 [node name="RejectTrade" type="TextureButton" parent="."]
 offset_left = -144.0
 offset_top = 72.0
@@ -41,6 +43,8 @@ texture_normal = ExtResource("4_p4c4u")
 texture_pressed = ExtResource("5_a5ogm")
 stretch_mode = 0
 script = ExtResource("5_pavjr")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="RejectTrade"]
 
 [node name="TraderIcon" type="TextureRect" parent="."]
 offset_left = -376.0

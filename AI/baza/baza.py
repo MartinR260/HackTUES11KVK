@@ -33,6 +33,9 @@ def create_person(
     return value
 
 
+def get_all_people_names():
+    return [f[:-5] for f in os.listdir(dir_path) if f.endswith(".json")]
+
 def get_person(name):
     with open(dir_path + name + ".json", "r") as json_file:
         return json.load(json_file)

@@ -71,7 +71,7 @@ func _send_message_http(msg):
 		"message": msg
 	}))
 
-func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+func _on_http_request_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
 		print("HTTP Request failed with result code: ", result)
 		return

@@ -3,6 +3,8 @@ import json
 import requests
 import random
 
+import model
+
 from baza import baza
 from utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Condition
 import utils as utils
@@ -12,7 +14,8 @@ url  = "http://localhost:11434/api/generate"
 
 def ask_question(question, fmt=None):
     data = {
-        "model": "llama3.2:1b",
+        # "model": "llama3.2:1b",
+        "model": model.model,
         "prompt": question,
         "seed": random.randint(1, 10 ** 18),
         "keep_alive": "30m",
@@ -58,7 +61,7 @@ def generate_offer_data(npc_parsed, item_parsed):
             f"You have this NPC:\n{npc_parsed}.\n"
             f"That wants to sell this item:\n{item_parsed}\n"
             "Provide an offer for the item in JSON format with the following keys:\n"
-            "- 'price': a number in USD formatted as $0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
+            "- 'price': a number formatted as a float 0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
             "- 'description': a short description of the item as if the NPC is trying to sell it. Use the language the NPC would use.\n"
             "Return only the JSON, with no extra text."
     )
@@ -66,7 +69,7 @@ def generate_offer_data(npc_parsed, item_parsed):
     json_schema = {
         "type": "object",
         "properties": {
-            "price": {"type": "string"},
+            "price": {"type": "integer"},
             "description": {"type": "string"}
         },
         "required": ["price", "description"]
@@ -74,10 +77,16 @@ def generate_offer_data(npc_parsed, item_parsed):
 
     response_text = ask_question(prompt, fmt=json_schema)
     result = json.loads(response_text)
-    return result["price"], result["description"]
+    return float(result["price"]), result["description"]
 
 
 def generate_random_npc(image_id):
+    #for testing only TODO: remove later
+
+    names = baza.get_all_people_names()
+    if len(names) != 0:
+        return baza.get_person(random.choice(names))
+
     attributes = Attributes(
         random.choice(list(Deceitful)),
         random.choice(list(Personality)),
@@ -88,8 +97,6 @@ def generate_random_npc(image_id):
     return baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
 def generate_offer(npc_name):
-    print(utils.items)
-
     item = {
         "id": utils.items[random.randint(0, len(utils.items) - 1)].name,
         "condition": random.choice(list(Condition)).value,
@@ -98,7 +105,7 @@ def generate_offer(npc_name):
     price, description = generate_offer_data(
         baza.get_person_str(npc_name),
         f"Name: {item['id']}\n"
-        f"Condition: {item['condition']}\n"
+        # f"Condition: {item['condition']}\n"
     )
 
     offer = {

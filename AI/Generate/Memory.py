@@ -2,7 +2,10 @@ import json
 import random
 
 import requests
-from ChatResponce import get_Responce_gemma, parse
+
+from utils import Item
+
+import model
 
 
 def get_summary(Offer_Data):
@@ -10,7 +13,7 @@ def get_summary(Offer_Data):
 
     prompt = "Get a conclusion out of this trade bargaining conversation. You are the NPC assistant. Get with 1 sentance the conclusion of the conversation:\n"
 
-    prompt += "Offer: you are selling " + Offer_Data["item"]["name"] + " for " + Offer_Data["price"] + ". (actual price: " + Offer_Data["item"]["price"] + ")\n"
+    prompt += "Offer: you are selling " + Offer_Data["offer"]["item"]["id"] + " for " + str(Offer_Data["offer"]["price"]) + ". (actual price: " + str(Item.get_item(Offer_Data["offer"]["item"]["id"]).price) + ")\n"
 
     for idx, message in enumerate(Messages):
         if idx == 0:  
@@ -21,7 +24,9 @@ def get_summary(Offer_Data):
 
 
     data = {
-        "model": "gemma3:12b",
+        # "model": "gemma3:12b",
+        # "model": "llama3.2:1b",
+        "model": model.model,
         "seed": random.randint(1, 10 ** 18),
         # "messages": [ ],
         "prompt": prompt,
@@ -31,7 +36,8 @@ def get_summary(Offer_Data):
     }
 
     # url = "http://192.168.100.99:11434/api/chat"  
-    url = "http://192.168.100.99:11434/api/generate"  
+    url = "http://127.0.0.1:11434/api/generate"
+    # url = "http://192.168.100.99:11434/api/generate"
 
     response = requests.post(url, json=data)
 
