@@ -6,6 +6,7 @@ import re
 
 import requests
 
+import api.offers as offers
 
 def parse():
     if len(sys.argv) != 4:
@@ -22,32 +23,7 @@ def parse():
 
     return json1, json2, json3
 
-def get_Responce_gemma(NPC_data, Offer_Data, Messages):
-
-    Messages["messages"].insert(0, {"role": "system", "content": ""})
-
-    Messages["messages"][0]["content"] = (
-        "You are an NPC in a videogame about trading and you are negotiating with the player. "
-        "You are selling a " + Offer_Data["item"]["name"] +
-        # " to " + NPC_data["name"] +
-        " to the player " +
-        " for " + str(Offer_Data["price"]) +
-        " - the actual price of the " + Offer_Data["item"]["name"] +
-        " is " + str(Offer_Data["item"]["price"]) + ", which is unknown to the player. "
-        "This is the info for you:\n" + NPC_data["info"] + "\n"
-        "This is your personal description: " + NPC_data["description"] + "\n\n"
-        "These are your attributes as NPC that should be followed:\n"
-    )
-
-    for attribute, value in NPC_data["attributes"].items():
-        Messages["messages"][0]["content"] += f"{attribute}: {value}\n"
-
-    Messages["messages"][0]["content"] += (
-        "\n**Output the string of your message to the player and if you accept the offer, output the final price.**"
-    )
-
-    # print(Messages["messages"][0]["content"])    
-
+def get_Responce_gemma():
     json_schema = {
         "type": "object",
         "properties": {
@@ -60,28 +36,23 @@ def get_Responce_gemma(NPC_data, Offer_Data, Messages):
         "required": ["answer_to_player", "is_final", "price"],
     }
 
-
+    print(offers.active_offer["messages"])
 
     data = {
-        "model": "gemma3:12b",
+        "model": "llama3.2:1b",
+        # "model": "gemma3:12b",
         "seed": random.randint(1, 10 ** 18),
-        "messages": [ ],
+        "messages": offers.active_offer["messages"],
         "keep_alive": "30m",
         "stream": False,
         "format": json_schema,
     }
 
-    for message in Messages["messages"]:
-        data["messages"].append(message)
-
-    url = "http://192.168.100.99:11434/api/chat"  
-
+    # url = "http://192.168.100.99:11434/api/chat"
+    url = "http://localhost:11434/api/chat"
     response = requests.post(url, json=data)
-
     answer = response.json().get("message", "").get("content", "")
-
-    result = json.loads(answer) 
-
+    result = json.loads(answer)
 
     # conversation = Messages["messages"]
     # conversation.append({"role": "assistant", "content": result["answer_to_player"]})

@@ -17,6 +17,7 @@ func send_message_ai(text):
 		
 	var panel = PanelContainer.new()
 	var label = Label.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
@@ -35,6 +36,7 @@ func send_message_player(text):
 		
 	var panel = PanelContainer.new()
 	var label = Label.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
