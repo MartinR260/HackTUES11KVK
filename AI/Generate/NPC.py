@@ -78,6 +78,12 @@ def generate_offer_data(npc_parsed, item_parsed):
 
 
 def generate_random_npc(image_id):
+    #for testing only TODO: remove later
+
+    names = baza.get_all_people_names()
+    if len(names) != 0:
+        return baza.get_person(random.choice(names))
+
     attributes = Attributes(
         random.choice(list(Deceitful)),
         random.choice(list(Personality)),
@@ -88,8 +94,6 @@ def generate_random_npc(image_id):
     return baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
 def generate_offer(npc_name):
-    print(utils.items)
-
     item = {
         "id": utils.items[random.randint(0, len(utils.items) - 1)].name,
         "condition": random.choice(list(Condition)).value,

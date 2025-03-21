@@ -39,7 +39,5 @@ def chat():
 
     offers.active_offer["messages"].append({"role": "npc", "content": result["answer_to_player"]})
 
-    print(offers.active_offer)
-
     return jsonify({"response": result})
 
