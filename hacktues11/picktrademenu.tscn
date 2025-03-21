@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_wiyrn"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
 [ext_resource type="Texture2D" uid="uid://1l41o5f4cc0k" path="res://assets/7dayprogress.png" id="12_jhr2b"]
-[ext_resource type="Script" path="res://7_day_tracker.gd" id="13_q26ml"]
+[ext_resource type="Script" uid="uid://dghidyigs0i3d" path="res://7_day_tracker.gd" id="13_q26ml"]
 [ext_resource type="Texture2D" uid="uid://c27cimkvjjg2q" path="res://assets/m.png" id="14_ww133"]
 [ext_resource type="Texture2D" uid="uid://8ecov2riu4oe" path="res://assets/t.png" id="15_qn6kg"]
 [ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]
@@ -257,17 +257,15 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="TraderDescription" type="Label" parent="TradeInfo"]
+[node name="TraderDescription" type="RichTextLabel" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 255.0
-offset_right = 787.0
-offset_bottom = 319.0
+offset_left = 146.0
+offset_top = 245.0
+offset_right = 839.0
+offset_bottom = 325.0
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_g6ba8")
-theme_override_font_sizes/font_size = 16
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
-autowrap_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_g6ba8")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
 
 [node name="TraderName" type="Label" parent="TradeInfo"]
 layout_mode = 0
@@ -281,17 +279,15 @@ theme_override_font_sizes/font_size = 24
 text = "Ivan Ivanov"
 vertical_alignment = 1
 
-[node name="TradeDescription" type="Label" parent="TradeInfo"]
+[node name="TradeDescription" type="RichTextLabel" parent="TradeInfo"]
 layout_mode = 0
 offset_left = 187.0
-offset_top = 114.0
-offset_right = 835.0
-offset_bottom = 192.0
+offset_top = 110.0
+offset_right = 832.0
+offset_bottom = 195.0
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_g6ba8")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/normal_font = ExtResource("3_g6ba8")
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-autowrap_mode = 2
 
 [node name="RerollAnimation" type="AnimationPlayer" parent="TradeInfo"]
 libraries = {

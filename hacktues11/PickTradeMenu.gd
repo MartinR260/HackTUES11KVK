@@ -21,8 +21,8 @@ var audio_player = AudioStreamPlayer.new()
 @onready var http_request: HTTPRequest = $HTTPRequest
 
 @onready var trader_name: Label = $TradeInfo/TraderName
-@onready var trader_description: Label = $TradeInfo/TraderDescription
-@onready var trade_description: Label = $TradeInfo/TradeDescription
+@onready var trader_description: RichTextLabel = $TradeInfo/TraderDescription
+@onready var trade_description: RichTextLabel = $TradeInfo/TradeDescription
 @onready var price_ammount: Label = $TradeInfo/priceAmmount
 @onready var item_name: Label = $TradeInfo/priceLabel2
 
