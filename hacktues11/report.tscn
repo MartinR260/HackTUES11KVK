@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw6c4dpxfaa24"]
+
+[ext_resource type="Texture2D" uid="uid://ci2ywojnmemrl" path="res://assets/report.png" id="1_7ngoa"]
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="2_g5hm7"]
+[ext_resource type="Script" uid="uid://b3yw63021x4hx" path="res://report.gd" id="2_wpx5y"]
+
+[node name="Report" type="TextureRect"]
+offset_top = 1.0
+offset_right = 256.0
+offset_bottom = 513.0
+texture = ExtResource("1_7ngoa")
+script = ExtResource("2_wpx5y")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 25.0
+offset_right = 210.0
+offset_bottom = 41.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "Bargained with"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 52.0
+offset_right = 231.0
+offset_bottom = 248.0
+rotation = -0.0174533
+
+[node name="MoneySpentLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.2792
+offset_top = 275.0
+offset_right = 206.279
+offset_bottom = 291.0
+rotation = 0.0174533
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "Money spent:"
+vertical_alignment = 1
+
+[node name="MoneySpentAmmount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.2792
+offset_top = 295.0
+offset_right = 205.279
+offset_bottom = 311.0
+rotation = 0.0174533
+theme_override_colors/font_color = Color(0, 0.798343, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "$500"
+vertical_alignment = 1
+
+[node name="ItemsBasePriceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.2792
+offset_top = 329.0
+offset_right = 238.279
+offset_bottom = 345.0
+rotation = -0.0349066
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "Items base price:"
+vertical_alignment = 1
+
+[node name="ItemsBasePriceAmmount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 23.2792
+offset_top = 349.0
+offset_right = 207.279
+offset_bottom = 365.0
+rotation = -0.0174533
+theme_override_colors/font_color = Color(0, 0.798343, 3.85046e-07, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "$500"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 396.0
+offset_right = 226.0
+offset_bottom = 399.0
+rotation = -0.0349066
+color = Color(0.49667, 0.487187, 0.487186, 1)
+
+[node name="Conclusion" type="Label" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 419.0
+offset_right = 267.0
+offset_bottom = 473.0
+rotation = -0.0349066
+scale = Vector2(0.9, 0.9)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "You got the items
+for equal the
+base price!"
+vertical_alignment = 1
