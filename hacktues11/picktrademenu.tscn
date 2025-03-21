@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=27 format=3 uid="uid://dafgcolil82jx"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="2_gppls"]
 [ext_resource type="Texture2D" uid="uid://db8831rxhj1yf" path="res://assets/big-frame.png" id="2_w86nt"]
 [ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
+[ext_resource type="Texture2D" uid="uid://cgpbcwq881gc3" path="res://assets/background.png" id="3_uu5bg"]
 [ext_resource type="Texture2D" uid="uid://cu7etao1qltd3" path="res://assets/green_button_press.png" id="3_whtp2"]
 [ext_resource type="Texture2D" uid="uid://bn4hplw5tknpe" path="res://assets/people/person_1_1.png" id="4_qgkdj"]
 [ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="5_wiyrn"]
@@ -21,30 +22,6 @@
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-363, -190)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_85uty"]
 resource_name = "reroll"
@@ -73,19 +50,43 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, true]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0.233333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"reload"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureRect3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.232579, 0.26836, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-336, 24), Vector2(576, 24), Vector2(-1368, 24), Vector2(-336, 24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureRect3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.26836),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_0t6gn"]
@@ -111,6 +112,127 @@ _data = {
 &"reroll2": SubResource("Animation_0t6gn")
 }
 
+[sub_resource type="Animation" id="Animation_vu2ae"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-336, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TraderIcon:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(257, 257)]
+}
+
+[sub_resource type="Animation" id="Animation_uu5bg"]
+resource_name = "transition"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(128, 0, 256, 256), Rect2(0, 0, 512, 256)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 256), Vector2(512, 256)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-336, 24), Vector2(-432, -248), Vector2(-432, -247.999)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(1.3, 1.3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:z_index")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TraderIcon:size")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(257, 257), Vector2(512, 256)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TraderIcon/TextureRect:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(128, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8iih"]
+_data = {
+&"RESET": SubResource("Animation_vu2ae"),
+&"transition": SubResource("Animation_uu5bg")
+}
+
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
 
@@ -134,27 +256,6 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-
-[node name="TraderIcon" type="NinePatchRect" parent="TradeInfo"]
-z_index = 1
-layout_mode = 0
-offset_left = 16.0
-offset_top = 216.0
-offset_right = 128.0
-offset_bottom = 328.0
-texture = ExtResource("11_v6ff6")
-region_rect = Rect2(0, 0, 512, 256)
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="TextureRect" type="TextureRect" parent="TradeInfo/TraderIcon"]
-z_index = -1
-layout_mode = 0
-offset_right = 112.0
-offset_bottom = 112.0
-texture = ExtResource("4_qgkdj")
 
 [node name="TraderDescription" type="Label" parent="TradeInfo"]
 layout_mode = 0
@@ -240,6 +341,42 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 24
 text = "PC Monitor"
+
+[node name="TextureRect3" type="NinePatchRect" parent="."]
+z_index = 1
+offset_left = -336.0
+offset_top = 24.0
+offset_right = -80.0
+offset_bottom = 280.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_uu5bg")
+region_rect = Rect2(128, 0, 256, 256)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect3"]
+libraries = {
+&"": SubResource("AnimationLibrary_e8iih")
+}
+
+[node name="TraderIcon" type="NinePatchRect" parent="TextureRect3"]
+z_index = 1
+layout_mode = 0
+offset_left = -0.769226
+offset_top = -0.769226
+offset_right = 256.231
+offset_bottom = 256.231
+texture = ExtResource("11_v6ff6")
+region_rect = Rect2(0, 0, 512, 256)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect3/TraderIcon"]
+z_index = -1
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+texture = ExtResource("4_qgkdj")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 offset_left = -451.0
