@@ -3,6 +3,8 @@ import json
 import requests
 import random
 
+import model
+
 from baza import baza
 from utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Condition
 import utils as utils
@@ -12,7 +14,8 @@ url  = "http://localhost:11434/api/generate"
 
 def ask_question(question, fmt=None):
     data = {
-        "model": "llama3.2:1b",
+        # "model": "llama3.2:1b",
+        "model": model.model,
         "prompt": question,
         "seed": random.randint(1, 10 ** 18),
         "keep_alive": "30m",

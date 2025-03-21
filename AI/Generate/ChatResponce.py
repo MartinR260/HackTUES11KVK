@@ -1,6 +1,7 @@
 #!rule {"name":,"info":,"description":,}
 import json
 import random
+import model
 # import sys
 
 import requests
@@ -36,7 +37,8 @@ def get_Responce_gemma():
     }
 
     data = {
-        "model": "llama3.2:1b",
+        # "model": "llama3.2:1b",
+        "model": model.model,
         # "model": "gemma3:12b",
         "seed": random.randint(1, 10 ** 18),
         "messages": offers.active_offer["messages"],

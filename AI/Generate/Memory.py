@@ -5,6 +5,8 @@ import requests
 
 from utils import Item
 
+import model
+
 
 def get_summary(Offer_Data):
     Messages = Offer_Data["messages"]
@@ -23,7 +25,8 @@ def get_summary(Offer_Data):
 
     data = {
         # "model": "gemma3:12b",
-        "model": "llama3.2:1b",
+        # "model": "llama3.2:1b",
+        "model": model.model,
         "seed": random.randint(1, 10 ** 18),
         # "messages": [ ],
         "prompt": prompt,
