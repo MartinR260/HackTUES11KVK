@@ -1,13 +1,16 @@
 import json
 import random
+
 import requests
 from ChatResponce import get_Responce_gemma, parse
 
-def get_summary(Messages):
+
+def get_summary(Offer_Data, accepted):
+    Messages = Offer_Data["messages"]
 
     prompt = "Get a conclusion out of this trade bargaining conversation. You are the NPC assistant. Get with 1 sentance the conclusion of the conversation:\n"
 
-    prompt += ""
+    prompt += "Offer: you are selling " + Offer_Data["item"]["name"] + " for " + Offer_Data["price"] + ". (actual price: " + Offer_Data["item"]["price"] + ")\n"
 
     for idx, message in enumerate(Messages):
         if idx == 0:  # Skip the first element
@@ -39,21 +42,21 @@ def get_summary(Messages):
     # return json.loads(answer)
     return answer
 
-if __name__ == "__main__":
-
-    NPC_data, Offer_Data, Messages = parse()
-
-    accepted = False
-
-    # result, conversation, acceptet_ili_ne, oferta = get_Responce_gemma(NPC_data, Offer_Data, Messages)
-    result, conversation, offer = get_Responce_gemma(NPC_data, Offer_Data, Messages)
-
-    conversation.append({"role": "user", "content": "Accepted the offer"})
-
-    memory = get_summary(conversation, offer, accepted)
-
-    print("-------------Memory-------------")
-    print(memory)
+# if __name__ == "__main__":
+#
+#     NPC_data, Offer_Data, Messages = parse()
+#
+#     accepted = False
+#
+#     # result, conversation, acceptet_ili_ne, oferta = get_Responce_gemma(NPC_data, Offer_Data, Messages)
+#     result, conversation, offer = get_Responce_gemma(NPC_data, Offer_Data, Messages)
+#
+#     conversation.append({"role": "user", "content": "Accepted the offer"})
+#
+#     memory = get_summary(conversation, offer, accepted)
+#
+#     print("-------------Memory-------------")
+#     print(memory)
 
 
     

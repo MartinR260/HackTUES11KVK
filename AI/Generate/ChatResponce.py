@@ -83,12 +83,13 @@ def get_Responce_gemma(NPC_data, Offer_Data, Messages):
     result = json.loads(answer) 
 
 
-    conversation = Messages["messages"]
-    conversation.append({"role": "assistant", "content": result["answer_to_player"]})
+    # conversation = Messages["messages"]
+    # conversation.append({"role": "assistant", "content": result["answer_to_player"]})
 
 
-
-    return result, conversation
+    # return result, conversation, Offer_Data
+    # return result, conversation
+    return result
 
 
 
