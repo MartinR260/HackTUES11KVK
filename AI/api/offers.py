@@ -10,7 +10,7 @@ def initialize_offer(npc_image):
     global active_offer
     npc = npc_gen.generate_random_npc(npc_image)
     offer = npc_gen.generate_offer(npc["name"])
-    active_offer = {"npc": npc, "offer": offer}
+    active_offer = {"npc": npc, "offer": offer, "messages": []}
 
 
 @app.route('/api/offer', methods=['GET'])
