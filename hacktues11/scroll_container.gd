@@ -10,7 +10,7 @@ const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 @onready var item_icon: TextureRect = $"../OfferInfo/TextureRect"
 @onready var price: Label = $"../OfferInfo/priceAmount"
 @onready var item_name: Label = $"../OfferInfo/priceLabel2"
-@onready var trade_description: Label = $"../OfferInfo/TradeDescription"
+@onready var trade_description: RichTextLabel = $"../OfferInfo/TradeDescription"
 @onready var trader: TextureRect = $"../Trader"
 @onready var price_amount: Label = $"../OfferInfo/priceAmount"
 

@@ -60,5 +60,3 @@ func add_cross_at_index(index):
 
 func add_tick_at_index(index):
 	texture_array[index].texture = TICK
-func clear_days():
-	pass
