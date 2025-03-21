@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2gsondmjm0ra"]
+[gd_scene load_steps=17 format=3 uid="uid://d2gsondmjm0ra"]
 
+[ext_resource type="Script" uid="uid://danilg17qmmgy" path="res://chat_trade_menu.gd" id="1_7u6cb"]
 [ext_resource type="Texture2D" uid="uid://cgpbcwq881gc3" path="res://assets/background.png" id="1_kyjx3"]
 [ext_resource type="Texture2D" uid="uid://cu7etao1qltd3" path="res://assets/green_button_press.png" id="2_4g7jg"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="2_kyjx3"]
@@ -10,16 +11,168 @@
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="6_unygt"]
 [ext_resource type="Script" uid="uid://nd1n1dkpb1k1" path="res://scroll_container.gd" id="8_pavjr"]
 [ext_resource type="Texture2D" uid="uid://b4lydw5k8rat3" path="res://assets/offer_background.png" id="9_4g7jg"]
+[ext_resource type="Texture2D" uid="uid://bn4hplw5tknpe" path="res://assets/people/person_1_1.png" id="9_23itu"]
 [ext_resource type="Texture2D" uid="uid://c78twwryoo1bh" path="res://assets/chat-output.png" id="9_os3wd"]
 
-[node name="ChatTradeMenu" type="Node2D"]
+[sub_resource type="Animation" id="Animation_23itu"]
+resource_name = "readyanim"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-240, 230), Vector2(-240, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AcceptTrade:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, 226), Vector2(16, 64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RejectTrade:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, 300), Vector2(16, 136)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(400, -200), Vector2(160, -200)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScrollContainer:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(420, -184), Vector2(176, -184)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextEdit:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(420, 154), Vector2(179, 154)]
+}
 
-[node name="TextureRect3" type="TextureRect" parent="."]
-offset_left = -384.0
-offset_top = -216.0
-offset_right = 384.0
-offset_bottom = 216.0
-texture = ExtResource("6_unygt")
+[sub_resource type="Animation" id="Animation_7u6cb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-240, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AcceptTrade:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RejectTrade:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 136)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, -200)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScrollContainer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(176, -184)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextEdit:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(179, 154)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80d0c"]
+_data = {
+&"RESET": SubResource("Animation_7u6cb"),
+&"readyanim": SubResource("Animation_23itu")
+}
+
+[node name="ChatTradeMenu" type="Node2D"]
+script = ExtResource("1_7u6cb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
@@ -29,30 +182,6 @@ offset_right = 1101.0
 offset_bottom = 1010.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
-[node name="AcceptTrade" type="TextureButton" parent="."]
-offset_left = 16.0
-offset_top = 64.0
-offset_right = 144.0
-offset_bottom = 128.0
-texture_normal = ExtResource("2_kyjx3")
-texture_pressed = ExtResource("2_4g7jg")
-stretch_mode = 0
-script = ExtResource("3_unygt")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="AcceptTrade"]
-
-[node name="RejectTrade" type="TextureButton" parent="."]
-offset_left = 16.0
-offset_top = 136.0
-offset_right = 144.0
-offset_bottom = 200.0
-texture_normal = ExtResource("4_p4c4u")
-texture_pressed = ExtResource("5_a5ogm")
-stretch_mode = 0
-script = ExtResource("5_pavjr")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="RejectTrade"]
-
 [node name="TraderIcon" type="TextureRect" parent="."]
 offset_left = -368.0
 offset_top = -200.0
@@ -61,6 +190,14 @@ offset_bottom = 56.0
 texture = ExtResource("1_kyjx3")
 stretch_mode = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Trader" type="TextureRect" parent="."]
+offset_left = -248.0
+offset_top = -200.0
+offset_right = 8.0
+offset_bottom = 56.0
+texture = ExtResource("9_23itu")
+stretch_mode = 4
 
 [node name="Frame" type="TextureRect" parent="."]
 offset_left = -368.0
@@ -75,16 +212,16 @@ metadata/_edit_use_anchors_ = true
 zoom = Vector2(1.5, 1.5)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 160.0
+offset_left = 400.0
 offset_top = -200.0
-offset_right = 368.0
+offset_right = 608.0
 offset_bottom = 202.0
 texture = ExtResource("9_os3wd")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-offset_left = 176.0
+offset_left = 420.0
 offset_top = -184.0
-offset_right = 348.0
+offset_right = 592.0
 offset_bottom = 144.0
 scale = Vector2(1.03959, 0.994929)
 script = ExtResource("8_pavjr")
@@ -101,22 +238,58 @@ wait_time = 0.2
 autostart = true
 
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 179.0
+offset_left = 420.0
 offset_top = 154.0
-offset_right = 349.0
+offset_right = 590.0
 offset_bottom = 191.0
 scale = Vector2(1.03959, 0.994929)
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 offset_left = -240.0
-offset_top = 64.0
-offset_bottom = 200.0
+offset_top = 230.0
+offset_bottom = 366.0
 texture = ExtResource("9_4g7jg")
 expand_mode = 1
 stretch_mode = 4
 
-[connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
-[connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
+[node name="RejectTrade" type="TextureButton" parent="."]
+offset_left = 16.0
+offset_top = 300.0
+offset_right = 144.0
+offset_bottom = 364.0
+texture_normal = ExtResource("4_p4c4u")
+texture_pressed = ExtResource("5_a5ogm")
+stretch_mode = 0
+script = ExtResource("5_pavjr")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="RejectTrade"]
+
+[node name="AcceptTrade" type="TextureButton" parent="."]
+offset_left = 16.0
+offset_top = 226.0
+offset_right = 144.0
+offset_bottom = 290.0
+texture_normal = ExtResource("2_kyjx3")
+texture_pressed = ExtResource("2_4g7jg")
+stretch_mode = 0
+script = ExtResource("3_unygt")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="AcceptTrade"]
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("6_unygt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_80d0c")
+}
+
 [connection signal="request_completed" from="ScrollContainer/HTTPRequest" to="ScrollContainer" method="_on_http_request_request_completed"]
 [connection signal="timeout" from="ScrollContainer/LoadingTimer" to="ScrollContainer" method="_on_loading_timer_timeout"]
 [connection signal="text_changed" from="TextEdit" to="ScrollContainer" method="_on_text_edit_text_changed"]
+[connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
+[connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]

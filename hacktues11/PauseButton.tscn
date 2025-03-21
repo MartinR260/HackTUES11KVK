@@ -42,9 +42,6 @@ texture_pressed = ExtResource("3_s4vjv")
 texture_hover = ExtResource("4_pq00w")
 stretch_mode = 0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
-
 [node name="PauseMenu" type="Node2D" parent="."]
 process_mode = 3
 visible = false
@@ -53,8 +50,8 @@ script = SubResource("GDScript_dv2ah")
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 offset_left = -384.0
 offset_top = -216.0
-offset_right = 384.0
-offset_bottom = 216.0
+offset_right = 704.0
+offset_bottom = 384.0
 color = Color(0.588235, 0.807843, 0.878431, 0.490196)
 
 [node name="Continue" type="Button" parent="PauseMenu"]

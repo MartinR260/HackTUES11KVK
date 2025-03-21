@@ -4,6 +4,7 @@ var button_click_sfx : AudioStreamRandomizer = AudioStreamRandomizer.new()
 var audio_player = AudioStreamPlayer.new()
 @onready var trade_info = $TradeInfo
 @onready var reroll_anim = $TradeInfo/RerollAnimation
+@onready var transition_anim = $TextureRect3/AnimationPlayer
 
 func _ready() -> void:
 	button_click_sfx.add_stream(0, load("res://sfx/mouseclicks/mouse-button-click-308449.mp3"))
@@ -15,7 +16,8 @@ func _ready() -> void:
 func _on_accept_trade_button_up() -> void:
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
-	while audio_player.playing: pass
+	transition_anim.play("transition")
+	await transition_anim.animation_finished
 	
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
