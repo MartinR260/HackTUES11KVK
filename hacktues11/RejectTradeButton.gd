@@ -4,7 +4,7 @@ var button_click_sfx : AudioStreamRandomizer = AudioStreamRandomizer.new()
 var audio_player = AudioStreamPlayer.new()
 
 @onready var http_request: HTTPRequest = $HTTPRequest
-@onready var exit_anim = $"../AnimationPlayer"
+@onready var exit_anim = $"../AnimationPlayer3"
 @onready var icon_anim = $"../AnimationPlayer2"
 
 func _ready() -> void:
@@ -19,7 +19,7 @@ func _on_button_up() -> void:
 	await _decline_http()
 	# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
 	
-	exit_anim.play("readyanim", -1, -1)
+	exit_anim.play("exit")
 	icon_anim.play("exiticon")
 	await exit_anim.animation_finished
 	
