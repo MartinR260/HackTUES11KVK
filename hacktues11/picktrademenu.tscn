@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=16 format=3 uid="uid://dafgcolil82jx"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -93,6 +93,14 @@ _data = {
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -1008.0
+offset_top = -768.0
+offset_right = 1157.0
+offset_bottom = 770.0
+color = Color(0.588235, 0.807843, 0.878431, 1)
+
 [node name="TradeInfo" type="NinePatchRect" parent="."]
 offset_left = -363.0
 offset_top = -250.0
@@ -107,9 +115,9 @@ patch_margin_bottom = 8
 [node name="TraderIcon" type="NinePatchRect" parent="TradeInfo"]
 layout_mode = 0
 offset_left = 19.0
-offset_top = 42.0
+offset_top = 250.0
 offset_right = 147.0
-offset_bottom = 170.0
+offset_bottom = 378.0
 texture = ExtResource("4_gppls")
 region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 8
@@ -119,23 +127,22 @@ patch_margin_bottom = 8
 
 [node name="TraderDescription" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 82.0
-offset_right = 811.0
-offset_bottom = 170.0
-theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+offset_left = 171.0
+offset_top = 314.0
+offset_right = 819.0
+offset_bottom = 378.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 16
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation "
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
 autowrap_mode = 2
 
 [node name="TraderName" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 50.0
-offset_right = 464.0
-offset_bottom = 74.0
+offset_left = 171.0
+offset_top = 266.0
+offset_right = 480.0
+offset_bottom = 290.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 24
@@ -144,14 +151,14 @@ horizontal_alignment = 1
 
 [node name="TradeDescription" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 250.0
+offset_left = 187.0
+offset_top = 114.0
 offset_right = 835.0
-offset_bottom = 379.0
+offset_bottom = 192.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
-theme_override_font_sizes/font_size = 16
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation "
+theme_override_font_sizes/font_size = 24
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
 autowrap_mode = 2
 
 [node name="RerollAnimation" type="AnimationPlayer" parent="TradeInfo"]
@@ -162,46 +169,49 @@ libraries = {
 [node name="TextureRect" type="TextureRect" parent="TradeInfo"]
 layout_mode = 0
 offset_left = 19.0
-offset_top = 186.0
+offset_top = 26.0
 offset_right = 59.0
-offset_bottom = 226.0
+offset_bottom = 66.0
+scale = Vector2(4, 4)
 texture = ExtResource("9_wiyrn")
+stretch_mode = 4
 
 [node name="priceLabel" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 210.0
-offset_right = 151.0
-offset_bottom = 233.0
+offset_left = 187.0
+offset_top = 74.0
+offset_right = 301.0
+offset_bottom = 98.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 text = "price:"
 
 [node name="priceAmmount" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 210.0
-offset_right = 259.0
-offset_bottom = 233.0
+offset_left = 307.0
+offset_top = 74.0
+offset_right = 411.0
+offset_bottom = 98.0
 theme_override_colors/font_color = Color(0, 0.85, 0.0991668, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 text = "$500"
 
 [node name="priceLabel2" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 186.0
-offset_right = 299.0
-offset_bottom = 209.0
+offset_left = 187.0
+offset_top = 42.0
+offset_right = 418.0
+offset_bottom = 66.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
-theme_override_font_sizes/font_size = 16
-text = "pe4eni 4u6ki"
+theme_override_font_sizes/font_size = 24
+text = "PC Monitor"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 offset_left = -451.0
 offset_top = -268.0
 offset_right = 509.0
@@ -211,14 +221,6 @@ texture = ExtResource("11_v6ff6")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(29, 2)
 zoom = Vector2(1.2, 1.2)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-offset_left = -1008.0
-offset_top = -768.0
-offset_right = 1157.0
-offset_bottom = 770.0
-color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
 offset_left = 128.0
