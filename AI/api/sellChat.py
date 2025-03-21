@@ -1,3 +1,5 @@
+import random
+
 import api.offers as offers
 from api.api import app
 from flask import jsonify, request
@@ -5,18 +7,21 @@ from Generate.ChatResponce import get_Responce_gemma
 from utils import Item
 
 
-@app.route("/api/chat", methods=["POST"])
+@app.route("/api/sellChat", methods=["POST"])
 def chat():
     if len(offers.active_offer["messages"]) == 0:
+        # npc_first = True if random.random() > 0.5 else False
         npc_first = False
         message = {
             "role": "system",
             "content": (
                 "You are an NPC in a videogame about trading and you are negotiating with the player. "
-                "You are selling a " + offers.active_offer["offer"]["item"]["id"] +
+                "You want to buy his "
+                + offers.active_offer["offer"]["item"]["id"]
+                + "."
+                +
                 # " to " + offers.active_offer["npc"]["name"] +
-                " to the player "
-                + " for "
+                " for "
                 + str(offers.active_offer["offer"]["price"])
                 + " - the actual price of the "
                 + offers.active_offer["offer"]["item"]["id"]
@@ -33,10 +38,12 @@ def chat():
         if npc_first:
             message["content"] = (
                 "You are an NPC in a videogame about trading and you are negotiating with the player. "
-                "You are selling a " + offers.active_offer["offer"]["item"]["id"] +
+                "You want to buy his "
+                + offers.active_offer["offer"]["item"]["id"]
+                + " for some profit."
+                +
                 # " to " + offers.active_offer["npc"]["name"] +
-                " to the player "
-                + " for "
+                " for "
                 + str(offers.active_offer["offer"]["price"])
                 + " - the actual price of the "
                 + offers.active_offer["offer"]["item"]["id"]
@@ -61,9 +68,7 @@ def chat():
             #         "\n**Start convincing the player with 1 sentance**"
             #     )
 
-        message[
-            "content"
-        ] += "\n**Output the string of your message to the player and if you accept the offer, output the final price.**"
+        message[ "content" ] += "\n**Output the string of your message to the player and if you accept the offer, output the final price.**"
 
         offers.active_offer["messages"].append(message)
 

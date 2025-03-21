@@ -96,7 +96,7 @@ def generate_random_npc(image_id):
     name, info, description = generate_npc_data(attributes)
     return baza.create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
-def generate_offer(npc_name):
+def generate_sellOffer(npc_name):
     item = {
         "id": utils.items[random.randint(0, len(utils.items) - 1)].name,
         "condition": random.choice(list(Condition)).value,
@@ -116,5 +116,26 @@ def generate_offer(npc_name):
         "quantity": 1 # zar nqkoj den != 1
     }
 
+    return offer
+
+def generate_sellOffer(npc_name):
+    item = {
+        "id": utils.items[random.randint(0, len(utils.items) - 1)].name,
+        "condition": random.choice(list(Condition)).value,
+    }
+
+    price, description = generate_offer_data(
+        baza.get_person_str(npc_name),
+        f"Name: {item['id']}\n"
+        # f"Condition: {item['condition']}\n"
+    )
+
+    offer = {
+        "price": price,
+        "original_price": price,
+        "item": item,
+        "description": description,
+        "quantity": 1 # zar nqkoj den != 1
+    }
 
     return offer

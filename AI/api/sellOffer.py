@@ -10,36 +10,24 @@ active_offer = None
 money = 1000
 
 
-def initialize_offer(npc_image):
+def initialize_sellOffer(npc_image):
     global active_offer
     npc = npc_gen.generate_random_npc(npc_image)
-    offer = npc_gen.generate_offer(npc["name"])
-    active_offer = {"npc": npc, "offer": offer, "messages": []}
+    sellOffer = npc_gen.generate_sellOffer(npc["name"])
+    active_offer = {"npc": npc, "offer": sellOffer, "messages": []}
     print("initialized")
 
-@app.route('/api/purse', methods=['GET'])
-def get_purse():
-    global money
-    return jsonify({"money": money})
-
-@app.route('/api/purse', methods=['POST'])
-def set_purse():
-    global money
-    message = request.get_json().get('message')
-    money = int(message)
-    return jsonify({"money": money})
-
-@app.route('/api/offer', methods=['GET'])
-def get_offer():
+@app.route('/api/sell', methods=['GET'])
+def get_sell():
     npc_image = request.args.get('npc_image')
     global active_offer
     if active_offer is None:
-        initialize_offer(npc_image)
+        initialize_sellOffer(npc_image)
 
     return jsonify(active_offer)
 
 
-@app.route('/api/offer/accept', methods=['POST'])
+@app.route('/api/sell/accept', methods=['POST']) # finish
 def accept_offer():
     global active_offer
     global money
@@ -47,7 +35,7 @@ def accept_offer():
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
 
-    money -= active_offer["offer"]["price"]
+    money += active_offer["offer"]["price"]
     response = {"success": True, "money": money}
 
     # add to memo
@@ -57,7 +45,7 @@ def accept_offer():
 
     # if active_offer["offer"]["price"] > 0.5 * active_offer["offer"]["original_price"]:
     system_message = {"role": "system", "content": ""}
-    if active_offer["offer"]["price"] > Item.get_item(active_offer["offer"]["item"]["id"]).price:
+    if active_offer["offer"]["price"] < Item.get_item(active_offer["offer"]["item"]["id"]).price:
         system_message["content"] += "This was a profit"
     else:
         system_message["content"] += "This was a loss"
@@ -75,7 +63,7 @@ def accept_offer():
     return jsonify(response)
 
 
-@app.route('/api/offer/decline', methods=['POST'])
+@app.route('/api/offer/decline', methods=['POST']) # finish
 def decline_offer():
     global active_offer
 
@@ -84,10 +72,9 @@ def decline_offer():
 
     response = {"success": True}
 
-    message = {"role": "user", "content": "I will pass, bye! "}
+    message = {"role": "user", "content": "I guess i will find another buyer, bye! "}
 
     active_offer["messages"].append(message)
-    # active_offer["messages"].append(system_message)
 
     summary = memo_gen.get_summary(active_offer)
 
