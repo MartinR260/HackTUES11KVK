@@ -3,35 +3,21 @@ extends ScrollContainer
 @onready var text_edit: TextEdit = $"../TextEdit"
 @onready var v_box_container: VBoxContainer = $VBoxContainer
 @onready var http_request: HTTPRequest = $HTTPRequest
-
+@onready var loading_timer: Timer = $LoadingTimer  # Added Timer node
 const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 
+# A variable to hold the label we create for the AI response.
+var current_response_label: Label = null
+
 func _ready() -> void:
-	_init_npc("krasivo.png")
-
-func send_message_ai(text):
-	var style = StyleBoxEmpty.new()
-	style.content_margin_top = 5
-	style.content_margin_bottom = 5
-	style.content_margin_right = 5
-		
-	var panel = PanelContainer.new()
-	var label = Label.new()
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.text = text
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
-	label.add_theme_font_size_override("font_size", 16)
-	label.add_theme_constant_override("outline_size", 5)
-	panel.add_child(label)
-	panel.add_theme_stylebox_override("panel", style)
-
-	v_box_container.add_child(panel)
+	init_npc("krasivo.png")
+	# Configure the timer
+	loading_timer.wait_time = 0.5  # Adjust interval as needed.
 
 func send_message_player(text):
 	var style = StyleBoxEmpty.new()
-	style.content_margin_top = 5
-	style.content_margin_bottom = 5
+	style.content_margin_top = 10
+	style.content_margin_bottom = 10
 	style.content_margin_right = 5
 		
 	var panel = PanelContainer.new()
@@ -43,10 +29,9 @@ func send_message_player(text):
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
 	label.add_theme_font_size_override("font_size", 16)
 	label.add_theme_constant_override("outline_size", 5)
-
+		
 	panel.add_child(label)
 	panel.add_theme_stylebox_override("panel", style)
-
 	v_box_container.add_child(panel)
 	
 	# Create the loading label for the AI response
@@ -60,7 +45,7 @@ func create_loading_label():
 	style.content_margin_top = 10
 	style.content_margin_bottom = 10
 	style.content_margin_right = 5
-
+		
 	var panel = PanelContainer.new()
 	current_response_label = Label.new()
 	current_response_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -68,11 +53,12 @@ func create_loading_label():
 	current_response_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	current_response_label.add_theme_font_override("font", PIXEL_OPERATOR_8)
 	current_response_label.add_theme_font_size_override("font_size", 16)
-
+	current_response_label.add_theme_constant_override("outline_size", 5)
+		
 	panel.add_child(current_response_label)
 	panel.add_theme_stylebox_override("panel", style)
 	v_box_container.add_child(panel)
-
+	
 	# Start the loading animation timer
 	loading_timer.start()
 
@@ -87,8 +73,6 @@ func _on_loading_timer_timeout() -> void:
 func _on_text_edit_text_changed() -> void:
 	if "\n" in text_edit.text:
 		var text = text_edit.text.rstrip("\n")
-		send_message_ai(text)
-		
 		send_message_player(text)
 		text_edit.clear()
 
@@ -107,7 +91,7 @@ func send_message_http(msg):
 func _on_http_request_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	# Stop the loading animation
 	loading_timer.stop()
-
+	
 	if result != HTTPRequest.RESULT_SUCCESS:
 		print("HTTP Request failed with result code: ", result)
 		if current_response_label:
@@ -125,6 +109,5 @@ func _on_http_request_request_completed(result: int, response_code: int, _header
 	
 	var parsed = JSON.parse_string(response_text)
 	if parsed.has("response"):
-		# Update the label with the final AI response
 		if current_response_label:
 			current_response_label.text = parsed["response"]["answer_to_player"]
