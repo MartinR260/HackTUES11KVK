@@ -31,6 +31,8 @@ var audio_player = AudioStreamPlayer.new()
 var offers: Array
 var idx: int = 0
 
+offers[idx]
+
 func _ready() -> void:
 	var url = "http://127.0.0.1:5000/api/offers"
 	http_request.request(url, [], HTTPClient.METHOD_GET)
