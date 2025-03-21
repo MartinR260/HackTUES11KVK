@@ -10,7 +10,6 @@ const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 var current_response_label: Label = null
 
 func _ready() -> void:
-	init_npc("krasivo.png")
 	# Configure the timer
 	loading_timer.wait_time = 0.5  # Adjust interval as needed.
 
@@ -75,11 +74,6 @@ func _on_text_edit_text_changed() -> void:
 		var text = text_edit.text.rstrip("\n")
 		send_message_player(text)
 		text_edit.clear()
-
-func init_npc(image_id):
-	var url = "http://127.0.0.1:5000/api/offer?npc_image=" + str(image_id)
-	http_request.use_threads = true
-	http_request.request(url, [], HTTPClient.METHOD_GET)
 	
 func send_message_http(msg):
 	var url = "http://127.0.0.1:5000/api/chat"

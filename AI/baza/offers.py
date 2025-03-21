@@ -42,7 +42,7 @@ def save_offer(npc_name, offer):
 
 
 def get_offer(npc_name, id):
-    with open(offers_path + npc_name + "/" + str(id) + ".json", "r") as json_file:
+    with open(offers_path + npc_name + "/" + str(int(id)) + ".json", "r") as json_file:
         return json.load(json_file)
 
 def get_all_offers_npc(npc_name):
