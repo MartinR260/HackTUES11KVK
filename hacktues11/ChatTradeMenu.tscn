@@ -591,17 +591,16 @@ texture = ExtResource("9_4g7jg")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TradeDescription" type="Label" parent="OfferInfo"]
+[node name="TradeDescription" type="RichTextLabel" parent="OfferInfo"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 72.0
+offset_top = 68.0
 offset_right = 224.0
-offset_bottom = 120.0
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("8_ov344")
-theme_override_font_sizes/font_size = 8
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-autowrap_mode = 2
+offset_bottom = 121.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_ov344")
+theme_override_font_sizes/normal_font_size = 8
+text = "this is a testthis is a testthis is a testthis is a testthis is a testthis is a this is a testthis is a testthis is a testthis is a testthis is a testthis is a testthis is a testthis is a testthis is a test"
 
 [node name="TextureRect" type="TextureRect" parent="OfferInfo"]
 layout_mode = 0

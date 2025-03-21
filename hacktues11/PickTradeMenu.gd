@@ -103,13 +103,13 @@ func get_money():
 	money_amount.text = "$" + str(int(money))
 	
 func _ready() -> void:
-	load_anim.play("load")
-	load_icon.play("loadicon")
-	await load_anim.animation_finished
-	
 	await load_offers()
 	await load_items()
 	await get_money()
+	
+	load_anim.play("load")
+	load_icon.play("loadicon")
+	await load_anim.animation_finished
 
 	idx = -1
 	reload()
