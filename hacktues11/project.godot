@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 AudioManager="*res://AudioManager.gd"
 
+[display]
+
+window/size/initial_position_type=0
+window/stretch/mode="viewport"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
