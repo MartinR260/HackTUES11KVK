@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://d2gsondmjm0ra"]
 
-[ext_resource type="Script" path="res://chat_trade_menu.gd" id="1_7u6cb"]
+[ext_resource type="Script" uid="uid://danilg17qmmgy" path="res://chat_trade_menu.gd" id="1_7u6cb"]
 [ext_resource type="Texture2D" uid="uid://cgpbcwq881gc3" path="res://assets/background.png" id="1_kyjx3"]
 [ext_resource type="Texture2D" uid="uid://cu7etao1qltd3" path="res://assets/green_button_press.png" id="2_4g7jg"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="2_kyjx3"]
@@ -218,6 +218,13 @@ offset_right = 368.0
 offset_bottom = 202.0
 texture = ExtResource("9_os3wd")
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("6_unygt")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_left = 176.0
 offset_top = -184.0
@@ -275,13 +282,6 @@ stretch_mode = 0
 script = ExtResource("3_unygt")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="AcceptTrade"]
-
-[node name="TextureRect3" type="TextureRect" parent="."]
-offset_left = -384.0
-offset_top = -216.0
-offset_right = 384.0
-offset_bottom = 216.0
-texture = ExtResource("6_unygt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

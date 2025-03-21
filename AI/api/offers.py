@@ -33,6 +33,10 @@ def get_offers():
         })
     return jsonify({"content": final_offers})
 
+@app.route("/api/offer", methods=['GET'])
+def get_current_offer():
+    global active_offer
+    return jsonify({"offer": active_offer["offer"], "npc": active_offer["npc"]})
 
 @app.route('/api/offer/select', methods=['POST'])
 def select_offer():

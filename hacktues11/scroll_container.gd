@@ -9,7 +9,29 @@ const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 # A variable to hold the label we create for the AI response.
 var current_response_label: Label = null
 
+var offer
+
 func _ready() -> void:
+	var url = "http://127.0.0.1:5000/api/offer"
+	http_request.request(url, [], HTTPClient.METHOD_GET)
+
+	var response = await http_request.request_completed
+
+	var result = response[0]
+	var response_code = response[1]
+	var body = response[3]
+
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("HTTP Request failed with result code: ", result)
+		return
+
+	if response_code != 200:
+		print("HTTP Request returned error code: ", response_code)
+		return
+
+	var response_text = body.get_string_from_utf8().strip_edges()
+	offer = JSON.parse_string(response_text)
+	
 	# Configure the timer
 	loading_timer.wait_time = 0.5  # Adjust interval as needed.
 
@@ -99,7 +121,6 @@ func _on_http_request_request_completed(result: int, response_code: int, _header
 		return
 		
 	var response_text = body.get_string_from_utf8().strip_edges()
-	print("Raw response: ", response_text)
 	
 	var parsed = JSON.parse_string(response_text)
 	if parsed.has("response"):
