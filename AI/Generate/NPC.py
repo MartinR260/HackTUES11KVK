@@ -30,9 +30,9 @@ def ask_question(question, fmt=None):
     response = requests.post(url, json=data)
     return response.json().get("response", "")
 
-def generate_npc_data(attributes): # TODO: pol (muz/zena/treto)
+def generate_npc_data(image_id, attributes):
     name_prompt = (
-        "Generate a random name for a typical person. "
+        "Generate a random name for a typical person who is " + ("male" if image_id < 3 else "female") + ". "
         "Output only the name with no additional text."
     )
     name = ask_question(name_prompt).strip()
@@ -89,7 +89,7 @@ def generate_random_npc(image_id):
         random.choice(list(Naivety)),
         random.choice(list(TalkingStyle)))
 
-    name, info, description = generate_npc_data(attributes)
+    name, info, description = generate_npc_data(image_id, attributes)
     return create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
 
 def generate_offer(npc_name):

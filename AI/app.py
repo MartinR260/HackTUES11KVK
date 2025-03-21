@@ -14,7 +14,7 @@ num_people = 5
 num_items = 5
 num_offers = 10
 
-num_images = 5
+num_images = 6
 
 if __name__ == "__main__":
     item_types = [
