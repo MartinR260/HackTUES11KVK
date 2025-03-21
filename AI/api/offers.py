@@ -4,6 +4,7 @@ from Generate import NPC as npc_gen
 from Generate import Memory as memo_gen 
 from api.api import app
 from baza import baza as baza
+from utils import Item
 
 active_offer = None
 money = 1000
@@ -45,11 +46,11 @@ def accept_offer():
     # add to memo
     # acc . [message] .a pped "player accepted it"
     # active_offer["messages"].append({"role": "user", "content": "Accepted the offer for " + active_offer["offer"]["price"]})
-    message = {"role": "user", "content": "Accepted the offer for " + active_offer["offer"]["price"]}
+    message = {"role": "user", "content": "Accepted the offer for " + str(active_offer["offer"]["price"])}
 
     # if active_offer["offer"]["price"] > 0.5 * active_offer["offer"]["original_price"]:
     system_message = {"role": "system", "content": ""}
-    if active_offer["offer"]["price"] > active_offer["offer"]["item"]["price"]:
+    if active_offer["offer"]["price"] > Item.get_item(active_offer["offer"]["item"]["id"]).price:
         system_message["content"] += "This was a profit"
     else:
         system_message["content"] += "This was a loss"
@@ -76,7 +77,7 @@ def decline_offer():
 
     response = {"success": True}
 
-    message = {"role": "user", "content": "I will pass, bye! " + active_offer["offer"]["price"]}
+    message = {"role": "user", "content": "I will pass, bye! "}
 
     active_offer["messages"].append(message)
     # active_offer["messages"].append(system_message)

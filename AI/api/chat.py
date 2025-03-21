@@ -17,23 +17,23 @@ def chat():
                 " to the player " +
                 " for " + str(offers.active_offer["offer"]["price"]) +
                 " - the actual price of the " + offers.active_offer["offer"]["item"]["id"] +
-                " is " + str(Item.get_item(offers.active_offer["offer"]["item"]["id"]).price) + ", which is unknown to the player. "
+                " is " + str(Item.get_item(offers.active_offer["offer"]["item"]["id"]).price) + ", which is unknown to the player. " +
                 offers.active_offer["npc"]["info"] + "\nThis is your personal description: " +
                 offers.active_offer["npc"]["description"] + "\n\nThese are your attributes as NPC that should be followed:\n"
         )}
 
         if npc_first:
-            message["content"] = 
+            message["content"] = (
                 "You are an NPC in a videogame about trading and you are negotiating with the player. "
                 "You are selling a " + offers.active_offer["offer"]["item"]["id"] +
                 # " to " + offers.active_offer["npc"]["name"] +
                 " to the player " +
                 " for " + str(offers.active_offer["offer"]["price"]) +
                 " - the actual price of the " + offers.active_offer["offer"]["item"]["id"] +
-                " is " + str(Item.get_item(offers.active_offer["offer"]["item"]["id"]).price) + ", which is unknown to the player. "
+                " is " + str(Item.get_item(offers.active_offer["offer"]["item"]["id"]).price) + ", which is unknown to the player. " +
                 offers.active_offer["npc"]["info"] + "\nThis is your personal description: " +
                 offers.active_offer["npc"]["description"] + "\n\nThese are your attributes as NPC that should be followed:\n"
-            
+            )
 
         for attribute, value in offers.active_offer["npc"]["attributes"].items():
             message["content"] += f"{attribute}: {value}\n"
