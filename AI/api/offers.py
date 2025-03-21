@@ -16,6 +16,10 @@ def initialize_offer(npc_image):
     active_offer = {"npc": npc, "offer": offer, "messages": []}
     print("initialized")
 
+@app.route('/api/purse', methods=['GET'])
+def get_purse():
+    global money
+    return jsonify({"money": money})
 
 @app.route('/api/offer', methods=['GET'])
 def get_offer():
