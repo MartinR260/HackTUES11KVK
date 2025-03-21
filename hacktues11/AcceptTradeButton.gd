@@ -18,7 +18,7 @@ func _on_button_up() -> void:
 	while audio_player.playing: pass
 	
 	await _accept_http()
-	
+
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
 	else:

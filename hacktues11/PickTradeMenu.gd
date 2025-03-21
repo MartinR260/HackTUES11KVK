@@ -1,8 +1,22 @@
 extends Node2D
 
+
 var button_click_sfx : AudioStreamRandomizer = AudioStreamRandomizer.new()
 var audio_player = AudioStreamPlayer.new()
 @onready var trade_info = $TradeInfo
+
+
+# #TODO: to chande dinamically
+# @onready var trade_TradeDescription = $TradeInfo/TradeDescription # offer.data["description"]
+# @onready var trade_priceLabel2 = $TradeInfo/priceLabel2
+# @onready var trade_priceAmmount = $TradeInfo/priceAmmount
+# @onready var trade_TraderName = $TradeInfo/TraderName
+# @onready var trade_TextureRect = $TradeInfo/TextureRect
+# @onready var TextureRect3 = $TextureRect3
+# @onready var TextureRect3_TradeIcon_TextureRect = $TextureRect3/TraderIcon/TextureRect
+
+
+
 @onready var reroll_anim = $TradeInfo/RerollAnimation
 @onready var http_request: HTTPRequest = $HTTPRequest
 
@@ -67,7 +81,7 @@ func _on_accept_trade_button_up() -> void:
 	if response_code != 200:
 		print("HTTP Request returned error code: ", response_code)
 		return
-	
+
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
 	transition_anim.play("transition")
