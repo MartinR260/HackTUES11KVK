@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*res://AudioManager.gd"
+GlobalMainLoop="*res://MainLoop.gd"
 
 [display]
 
