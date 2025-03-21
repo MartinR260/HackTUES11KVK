@@ -2,6 +2,7 @@
 import json
 import random
 import sys
+import re
 
 import requests
 
@@ -63,11 +64,11 @@ def get_Responce_gemma(NPC_data, Offer_Data, Messages):
 
     data = {
         "model": "gemma3:12b",
-        "seed": random.randint(0, 10000),
+        "seed": random.randint(1, 10 ** 18),
         "messages": [ ],
         "keep_alive": "30m",
         "stream": False,
-        # "format": json_schema,
+        "format": json_schema,
     }
 
     for message in Messages["messages"]:
@@ -79,27 +80,17 @@ def get_Responce_gemma(NPC_data, Offer_Data, Messages):
 
     answer = response.json().get("message", "").get("content", "")
 
-    lines = answer.splitlines()
+    result = answer
 
-    try:
-        end_think_index = lines.index("</think>")
-    except ValueError:
-        raise ValueError("The closing </think> tag was not found in the response.")
+    # print(result)
+    # print("--------------")
+    #
+    # final_price = answer.split()[-1]
+    # final_price = "".join(re.findall(r'\d', final_price))
+    #
+    # print(final_price)
 
-    # extracted_lines = lines[end_think_index + 1 : -1]
-    extracted_lines = lines[end_think_index + 1]
-
-    result = "\n".join(line.strip() for line in extracted_lines if line.strip())
-
-    print(result)
-    print("--------------")
-
-    final_price = answer.split()[-1]
-    # skipp everything from start to finding "$"
-    final_price = final_price[final_price.find("$"):]
-    print(final_price)
-
-    return result, final_price
+    return result 
 
 
 
@@ -107,18 +98,14 @@ if __name__ == "__main__":
 
     NPC_data, Offer_Data, Messages = parse()
 
-    result, final_price = get_Responce(NPC_data, Offer_Data, Messages)
+    result = get_Responce_gemma(NPC_data, Offer_Data, Messages)
 
-    if final_price!="":
-        # TOVA ZNAI4AVA CHE E KRAIA NA NEGOCIACIQTA
-        pass
-
+    print(result)
 
 
     
 """
-python ChatResponce.py "{\"name\": \"Gosho\"}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1500\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Can you sell me this for half the price if i give you a old watch\" }, { \"role\": \"assistant\", \"content\": \"I dont need old watches\" }, { \"role\": \"user\", \"content\": \"Ok how about getting 10% off for me this time but i contact you again if need more\" }]}"
-
+python ChatResponce.py "{\"image_id\": null, \"name\": \"Bradley Jenkins\", \"info\": \"Lives in Boston. Works as a teacher in middle school\", \"description\": \"You like to think logically and in the long term\", \"temperature\": 0.987018549049676, \"attributes\": {\"deceitful\": \"high\", \"personality\": \"hostile\", \"naivety\": \"high\", \"talking_style\": \"informal\"}, \"memories\": []}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1500\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Co'on man cant we do 900?\" }]}"
 
 python ChatResponce.py "{\"image_id\": null, \"name\": \"Bradley Jenkins\", \"info\": \"Lives in Boston. Works as a teacher in middle school\", \"description\": \"You like to think logically and in the long term\", \"temperature\": 0.987018549049676, \"attributes\": {\"deceitful\": \"high\", \"personality\": \"hostile\", \"naivety\": \"high\", \"talking_style\": \"informal\"}, \"memories\": []}" "{\"item\": {\"name\": \"Lada\", \"price\": \"$1000\"}, \"description\": \"Old but gold\", \"price\": \"$1500\"}" "{\"messages\": [ { \"role\": \"user\", \"content\": \"Can you sell me this for half the price if i give you a old watch\" }, { \"role\": \"assistant\", \"content\": \"I dont need old watches\" }, { \"role\": \"user\", \"content\": \"Ok how about getting 10% off for me this time but i contact you again if need more\" }]}"
 """
