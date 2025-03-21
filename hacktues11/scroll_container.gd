@@ -6,6 +6,13 @@ extends ScrollContainer
 @onready var loading_timer: Timer = $LoadingTimer  # Added Timer node
 const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 
+@onready var money_amount: Label = $"../OfferInfo/moneyAmount"
+@onready var texture_rect: TextureRect = $"../OfferInfo/TextureRect"
+@onready var price: Label = $"../OfferInfo/priceAmount"
+@onready var item_name: Label = $"../OfferInfo/priceLabel2"
+@onready var trade_description: Label = $"../OfferInfo/TradeDescription"
+
+
 # A variable to hold the label we create for the AI response.
 var current_response_label: Label = null
 

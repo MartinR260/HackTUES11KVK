@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bqh4327ex6320"]
+[gd_scene load_steps=33 format=3 uid="uid://cvtexwvb4brbv"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/items/tech.png" id="9_wiyrn"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
 [ext_resource type="Texture2D" uid="uid://1l41o5f4cc0k" path="res://assets/7dayprogress.png" id="12_jhr2b"]
-[ext_resource type="Script" path="res://7_day_tracker.gd" id="13_q26ml"]
+[ext_resource type="Script" uid="uid://dghidyigs0i3d" path="res://7_day_tracker.gd" id="13_q26ml"]
 [ext_resource type="Texture2D" uid="uid://c27cimkvjjg2q" path="res://assets/m.png" id="14_ww133"]
 [ext_resource type="Texture2D" uid="uid://8ecov2riu4oe" path="res://assets/t.png" id="15_qn6kg"]
 [ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]
@@ -454,6 +454,13 @@ _data = {
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -451.0
+offset_top = -268.0
+offset_right = 509.0
+offset_bottom = 272.0
+texture = ExtResource("11_v6ff6")
+
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_2aaya")
@@ -596,13 +603,6 @@ layout_mode = 0
 offset_right = 256.0
 offset_bottom = 256.0
 texture = ExtResource("4_qgkdj")
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = -451.0
-offset_top = -268.0
-offset_right = 509.0
-offset_bottom = 272.0
-texture = ExtResource("11_v6ff6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(29, 2)
