@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b4lydw5k8rat3" path="res://assets/offer_background.png" id="9_4g7jg"]
 [ext_resource type="Texture2D" uid="uid://bn4hplw5tknpe" path="res://assets/people/person_1_1.png" id="9_23itu"]
 [ext_resource type="Texture2D" uid="uid://c78twwryoo1bh" path="res://assets/chat-output.png" id="9_os3wd"]
-[ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_yqtma"]
+[ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/items/tech.png" id="9_yqtma"]
 
 [sub_resource type="Animation" id="Animation_7u6cb"]
 length = 0.001

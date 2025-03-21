@@ -25,15 +25,16 @@ var audio_player = AudioStreamPlayer.new()
 @onready var trade_description: Label = $TradeInfo/TradeDescription
 @onready var price_ammount: Label = $TradeInfo/priceAmmount
 @onready var item_name: Label = $TradeInfo/priceLabel2
+@onready var npc_icon: TextureRect = $TextureRect3/TraderIcon/TextureRect
+@onready var item_icon: TextureRect = $TradeInfo/TextureRect
 
 @onready var transition_anim = $TextureRect3/AnimationPlayer
 
 var offers: Array
+var items: Array
 var idx: int = 0
 
-offers[idx]
-
-func _ready() -> void:
+func load_offers():
 	var url = "http://127.0.0.1:5000/api/offers"
 	http_request.request(url, [], HTTPClient.METHOD_GET)
 	var response = await http_request.request_completed
@@ -53,6 +54,31 @@ func _ready() -> void:
 	var response_text = body.get_string_from_utf8().strip_edges()
 	response_text.replacen("\\'", "'")
 	offers = JSON.parse_string(response_text)["content"]
+	
+func load_items():
+	var url = "http://127.0.0.1:5000/api/items"
+	http_request.request(url, [], HTTPClient.METHOD_GET)
+	var response = await http_request.request_completed
+
+	var result = response[0]
+	var response_code = response[1]
+	var body = response[3]
+
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("HTTP Request failed with result code: ", result)
+		return
+
+	if response_code != 200:
+		print("HTTP Request returned error code: ", response_code)
+		return
+
+	var response_text = body.get_string_from_utf8().strip_edges()
+	response_text.replacen("\\'", "'")
+	items = JSON.parse_string(response_text)["content"]
+	
+func _ready() -> void:
+	await load_offers()
+	await load_items()
 
 	idx = -1
 	reload()
@@ -108,6 +134,15 @@ func reload():
 	trade_description.text = offers[idx]["offer"]["description"]
 	price_ammount.text = "$" + str(offers[idx]["offer"]["price"])
 	item_name.text = offers[idx]["offer"]["item_id"]
-
 	
+	var gender_idx = 1 if offers[idx]["npc"]["image_id"] < 3 else 2
+	var idx = (int(offers[idx]["npc"]["image_id"]) % 3) + 1
+	npc_icon.texture = load("res://assets/people/person_" + str(gender_idx) + "_" + str(idx) + ".png")
 	
+	var item_ = null
+	for item in items:
+		if item["name"] == item_name.text:
+			item_ = item
+			
+	if item_:
+		item_icon.texture = load("res://assets/items/" + item_["type"] + ".png")
