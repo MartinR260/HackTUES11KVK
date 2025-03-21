@@ -5,7 +5,7 @@ import requests
 from ChatResponce import get_Responce_gemma, parse
 
 
-def get_summary(Offer_Data, accepted):
+def get_summary(Offer_Data):
     Messages = Offer_Data["messages"]
 
     prompt = "Get a conclusion out of this trade bargaining conversation. You are the NPC assistant. Get with 1 sentance the conclusion of the conversation:\n"
@@ -13,9 +13,8 @@ def get_summary(Offer_Data, accepted):
     prompt += "Offer: you are selling " + Offer_Data["item"]["name"] + " for " + Offer_Data["price"] + ". (actual price: " + Offer_Data["item"]["price"] + ")\n"
 
     for idx, message in enumerate(Messages):
-        if idx == 0:  # Skip the first element
+        if idx == 0:  
             continue
-        # If idx is even (remember: index 1 is odd, 2 is even, etc.)
         prefix = "NPC: " if idx % 2 == 0 else "Player: "
         prompt += prefix + message["content"] + "\n"
         print(prefix + message["content"])
@@ -58,6 +57,7 @@ def get_summary(Offer_Data, accepted):
 #     print("-------------Memory-------------")
 #     print(memory)
 
+# -- da napravim kato ofertata svurshi prosto da se dobavq suobstenie za Player: deslcine ili accept
 
     
 """
