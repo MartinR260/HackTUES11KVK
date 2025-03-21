@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dafgcolil82jx"]
+[gd_scene load_steps=23 format=3 uid="uid://dafgcolil82jx"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -11,6 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
 [ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_wiyrn"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
+[ext_resource type="Texture2D" uid="uid://1l41o5f4cc0k" path="res://assets/7dayprogress.png" id="12_jhr2b"]
+[ext_resource type="Script" uid="uid://dghidyigs0i3d" path="res://7_day_tracker.gd" id="13_q26ml"]
+[ext_resource type="Texture2D" uid="uid://c27cimkvjjg2q" path="res://assets/m.png" id="14_ww133"]
+[ext_resource type="Texture2D" uid="uid://8ecov2riu4oe" path="res://assets/t.png" id="15_qn6kg"]
+[ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]
+[ext_resource type="Texture2D" uid="uid://6lxnqlaapgme" path="res://assets/f.png" id="17_4w0rk"]
+[ext_resource type="Texture2D" uid="uid://c1r2r3uyxtyen" path="res://assets/s.png" id="18_2mqhj"]
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
 length = 0.001
@@ -24,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-363, -250)]
+"values": [Vector2(-363, -190)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,7 +59,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.266667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-363, -251), Vector2(550, -251), Vector2(-1400, -251), Vector2(-363, -251)]
+"values": [Vector2(-363, -190), Vector2(550, -190), Vector2(-1400, -190), Vector2(-363, -190)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -103,9 +110,9 @@ color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="TradeInfo" type="NinePatchRect" parent="."]
 offset_left = -363.0
-offset_top = -250.0
-offset_right = 485.0
-offset_bottom = 142.0
+offset_top = -190.0
+offset_right = 487.0
+offset_bottom = 151.0
 texture = ExtResource("2_w86nt")
 patch_margin_left = 8
 patch_margin_top = 8
@@ -115,10 +122,10 @@ patch_margin_bottom = 8
 [node name="TraderIcon" type="NinePatchRect" parent="TradeInfo"]
 z_index = 1
 layout_mode = 0
-offset_left = 19.0
-offset_top = 250.0
-offset_right = 147.0
-offset_bottom = 378.0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 128.0
+offset_bottom = 328.0
 texture = ExtResource("11_v6ff6")
 region_rect = Rect2(0, 0, 512, 256)
 patch_margin_left = 8
@@ -129,16 +136,16 @@ patch_margin_bottom = 8
 [node name="TextureRect" type="TextureRect" parent="TradeInfo/TraderIcon"]
 z_index = -1
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
+offset_right = 112.0
+offset_bottom = 112.0
 texture = ExtResource("4_qgkdj")
 
 [node name="TraderDescription" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 171.0
-offset_top = 314.0
-offset_right = 819.0
-offset_bottom = 378.0
+offset_left = 139.0
+offset_top = 255.0
+offset_right = 787.0
+offset_bottom = 319.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 16
@@ -147,10 +154,10 @@ autowrap_mode = 2
 
 [node name="TraderName" type="Label" parent="TradeInfo"]
 layout_mode = 0
-offset_left = 171.0
-offset_top = 266.0
-offset_right = 480.0
-offset_bottom = 290.0
+offset_left = 139.0
+offset_top = 215.0
+offset_right = 448.0
+offset_bottom = 239.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 24
@@ -259,6 +266,71 @@ grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="7DayTracker" type="TextureRect" parent="."]
+offset_left = -26.0
+offset_top = -253.0
+offset_right = 482.0
+offset_bottom = -161.0
+texture = ExtResource("12_jhr2b")
+stretch_mode = 4
+script = ExtResource("13_q26ml")
+
+[node name="TextureRect" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 46.0
+texture = ExtResource("14_ww133")
+
+[node name="TextureRect2" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 5.0
+offset_right = 122.0
+offset_bottom = 45.0
+texture = ExtResource("15_qn6kg")
+
+[node name="TextureRect3" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 5.0
+offset_right = 198.0
+offset_bottom = 45.0
+texture = ExtResource("16_xeod5")
+
+[node name="TextureRect4" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 5.0
+offset_right = 274.0
+offset_bottom = 45.0
+texture = ExtResource("15_qn6kg")
+
+[node name="TextureRect5" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 5.0
+offset_right = 350.0
+offset_bottom = 45.0
+texture = ExtResource("17_4w0rk")
+
+[node name="TextureRect6" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 5.0
+offset_right = 426.0
+offset_bottom = 45.0
+texture = ExtResource("18_2mqhj")
+
+[node name="TextureRect7" type="TextureRect" parent="7DayTracker"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 5.0
+offset_right = 502.0
+offset_bottom = 45.0
+texture = ExtResource("18_2mqhj")
 
 [connection signal="button_up" from="AcceptTrade" to="." method="_on_accept_trade_button_up"]
 [connection signal="button_up" from="RejectTrade" to="." method="_on_reject_trade_button_up"]
