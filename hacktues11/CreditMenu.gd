@@ -1,12 +1,24 @@
 extends Node2D
+@onready var wheel = $TextureRect
+@onready var money_won = $CreditAmount
+var vurti = 0
+var finish = false
 
-@onready var spin_anim = $AnimationPlayer
+func _process(delta: float) -> void:
+	if vurti > 1:
+		wheel.rotation_degrees += vurti*0.01
+		vurti -= 1
+	if vurti == 1:
+		finish = true
+		vurti = 0
 
+	if finish:
+		money_won.text = "$" + str(randi_range(0,500))
+		finish = false
+		
 
 func _on_spin_button_button_up() -> void:
-	spin_anim.play("spin")
-	await spin_anim.animation_finished
-	
+	vurti = 1000
 
 
 func _on_leave_button_button_up() -> void:

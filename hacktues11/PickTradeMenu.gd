@@ -18,10 +18,42 @@ var audio_player = AudioStreamPlayer.new()
 
 
 @onready var reroll_anim = $TradeInfo/RerollAnimation
+@onready var http_request: HTTPRequest = $HTTPRequest
+
+@onready var trader_name: Label = $TradeInfo/TraderName
+@onready var trader_description: Label = $TradeInfo/TraderDescription
+@onready var trade_description: Label = $TradeInfo/TradeDescription
+@onready var price_ammount: Label = $TradeInfo/priceAmmount
+@onready var item_name: Label = $TradeInfo/priceLabel2
+
 @onready var transition_anim = $TextureRect3/AnimationPlayer
 
+var offers: Array
+var idx: int = 0
+
 func _ready() -> void:
-	# MainLoop.gd
+	var url = "http://127.0.0.1:5000/api/offers"
+	http_request.request(url, [], HTTPClient.METHOD_GET)
+	var response = await http_request.request_completed
+
+	var result = response[0]
+	var response_code = response[1]
+	var body = response[3]
+
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("HTTP Request failed with result code: ", result)
+		return
+
+	if response_code != 200:
+		print("HTTP Request returned error code: ", response_code)
+		return
+
+	var response_text = body.get_string_from_utf8().strip_edges()
+	response_text.replacen("\\'", "'")
+	offers = JSON.parse_string(response_text)["content"]
+
+	idx = -1
+	reload()
 
 	button_click_sfx.add_stream(0, load("res://sfx/mouseclicks/mouse-button-click-308449.mp3"))
 	button_click_sfx.add_stream(1, load("res://sfx/mouseclicks/mouse-click-sound-233951.mp3"))
@@ -30,6 +62,26 @@ func _ready() -> void:
 	add_child(audio_player) 
 
 func _on_accept_trade_button_up() -> void:
+	var url = "http://127.0.0.1:5000/api/offer/select"
+	http_request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST,
+	JSON.stringify({
+		"offer_id": offers[idx]["offer"]["id"],
+		"npc_name": offers[idx]["npc"]["name"]
+	}))
+	var response = await http_request.request_completed
+
+	var result = response[0]
+	var response_code = response[1]
+	var body = response[3]
+
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("HTTP Request failed with result code: ", result)
+		return
+
+	if response_code != 200:
+		print("HTTP Request returned error code: ", response_code)
+		return
+
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
 	transition_anim.play("transition")
@@ -45,4 +97,15 @@ func _on_reject_trade_button_up() -> void:
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
 	reroll_anim.play("reroll")
+	
+	
+func reload():
+	idx = (idx + 1) % offers.size()
+	trader_name.text = offers[idx]["npc"]["name"]
+	trader_description.text = offers[idx]["npc"]["info"]
+	trade_description.text = offers[idx]["offer"]["description"]
+	price_ammount.text = "$" + str(offers[idx]["offer"]["price"])
+	item_name.text = offers[idx]["offer"]["item_id"]
+
+	
 	

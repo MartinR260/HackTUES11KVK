@@ -1,7 +1,56 @@
-[gd_scene load_steps=0 format=3 uid="uid://dlh7qxp5pgxty"]
+[gd_scene load_steps=5 format=3 uid="uid://dlh7qxp5pgxty"]
+
+[ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="1_82euw"]
+[ext_resource type="Script" uid="uid://blfg6iiecsrpy" path="res://LoseMenu.gd" id="1_yktym"]
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="2_matxg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yktym"]
+font = ExtResource("2_matxg")
+font_size = 64
 
 [node name="LoseMenu" type="Node2D"]
+script = ExtResource("1_yktym")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -1064.0
+offset_top = -792.0
+offset_right = 1101.0
+offset_bottom = 746.0
+color = Color(0.588235, 0.807843, 0.878431, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("1_82euw")
+
+[node name="Play Again" type="Button" parent="."]
+offset_left = -64.0
+offset_right = 38.0
+offset_bottom = 51.0
+scale = Vector2(1.25, 1.25)
+text = "Play Again"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = -64.0
+offset_top = 96.0
+offset_right = 38.0
+offset_bottom = 146.0
+scale = Vector2(1.25, 1.25)
+text = "Quit Game"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -208.0
+offset_top = -128.0
+offset_right = 208.0
+offset_bottom = -64.0
+text = "You Lost"
+label_settings = SubResource("LabelSettings_yktym")
+
+[connection signal="button_up" from="Play Again" to="." method="_on_play_again_button_up"]
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]

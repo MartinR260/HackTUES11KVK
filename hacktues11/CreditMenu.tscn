@@ -1,47 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://chketbhut3wqh"]
+[gd_scene load_steps=9 format=3 uid="uid://chketbhut3wqh"]
 
 [ext_resource type="Script" uid="uid://b68kabrkech7r" path="res://CreditMenu.gd" id="1_kmcdu"]
 [ext_resource type="Texture2D" uid="uid://443xejgjjxlf" path="res://assets/yellow_button.png" id="1_nsuqd"]
 [ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="1_xy84p"]
+[ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="2_px004"]
 [ext_resource type="Texture2D" uid="uid://dfrjuximsgnhn" path="res://assets/red button.png" id="3_bbn7m"]
 [ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="4_kmcdu"]
 [ext_resource type="Texture2D" uid="uid://cqgfornebtf67" path="res://assets/wheel.png" id="5_l8crg"]
-
-[sub_resource type="Animation" id="Animation_kmcdu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_bbn7m"]
-resource_name = "spin"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 6.28319]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l8crg"]
-_data = {
-&"RESET": SubResource("Animation_kmcdu"),
-&"spin": SubResource("Animation_bbn7m")
-}
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="7_l8crg"]
 
 [node name="CreditMenu" type="Node2D"]
 script = ExtResource("1_kmcdu")
@@ -54,21 +20,28 @@ offset_right = 1181.0
 offset_bottom = 1042.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("2_px004")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
 [node name="SpinButton" type="TextureButton" parent="."]
-offset_left = -184.0
-offset_top = 64.0
-offset_right = -56.0
-offset_bottom = 128.0
+offset_left = -192.0
+offset_top = 104.0
+offset_right = -64.0
+offset_bottom = 168.0
 texture_normal = ExtResource("1_nsuqd")
 
 [node name="LeaveButton" type="TextureButton" parent="."]
 offset_left = 64.0
-offset_top = 64.0
+offset_top = 104.0
 offset_right = 192.0
-offset_bottom = 128.0
+offset_bottom = 168.0
 texture_normal = ExtResource("3_bbn7m")
 texture_pressed = ExtResource("4_kmcdu")
 
@@ -82,20 +55,40 @@ texture = ExtResource("5_l8crg")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_l8crg")
-}
-
 [node name="PauseButton" parent="." instance=ExtResource("1_xy84p")]
 z_index = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="creditLabel" type="Label" parent="."]
+offset_left = -112.0
+offset_top = 56.0
+offset_right = 32.0
+offset_bottom = 80.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_l8crg")
+theme_override_font_sizes/font_size = 24
+text = "Credit: "
+
+[node name="CreditAmount" type="Label" parent="."]
+offset_left = 29.0
+offset_top = 56.0
+offset_right = 113.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0.85, 0.0991668, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_l8crg")
+theme_override_font_sizes/font_size = 24
+text = "$???"
 
 [connection signal="button_up" from="SpinButton" to="." method="_on_spin_button_button_up"]
 [connection signal="button_up" from="LeaveButton" to="." method="_on_leave_button_button_up"]
