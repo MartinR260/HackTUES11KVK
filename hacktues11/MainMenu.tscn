@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dskuhta0lkq5j"]
+[gd_scene load_steps=6 format=3 uid="uid://dskuhta0lkq5j"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="2_eiy7p"]
+[ext_resource type="Texture2D" uid="uid://i8mev5iuhx8h" path="res://assets/logo.png" id="3_h7a2f"]
+[ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="4_qoqlk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwfq2"]
+font = ExtResource("4_qoqlk")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_i26rj")
@@ -18,25 +27,40 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-offset_left = -1112.0
-offset_top = -784.0
-offset_right = 1053.0
-offset_bottom = 754.0
+offset_left = -1072.0
+offset_top = -752.0
+offset_right = 1093.0
+offset_bottom = 786.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="QuitButton" type="Button" parent="."]
 offset_left = -128.0
-offset_top = 80.0
-offset_bottom = 120.0
+offset_top = 112.0
+offset_bottom = 152.0
 scale = Vector2(2, 2)
 text = "Quit"
 
 [node name="StartButton" type="Button" parent="."]
 offset_left = -128.0
-offset_top = -16.0
-offset_bottom = 24.0
+offset_top = 16.0
+offset_bottom = 56.0
 scale = Vector2(2, 2)
 text = "Start Game"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -131.0
+offset_top = -240.0
+offset_right = 141.0
+offset_bottom = 32.0
+texture = ExtResource("3_h7a2f")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+offset_left = -240.0
+offset_top = -32.0
+offset_right = 240.0
+text = "Online Xchange Life"
+label_settings = SubResource("LabelSettings_iwfq2")
 
 [connection signal="button_up" from="QuitButton" to="." method="_on_quit_button_button_up"]
 [connection signal="button_up" from="StartButton" to="." method="_on_start_button_button_up"]
