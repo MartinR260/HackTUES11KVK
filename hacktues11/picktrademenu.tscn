@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_wiyrn"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
 [ext_resource type="Texture2D" uid="uid://1l41o5f4cc0k" path="res://assets/7dayprogress.png" id="12_jhr2b"]
-[ext_resource type="Script" path="res://7_day_tracker.gd" id="13_q26ml"]
+[ext_resource type="Script" uid="uid://dghidyigs0i3d" path="res://7_day_tracker.gd" id="13_q26ml"]
 [ext_resource type="Texture2D" uid="uid://c27cimkvjjg2q" path="res://assets/m.png" id="14_ww133"]
 [ext_resource type="Texture2D" uid="uid://8ecov2riu4oe" path="res://assets/t.png" id="15_qn6kg"]
 [ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]

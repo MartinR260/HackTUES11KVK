@@ -1,13 +1,18 @@
-extends Node
+extends Node2D
 
 #var PickTradeMenu = preload("res://PickTradeMenu.gd") 
 #var chat_trade_menu = preload("res://chat_trade_menu.gd")
+#var ui = preload("res://7_day_tracker.gd")
+var ui_scene = preload("res://picktrademenu.tscn")
+var ui_instance = null
 
 var purse = 0
 var http_request_main_purse
 var current_scene = null
 
 var den = 0
+
+var days = [0, 0 , 0 , 0 , 0, 0, 0]
 
 func _ready():
 	var root = get_tree().root
@@ -22,9 +27,27 @@ func update_game():
 	update_purse()
 
 func _process(delta):
-	pass
+	#update_purse()
+	#if ui_instance and ui_instance.is_inside_tree():
+		## Clear days if all are zero.
+		#var all_zero = true
+		#for i in days:
+			#if i != 0:
+				#all_zero = false
+				#break
+		#if all_zero:
+			#ui_instance.clear_days()
+			#
+		## Update days display.
+		#for i in range(7):
+			#if days[i] == -1:
+				#ui_instance.add_cross_at_index(i)
+			#elif days[i] == 1:
+				#ui_instance.add_tick_at_index(i)
+			
 	# update_purse()
 	# print("Purse value:", purse)
+	pass
 
 func update_purse():
 	var url = "http://127.0.0.1:5000/api/purse"

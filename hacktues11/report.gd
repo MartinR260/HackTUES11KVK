@@ -19,6 +19,7 @@ func change_money_spent(num):
 	
 func change_items_base_price(num):
 	items_base_price_ammount.text = "$" + str(num)
+
 	
 func gen_conclusion(spent, base):
 	if spent>base:

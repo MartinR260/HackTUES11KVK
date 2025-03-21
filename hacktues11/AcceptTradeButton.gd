@@ -21,6 +21,7 @@ func _on_button_up() -> void:
 
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+		GlobalMainLoop.days[GlobalMainLoop.den] = 1
 		get_tree().change_scene_to_file("res://Redirect.tscn")
 	else:
 		get_tree().change_scene_to_file("res://ChatTradeMenu.tscn")
