@@ -37,7 +37,7 @@ def chat():
 
     result = get_Responce_gemma()
 
-    offers.active_offer["messages"].append({"role": "npc", "content": result})
+    offers.active_offer["messages"].append({"role": "npc", "content": result["answer_to_player"]})
 
     print(offers.active_offer)
 
