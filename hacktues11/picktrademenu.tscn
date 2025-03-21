@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg546urm48nit"]
+[gd_scene load_steps=12 format=3 uid="uid://dg546urm48nit"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://db8831rxhj1yf" path="res://assets/big-frame.png" id="2_w86nt"]
 [ext_resource type="FontFile" uid="uid://dcdwrx3jwgat" path="res://assets/fonts/PixelOperator8.ttf" id="3_g6ba8"]
 [ext_resource type="Texture2D" uid="uid://c3lm0kq6bdae4" path="res://assets/user-frame.png" id="4_gppls"]
-[ext_resource type="PackedScene" uid="uid://tarpkya5hskk" path="res://PauseButton.tscn" id="9_0t6gn"]
+[ext_resource type="PackedScene" path="res://PauseButton.tscn" id="9_0t6gn"]
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
 length = 0.001
@@ -86,14 +86,6 @@ _data = {
 &"reroll2": SubResource("Animation_0t6gn")
 }
 
-[sub_resource type="Animation" id="Animation_l1kfb"]
-resource_name = "transition"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v6ff6"]
-_data = {
-&"transition": SubResource("Animation_l1kfb")
-}
-
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
 
@@ -166,11 +158,6 @@ stretch_mode = 5
 [node name="RerollAnimation" type="AnimationPlayer" parent="TradeInfo"]
 libraries = {
 &"": SubResource("AnimationLibrary_d5g8s")
-}
-
-[node name="TransitionAnimation" type="AnimationPlayer" parent="TradeInfo"]
-libraries = {
-&"": SubResource("AnimationLibrary_v6ff6")
 }
 
 [node name="PauseButton" parent="." instance=ExtResource("9_0t6gn")]

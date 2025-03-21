@@ -11,6 +11,7 @@ def initialize_offer(npc_image):
     npc = npc_gen.generate_random_npc(npc_image)
     offer = npc_gen.generate_offer(npc["name"])
     active_offer = {"npc": npc, "offer": offer, "messages": []}
+    print("initialized")
 
 
 @app.route('/api/offer', methods=['GET'])
@@ -47,42 +48,4 @@ def decline_offer():
 
     response = {"success": True}
     active_offer = None
-    return jsonify(response)
-
-
-@app.route('/api/offer/scam', methods=['POST'])
-def report_scam():
-    global active_offer
-    if active_offer is None:
-        return jsonify({"error": "No active offer."}), 400
-    response = {"success": True}
-    active_offer = None
-    return jsonify(response)
-
-
-@app.route('/api/offer/bargain', methods=['POST'])
-def bargain_offer():
-    global active_offer
-    if active_offer is None:
-        return jsonify({"error": "No active offer."}), 400
-    data = request.get_json()
-    counter_offer = data.get("counter_offer")
-    if counter_offer is None:
-        return jsonify({"error": "counter_offer field is required."}), 400
-
-    response = {"message": f"Bargaining initiated with a counter offer of {counter_offer}.", "offer": active_offer}
-    return jsonify(response)
-
-
-@app.route('/api/offer/message', methods=['POST'])
-def message_offer():
-    global active_offer
-    if active_offer is None:
-        return jsonify({"error": "No active offer."}), 400
-    data = request.get_json()
-    message = data.get("message")
-    if message is None:
-        return jsonify({"error": "message field is required."}), 400
-
-    response = {"message": f"Message sent to {active_offer['npc']['name']}: {message}", "offer": active_offer}
     return jsonify(response)
