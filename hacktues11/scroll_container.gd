@@ -21,7 +21,7 @@ func send_message_ai(text):
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
-	label.add_theme_font_size_override("font_size", 8)
+	label.add_theme_font_size_override("font_size", 16)
 		
 	panel.add_child(label)
 	panel.add_theme_stylebox_override("panel", style)
@@ -39,8 +39,9 @@ func send_message_player(text):
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.add_theme_color_override("font_color", Color(255,255,255,0.7))
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
-	label.add_theme_font_size_override("font_size", 8)
+	label.add_theme_font_size_override("font_size", 16)
 		
 	panel.add_child(label)
 	panel.add_theme_stylebox_override("panel", style)
