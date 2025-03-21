@@ -1,27 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://dskuhta0lkq5j"]
+[gd_scene load_steps=3 format=3 uid="uid://dskuhta0lkq5j"]
 
 [ext_resource type="Script" uid="uid://dt8kdy88xsigq" path="res://MainMenu.gd" id="1_i26rj"]
+[ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="2_eiy7p"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_i26rj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("2_eiy7p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-offset_left = -1107.0
-offset_top = -797.0
-offset_right = 1058.0
-offset_bottom = 741.0
+offset_left = -1112.0
+offset_top = -784.0
+offset_right = 1053.0
+offset_bottom = 754.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
-
-[node name="StartButton" type="Button" parent="."]
-offset_left = -128.0
-offset_top = -16.0
-offset_bottom = 24.0
-scale = Vector2(2, 2)
-text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="."]
 offset_left = -128.0
@@ -30,5 +31,12 @@ offset_bottom = 120.0
 scale = Vector2(2, 2)
 text = "Quit"
 
-[connection signal="button_up" from="StartButton" to="." method="_on_start_button_button_up"]
+[node name="StartButton" type="Button" parent="."]
+offset_left = -128.0
+offset_top = -16.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+text = "Start Game"
+
 [connection signal="button_up" from="QuitButton" to="." method="_on_quit_button_button_up"]
+[connection signal="button_up" from="StartButton" to="." method="_on_start_button_button_up"]

@@ -14,12 +14,19 @@
 
 [node name="ChatTradeMenu" type="Node2D"]
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("6_unygt")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-offset_left = -960.0
-offset_top = -456.0
-offset_right = 1205.0
-offset_bottom = 1082.0
+offset_left = -1064.0
+offset_top = -528.0
+offset_right = 1101.0
+offset_bottom = 1010.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
