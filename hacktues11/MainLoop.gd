@@ -8,34 +8,34 @@ var http_request_main_purse
 var current_scene = null
 
 func _ready():
-    var root = get_tree().root
-    current_scene = root.get_child(root.get_child_count() - 1)
+	var root = get_tree().root
+	current_scene = root.get_child(root.get_child_count() - 1)
 
-    http_request_main_purse = HTTPRequest.new()
-    add_child(http_request_main_purse)
-    http_request_main_purse.connect("request_completed", Callable(self, "_on_request_completed_purse"))
-    update_purse()
+	http_request_main_purse = HTTPRequest.new()
+	add_child(http_request_main_purse)
+	http_request_main_purse.connect("request_completed", Callable(self, "_on_request_completed_purse"))
+	update_purse()
 
 func update_game():
 	update_purse()
 
 func _process(delta):
 	pass
-    # update_purse()
-    # print("Purse value:", purse)
+	# update_purse()
+	# print("Purse value:", purse)
 
 func update_purse():
-    var url = "http://127.0.0.1:5000/api/purse"
-    http_request_main_purse.use_threads = true
-    var err = http_request_main_purse.request(url, [], HTTPClient.METHOD_GET)
-    if err != OK:
-        print("Error making HTTP request:", err)
+	var url = "http://127.0.0.1:5000/api/purse"
+	http_request_main_purse.use_threads = true
+	var err = http_request_main_purse.request(url, [], HTTPClient.METHOD_GET)
+	if err != OK:
+		print("Error making HTTP request:", err)
 
 func _on_request_completed_purse(result, response_code, headers, body):
-    # print("Request completed with response code:", response_code)
-    var response_text = body.get_string_from_utf8()
-    # print("Response:", response_text)
-
+	# print("Request completed with response code:", response_code)
+	var response_text = body.get_string_from_utf8()
+	# print("Response:", response_text)
+	
 	var json = JSON.new()
 	var error = json.parse(response_text)
 	# if error == OK:
@@ -46,7 +46,7 @@ func _on_request_completed_purse(result, response_code, headers, body):
 	# 		print("Unexpected data")
 	# else:
 		# print("JSON Parse Error: ", json.get_error_message(), " in ", response_text, " at line ", json.get_error_line())
-
+	
 	purse = json.data["money"]
 
 # func _on_request_completed(result, response_code, headers, body):

@@ -18,6 +18,15 @@ var audio_player = AudioStreamPlayer.new()
 
 
 @onready var reroll_anim = $TradeInfo/RerollAnimation
+@onready var http_request: HTTPRequest = $HTTPRequest
+
+@onready var trader_name: Label = $TradeInfo/TraderName
+@onready var trader_description: Label = $TradeInfo/TraderDescription
+@onready var trade_description: Label = $TradeInfo/TradeDescription
+@onready var price_ammount: Label = $TradeInfo/priceAmmount
+@onready var item_name: Label = $TradeInfo/priceLabel2
+
+var offers: Array
 @onready var transition_anim = $TextureRect3/AnimationPlayer
 
 func _ready() -> void:
@@ -45,4 +54,10 @@ func _on_reject_trade_button_up() -> void:
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
 	reroll_anim.play("reroll")
+	
+	
+func reload():
+	print("gotin")
+
+	
 	
