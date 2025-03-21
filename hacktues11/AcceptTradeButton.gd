@@ -20,7 +20,8 @@ func _on_button_up() -> void:
 	await _accept_http()
 
 	if get_tree().current_scene.name == "ChatTradeMenu":
-		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+		# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+		get_tree().change_scene_to_file("res://Redirect.tscn")
 	else:
 		get_tree().change_scene_to_file("res://ChatTradeMenu.tscn")
 

@@ -7,6 +7,8 @@ var purse = 0
 var http_request_main_purse
 var current_scene = null
 
+var den = 0
+
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
