@@ -142,8 +142,9 @@ func _on_accept_trade_button_up() -> void:
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
 	transition_anim.play("transition")
-	load_anim.play("load", -1, -2)
-	await load_anim.animation_finished
+	#load_anim.play("load", -1, 2)
+	#await load_anim.animation_finished
+	
 	
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
@@ -162,7 +163,7 @@ func reload():
 	trader_name.text = offers[idx]["npc"]["name"]
 	trader_description.text = offers[idx]["npc"]["info"]
 	trade_description.text = offers[idx]["offer"]["description"]
-	price_ammount.text = "$" + str(offers[idx]["offer"]["price"])
+	price_ammount.text = "$" + str(int(offers[idx]["offer"]["price"]))
 	item_name.text = offers[idx]["offer"]["item_id"]
 	
 	var gender_idx = 1 if offers[idx]["npc"]["image_id"] < 3 else 2
