@@ -24,7 +24,14 @@ def set_purse():
 
 @app.route('/api/offers', methods=['GET'])
 def get_offers():
-    return jsonify({"content": random.choices(get_all_offers(), k=10)})
+    final_offers = []
+    offers = random.choices(get_all_offers(), k=10)
+    for offer in offers:
+        final_offers.append({
+            "offer": offer[0],
+            "npc": get_person(offer[1])
+        })
+    return jsonify({"content": final_offers})
 
 
 @app.route('/api/offer/select', methods=['POST'])

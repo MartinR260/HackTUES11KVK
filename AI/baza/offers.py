@@ -54,7 +54,7 @@ def get_all_offers_npc(npc_name):
 
 def get_all_offers():
     return [
-        json.load(open(f, "r"))
+        [json.load(open(f, "r")), os.path.basename(os.path.dirname(f))]
         for f in glob.glob(offers_path + "**/*.json", recursive=True)
     ]
 
