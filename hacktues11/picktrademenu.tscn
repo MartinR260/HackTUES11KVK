@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dafgcolil82jx"]
+[gd_scene load_steps=27 format=3 uid="uid://dafgcolil82jx"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://yygnv6741yds" path="res://assets/tech.png" id="9_wiyrn"]
 [ext_resource type="Texture2D" uid="uid://cyjv8d4ucqr4" path="res://assets/background_frame.png" id="11_v6ff6"]
 [ext_resource type="Texture2D" uid="uid://1l41o5f4cc0k" path="res://assets/7dayprogress.png" id="12_jhr2b"]
-[ext_resource type="Script" uid="uid://dghidyigs0i3d" path="res://7_day_tracker.gd" id="13_q26ml"]
+[ext_resource type="Script" path="res://7_day_tracker.gd" id="13_q26ml"]
 [ext_resource type="Texture2D" uid="uid://c27cimkvjjg2q" path="res://assets/m.png" id="14_ww133"]
 [ext_resource type="Texture2D" uid="uid://8ecov2riu4oe" path="res://assets/t.png" id="15_qn6kg"]
 [ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]
@@ -22,54 +22,6 @@
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-363, -190)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../TextureRect3:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-336, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../TextureRect3:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_85uty"]
 resource_name = "reroll"
@@ -108,7 +60,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.232579, 0.26836, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-336, 0), Vector2(576, 0), Vector2(-1368, 0), Vector2(-336, 0)]
+"values": [Vector2(-336, 24), Vector2(576, 24), Vector2(-1368, 24), Vector2(-336, 24)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -148,6 +100,30 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_vu2ae"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-336, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TraderIcon:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(257, 257)]
+}
 
 [sub_resource type="Animation" id="Animation_uu5bg"]
 resource_name = "transition"
@@ -186,7 +162,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-336, 0), Vector2(-432, -248), Vector2(-432, -247.999)]
+"values": [Vector2(-336, 24), Vector2(-432, -248), Vector2(-432, -247.999)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -198,7 +174,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1.3, 1.3)]
+"values": [Vector2(0.4, 0.4), Vector2(1.3, 1.3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -222,7 +198,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(256, 256), Vector2(512, 256)]
+"values": [Vector2(257, 257), Vector2(512, 256)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -264,27 +240,6 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-
-[node name="TraderIcon" type="NinePatchRect" parent="TradeInfo"]
-z_index = 1
-layout_mode = 0
-offset_left = 16.0
-offset_top = 216.0
-offset_right = 128.0
-offset_bottom = 328.0
-texture = ExtResource("11_v6ff6")
-region_rect = Rect2(0, 0, 512, 256)
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="TextureRect" type="TextureRect" parent="TradeInfo/TraderIcon"]
-z_index = -1
-layout_mode = 0
-offset_right = 112.0
-offset_bottom = 112.0
-texture = ExtResource("4_qgkdj")
 
 [node name="TraderDescription" type="Label" parent="TradeInfo"]
 layout_mode = 0
@@ -374,9 +329,10 @@ text = "PC Monitor"
 [node name="TextureRect3" type="NinePatchRect" parent="."]
 z_index = 1
 offset_left = -336.0
+offset_top = 24.0
 offset_right = -80.0
-offset_bottom = 256.0
-scale = Vector2(0.5, 0.5)
+offset_bottom = 280.0
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_uu5bg")
 region_rect = Rect2(128, 0, 256, 256)
 
@@ -390,8 +346,8 @@ z_index = 1
 layout_mode = 0
 offset_left = -0.769226
 offset_top = -0.769226
-offset_right = 255.231
-offset_bottom = 255.231
+offset_right = 256.231
+offset_bottom = 256.231
 texture = ExtResource("11_v6ff6")
 region_rect = Rect2(0, 0, 512, 256)
 patch_margin_left = 8
@@ -407,6 +363,7 @@ offset_bottom = 256.0
 texture = ExtResource("4_qgkdj")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 offset_left = -451.0
 offset_top = -268.0
 offset_right = 509.0

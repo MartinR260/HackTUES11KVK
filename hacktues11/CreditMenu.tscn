@@ -7,21 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b6i6wqvl7ifs6" path="res://assets/red_button_press.png" id="4_kmcdu"]
 [ext_resource type="Texture2D" uid="uid://cqgfornebtf67" path="res://assets/wheel.png" id="5_l8crg"]
 
-[sub_resource type="Animation" id="Animation_bbn7m"]
-resource_name = "spin"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 6.28319]
-}
-
 [sub_resource type="Animation" id="Animation_kmcdu"]
 length = 0.001
 tracks/0/type = "value"
@@ -35,6 +20,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bbn7m"]
+resource_name = "spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l8crg"]
