@@ -127,6 +127,46 @@ tracks/8/keys = {
 "values": [Vector2(-368, -200)]
 }
 
+[sub_resource type="Animation" id="Animation_ov344"]
+resource_name = "exiticon"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TraderIcon:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-368, -200), Vector2(-920, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Trader:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-248, -200), Vector2(-800, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Frame:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-368, -200), Vector2(-920, -200)]
+}
+
 [sub_resource type="Animation" id="Animation_23itu"]
 resource_name = "readyanim"
 length = 0.35
@@ -203,51 +243,50 @@ tracks/5/keys = {
 "values": [Vector2(420, 154), Vector2(179, 154)]
 }
 
-[sub_resource type="Animation" id="Animation_ov344"]
-resource_name = "exiticon"
-length = 0.35
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TraderIcon:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-368, -200), Vector2(-920, -200)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Trader:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-248, -200), Vector2(-800, -200)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Frame:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-368, -200), Vector2(-920, -200)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_80d0c"]
 _data = {
 &"RESET": SubResource("Animation_7u6cb"),
 &"exiticon": SubResource("Animation_ov344"),
 &"readyanim": SubResource("Animation_23itu")
+}
+
+[sub_resource type="Animation" id="Animation_b8c86"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TraderIcon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-368, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Trader:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-248, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Frame:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-368, -200)]
 }
 
 [sub_resource type="Animation" id="Animation_yqtma"]
@@ -288,45 +327,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-368, -200), Vector2(-920, -200)]
-}
-
-[sub_resource type="Animation" id="Animation_b8c86"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TraderIcon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-368, -200)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Trader:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-248, -200)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Frame:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-368, -200)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5bxed"]
@@ -383,9 +383,9 @@ metadata/_edit_use_anchors_ = true
 zoom = Vector2(1.5, 1.5)
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
-offset_left = 400.0
+offset_left = 160.0
 offset_top = -200.0
-offset_right = 608.0
+offset_right = 368.0
 offset_bottom = 202.0
 texture = ExtResource("9_os3wd")
 patch_margin_left = 8
@@ -401,9 +401,9 @@ offset_bottom = 216.0
 texture = ExtResource("6_unygt")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-offset_left = 420.0
+offset_left = 176.0
 offset_top = -184.0
-offset_right = 592.0
+offset_right = 348.0
 offset_bottom = 144.0
 scale = Vector2(1.03959, 0.994929)
 script = ExtResource("8_pavjr")
@@ -420,16 +420,16 @@ wait_time = 0.2
 autostart = true
 
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 420.0
+offset_left = 179.0
 offset_top = 154.0
-offset_right = 590.0
+offset_right = 349.0
 offset_bottom = 191.0
 scale = Vector2(1.03959, 0.994929)
 
 [node name="OfferInfo" type="TextureRect" parent="."]
 offset_left = -240.0
-offset_top = 230.0
-offset_bottom = 366.0
+offset_top = 64.0
+offset_bottom = 200.0
 texture = ExtResource("9_4g7jg")
 expand_mode = 1
 stretch_mode = 4
@@ -515,9 +515,9 @@ text = "$500"
 
 [node name="RejectTrade" type="TextureButton" parent="."]
 offset_left = 16.0
-offset_top = 300.0
+offset_top = 136.0
 offset_right = 144.0
-offset_bottom = 364.0
+offset_bottom = 200.0
 texture_normal = ExtResource("4_p4c4u")
 texture_pressed = ExtResource("5_a5ogm")
 stretch_mode = 0
@@ -527,9 +527,9 @@ script = ExtResource("5_pavjr")
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
 offset_left = 16.0
-offset_top = 226.0
+offset_top = 64.0
 offset_right = 144.0
-offset_bottom = 290.0
+offset_bottom = 128.0
 texture_normal = ExtResource("2_kyjx3")
 texture_pressed = ExtResource("2_4g7jg")
 stretch_mode = 0
