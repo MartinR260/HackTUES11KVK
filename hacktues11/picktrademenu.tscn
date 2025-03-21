@@ -598,7 +598,6 @@ offset_bottom = 256.0
 texture = ExtResource("4_qgkdj")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
 offset_left = -451.0
 offset_top = -268.0
 offset_right = 509.0
