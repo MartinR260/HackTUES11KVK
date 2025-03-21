@@ -46,6 +46,7 @@ def get_Responce_gemma():
         "keep_alive": "30m",
         "stream": False,
         "format": json_schema,
+        "temperature":offers.active_offer["npc"]["temperature"],
     }
 
     # url = "http://192.168.100.99:11434/api/chat"
