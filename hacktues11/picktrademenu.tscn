@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cvtexwvb4brbv"]
+[gd_scene load_steps=33 format=3 uid="uid://bqh4327ex6320"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -19,6 +19,43 @@
 [ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]
 [ext_resource type="Texture2D" uid="uid://6lxnqlaapgme" path="res://assets/f.png" id="17_4w0rk"]
 [ext_resource type="Texture2D" uid="uid://c1r2r3uyxtyen" path="res://assets/s.png" id="18_2mqhj"]
+
+[sub_resource type="Animation" id="Animation_8fcr4"]
+resource_name = "loadicon"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1336, 24), Vector2(-336, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_2aaya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-336, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2aaya"]
+_data = {
+&"RESET": SubResource("Animation_2aaya"),
+&"loadicon": SubResource("Animation_8fcr4")
+}
 
 [sub_resource type="Animation" id="Animation_d5g8s"]
 length = 0.001
@@ -233,8 +270,194 @@ _data = {
 &"transition": SubResource("Animation_uu5bg")
 }
 
+[sub_resource type="Animation" id="Animation_pt7to"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-56, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("7DayTracker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20, -250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TradeInfo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-362, -190)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AcceptTrade:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136, 168)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RejectTrade:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(328, 168)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("moneyLabel:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-328, 182)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("moneyAmount:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-104, 184)]
+}
+
+[sub_resource type="Animation" id="Animation_v27uu"]
+resource_name = "load"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseButton:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-224, -40), Vector2(-56, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("7DayTracker:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(600, -250), Vector2(-20, -250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TradeInfo:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1362, -190), Vector2(-362, -190)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AcceptTrade:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(136, 300), Vector2(136, 168)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RejectTrade:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(328, 300), Vector2(328, 168)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("moneyLabel:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-328, 300), Vector2(-328, 182)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("moneyAmount:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-104, 300), Vector2(-104, 184)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8fcr4"]
+_data = {
+&"RESET": SubResource("Animation_pt7to"),
+&"load": SubResource("Animation_v27uu")
+}
+
 [node name="PickTradeMenu" type="Node2D"]
 script = ExtResource("1_d5g8s")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2aaya")
+}
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -375,6 +598,7 @@ offset_bottom = 256.0
 texture = ExtResource("4_qgkdj")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 offset_left = -451.0
 offset_top = -268.0
 offset_right = 509.0
@@ -501,6 +725,11 @@ theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 40
 text = "$500"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8fcr4")
+}
 
 [connection signal="button_up" from="AcceptTrade" to="." method="_on_accept_trade_button_up"]
 [connection signal="button_up" from="RejectTrade" to="." method="_on_reject_trade_button_up"]

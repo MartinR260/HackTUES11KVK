@@ -29,6 +29,8 @@ var audio_player = AudioStreamPlayer.new()
 @onready var item_icon: TextureRect = $TradeInfo/TextureRect
 
 @onready var transition_anim = $TextureRect3/AnimationPlayer
+@onready var load_anim = $AnimationPlayer
+@onready var load_icon = $AnimationPlayer2
 
 var offers: Array
 var items: Array
@@ -83,6 +85,10 @@ func _ready() -> void:
 	idx = -1
 	reload()
 
+	load_anim.play("load")
+	load_icon.play("loadicon")
+	await load_anim.animation_finished
+	
 	button_click_sfx.add_stream(0, load("res://sfx/mouseclicks/mouse-button-click-308449.mp3"))
 	button_click_sfx.add_stream(1, load("res://sfx/mouseclicks/mouse-click-sound-233951.mp3"))
 	button_click_sfx.add_stream(2, load("res://sfx/mouseclicks/ui-click-43196.mp3"))
@@ -113,7 +119,8 @@ func _on_accept_trade_button_up() -> void:
 	audio_player.stream = button_click_sfx.get_stream(randi_range(0, 3))
 	audio_player.play()
 	transition_anim.play("transition")
-	await transition_anim.animation_finished
+	load_anim.play("load", -1, -2)
+	await load_anim.animation_finished
 	
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
