@@ -1,1 +1,1 @@
-model = "gemma3:12b"
+model = "llama3.2:1b"

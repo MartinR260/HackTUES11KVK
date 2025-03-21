@@ -88,6 +88,10 @@ size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="ScrollContainer"]
 
+[node name="LoadingTimer" type="Timer" parent="ScrollContainer"]
+wait_time = 0.2
+autostart = true
+
 [node name="TextEdit" type="TextEdit" parent="."]
 offset_left = 160.0
 offset_top = 152.0
@@ -100,4 +104,5 @@ text = "dasdasd"
 [connection signal="button_up" from="AcceptTrade" to="AcceptTrade" method="_on_button_up"]
 [connection signal="button_up" from="RejectTrade" to="RejectTrade" method="_on_button_up"]
 [connection signal="request_completed" from="ScrollContainer/HTTPRequest" to="ScrollContainer" method="_on_http_request_request_completed"]
+[connection signal="timeout" from="ScrollContainer/LoadingTimer" to="ScrollContainer" method="_on_loading_timer_timeout"]
 [connection signal="text_changed" from="TextEdit" to="ScrollContainer" method="_on_text_edit_text_changed"]
