@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://4g87vtjefhcp"]
+[gd_scene load_steps=36 format=3 uid="uid://cvtexwvb4brbv"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
