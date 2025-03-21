@@ -5,7 +5,7 @@ var audio_player = AudioStreamPlayer.new()
 
 @onready var http_request: HTTPRequest = $HTTPRequest
 @onready var exit_anim = $"../AnimationPlayer3"
-
+@onready var icon_anim = $"../AnimationPlayer2"
 func _ready() -> void:
 	button_click_sfx.add_stream(0, load("res://sfx/mouseclicks/mouse-button-click-308449.mp3"))
 	button_click_sfx.add_stream(1, load("res://sfx/mouseclicks/mouse-click-sound-233951.mp3"))
@@ -21,6 +21,7 @@ func _on_button_up() -> void:
 	await _accept_http()
 
 	exit_anim.play("exit")
+	icon_anim.play("exiticon")
 	await exit_anim.animation_finished
 	
 	if get_tree().current_scene.name == "ChatTradeMenu":
