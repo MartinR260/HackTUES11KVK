@@ -11,8 +11,8 @@ func _ready() -> void:
 
 func send_message_ai(text):
 	var style = StyleBoxEmpty.new()
-	style.content_margin_top = 10
-	style.content_margin_bottom = 10
+	style.content_margin_top = 5
+	style.content_margin_bottom = 5
 	style.content_margin_right = 5
 		
 	var panel = PanelContainer.new()
@@ -22,7 +22,7 @@ func send_message_ai(text):
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
 	label.add_theme_font_size_override("font_size", 16)
-		
+	label.add_theme_constant_override("outline_size", 5)
 	panel.add_child(label)
 	panel.add_theme_stylebox_override("panel", style)
 
@@ -30,8 +30,8 @@ func send_message_ai(text):
 
 func send_message_player(text):
 	var style = StyleBoxEmpty.new()
-	style.content_margin_top = 10
-	style.content_margin_bottom = 10
+	style.content_margin_top = 5
+	style.content_margin_bottom = 5
 	style.content_margin_right = 5
 		
 	var panel = PanelContainer.new()
@@ -42,6 +42,7 @@ func send_message_player(text):
 	label.add_theme_color_override("font_color", Color(255,255,255,0.7))
 	label.add_theme_font_override("font", PIXEL_OPERATOR_8)
 	label.add_theme_font_size_override("font_size", 16)
+	label.add_theme_constant_override("outline_size", 5)
 		
 	panel.add_child(label)
 	panel.add_theme_stylebox_override("panel", style)
@@ -53,7 +54,7 @@ func send_message_player(text):
 func _on_text_edit_text_changed() -> void:
 	if "\n" in text_edit.text:
 		var text = text_edit.text.rstrip("\n")
-		send_message_player(text)
+		send_message_ai(text)
 		
 		text_edit.clear()
 
