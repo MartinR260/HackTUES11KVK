@@ -70,6 +70,7 @@ def accept_offer():
         return jsonify({"error": "No active offer."}), 400
 
     money -= active_offer["offer"]["price"]
+    # money -= active_offer["offer"][""]
     response = {"success": True, "money": money}
 
     # add to memo

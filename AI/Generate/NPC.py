@@ -32,29 +32,34 @@ def ask_question(question, fmt=None):
 
 def generate_npc_data(image_id, attributes):
     name_prompt = (
-        "Generate a random name for a typical person who is " + ("male" if image_id < 3 else "female") + ". "
+        "Generate a typical name for a " + ("male" if image_id < 3 else "female") + " from a country of choice."
         "Output only the name with no additional text."
     )
     name = ask_question(name_prompt).strip()
 
     info_prompt = (
-        f"For an NPC named '{name}', provide a brief background description. "
-        "Include where they live (e.g., country and town), their occupation, and a bit about who they are. "
-        "Do NOT mention personality traits. "
-        "Keep the description to 1-2 sentences in first person. Give me only the description, no additional text. "
-        f"Attributes to consider: {attributes}"
+        f"For an NPC named '{name}', provide a brief background description - include: "
+        # "Include where they live (e.g., country and town), their occupation, and a bit about who they are. "
+        # "Do NOT mention personality traits. "
+        # "Keep the description to 1-2 sentences in first person. Give me only the description, no additional text. "
+        # f"Attributes to consider: {attributes}"
+        " - Where they are from"
+        " - What they do"
+        " - 1 random thing"
     )
     info = ask_question(info_prompt).strip()
 
     personality_prompt = (
         f"Given the NPC named '{name}' with the following background:\n'{info}'\n\n"
-        "Now, expand on their personality. Describe how they behave, speak, and interact, "
-        "focusing on personality traits and talking style without mentioning appearance. "
-        "Do not repeat the background details verbatim — create a richer, more detailed personality description. "
-        "Keep it concise and to the point. Give me only the description, no additional text. "
-        f"Attributes to consider: {attributes}"
+        "Now, expand on their personality - describe how they behave, speak, and interact. Use a short sentance "
+        # "focusing on personality traits and talking style without mentioning appearance. "
+        # "Do not repeat the background details verbatim — create a richer, more detailed personality description. "
+        # "Keep it concise and to the point. Give me only the description, no additional text. "
+        # f"Attributes to consider: {attributes}"
     )
     description = ask_question(personality_prompt).strip()
+
+    print("Generated an NPC")
 
     return name, info, description
 
@@ -63,9 +68,10 @@ def generate_offer_data(npc_parsed, item_parsed):
             f"You have this NPC:\n{npc_parsed}.\n"
             f"That wants to sell this item:\n{item_parsed}\n"
             "Provide an offer for the item in JSON format with the following keys:\n"
-            "- 'price': a number formatted as a float 0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
+            # "- 'price': a number formatted as a float 0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
+            "- 'price': between 10 and 10000"
             "- 'description': a short description of the item as if the NPC is trying to sell it. Use the language the NPC would use.\n"
-            "Return only the JSON, with no extra text."
+            # "Return only the JSON, with no extra text."
     )
 
     json_schema = {
@@ -79,6 +85,7 @@ def generate_offer_data(npc_parsed, item_parsed):
 
     response_text = ask_question(prompt, fmt=json_schema)
     result = json.loads(response_text)
+    print("Generated an offer")
     return float(result["price"]), result["description"]
 
 

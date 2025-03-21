@@ -76,5 +76,7 @@ def chat():
 
     offers.active_offer["messages"].append({"role": "npc", "content": result["answer_to_player"]})
 
+    offers.active_offer["offer"]["price"] = result["price"]
+
     return jsonify({"response": result})
 
