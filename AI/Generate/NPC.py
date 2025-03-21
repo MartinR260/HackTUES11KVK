@@ -58,7 +58,7 @@ def generate_offer_data(npc_parsed, item_parsed):
             f"You have this NPC:\n{npc_parsed}.\n"
             f"That wants to sell this item:\n{item_parsed}\n"
             "Provide an offer for the item in JSON format with the following keys:\n"
-            "- 'price': a number in USD formatted as $0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
+            "- 'price': a number formatted as a float 0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
             "- 'description': a short description of the item as if the NPC is trying to sell it. Use the language the NPC would use.\n"
             "Return only the JSON, with no extra text."
     )
@@ -66,7 +66,7 @@ def generate_offer_data(npc_parsed, item_parsed):
     json_schema = {
         "type": "object",
         "properties": {
-            "price": {"type": "string"},
+            "price": {"type": "integer"},
             "description": {"type": "string"}
         },
         "required": ["price", "description"]
@@ -74,7 +74,7 @@ def generate_offer_data(npc_parsed, item_parsed):
 
     response_text = ask_question(prompt, fmt=json_schema)
     result = json.loads(response_text)
-    return result["price"], result["description"]
+    return float(result["price"]), result["description"]
 
 
 def generate_random_npc(image_id):
@@ -102,7 +102,7 @@ def generate_offer(npc_name):
     price, description = generate_offer_data(
         baza.get_person_str(npc_name),
         f"Name: {item['id']}\n"
-        f"Condition: {item['condition']}\n"
+        # f"Condition: {item['condition']}\n"
     )
 
     offer = {
