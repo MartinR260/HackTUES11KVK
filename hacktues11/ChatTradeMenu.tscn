@@ -540,9 +540,9 @@ metadata/_edit_use_anchors_ = true
 zoom = Vector2(1.5, 1.5)
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
-offset_left = 400.0
+offset_left = 160.0
 offset_top = -200.0
-offset_right = 608.0
+offset_right = 368.0
 offset_bottom = 202.0
 texture = ExtResource("9_os3wd")
 patch_margin_left = 8
@@ -558,9 +558,9 @@ offset_bottom = 216.0
 texture = ExtResource("6_unygt")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-offset_left = 420.0
+offset_left = 176.0
 offset_top = -184.0
-offset_right = 592.0
+offset_right = 348.0
 offset_bottom = 144.0
 scale = Vector2(1.03959, 0.994929)
 script = ExtResource("8_pavjr")
@@ -577,16 +577,16 @@ wait_time = 0.2
 autostart = true
 
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 420.0
+offset_left = 179.0
 offset_top = 154.0
-offset_right = 590.0
+offset_right = 349.0
 offset_bottom = 191.0
 scale = Vector2(1.03959, 0.994929)
 
 [node name="OfferInfo" type="TextureRect" parent="."]
 offset_left = -240.0
-offset_top = 230.0
-offset_bottom = 366.0
+offset_top = 64.0
+offset_bottom = 200.0
 texture = ExtResource("9_4g7jg")
 expand_mode = 1
 stretch_mode = 4
@@ -671,9 +671,9 @@ text = "$500"
 
 [node name="RejectTrade" type="TextureButton" parent="."]
 offset_left = 16.0
-offset_top = 300.0
+offset_top = 136.0
 offset_right = 144.0
-offset_bottom = 364.0
+offset_bottom = 200.0
 texture_normal = ExtResource("4_p4c4u")
 texture_pressed = ExtResource("5_a5ogm")
 stretch_mode = 0
@@ -683,9 +683,9 @@ script = ExtResource("5_pavjr")
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
 offset_left = 16.0
-offset_top = 226.0
+offset_top = 64.0
 offset_right = 144.0
-offset_bottom = 290.0
+offset_bottom = 128.0
 texture_normal = ExtResource("2_kyjx3")
 texture_pressed = ExtResource("2_4g7jg")
 stretch_mode = 0
