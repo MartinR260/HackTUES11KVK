@@ -10,9 +10,9 @@ import Generate.NPC as npc_gen
 import Generate.Item as item_gen
 from baza.offers import get_all_offers
 
-num_people = 15
-num_items = 15
-num_offers = 20
+num_people = 5
+num_items = 5
+num_offers = 10
 
 num_images = 6
 

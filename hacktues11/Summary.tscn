@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7cdgomj0jki2"]
+[gd_scene load_steps=3 format=3 uid="uid://b7cdgomj0jki2"]
 
-[ext_resource type="PackedScene" path="res://report.tscn" id="1_ol8ck"]
+[ext_resource type="Script" uid="uid://ccjhtkl4v6dcq" path="res://summary.gd" id="1_bxwr5"]
+[ext_resource type="PackedScene" uid="uid://bw6c4dpxfaa24" path="res://report.tscn" id="1_ol8ck"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_bxwr5")
 
 [node name="Report" parent="." instance=ExtResource("1_ol8ck")]
 offset_left = 409.0

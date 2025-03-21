@@ -25,9 +25,25 @@ func _ready() -> void:
 	texture_array.append(texture_rect_6)
 	texture_array.append(texture_rect_7)
 
-
+var a = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	a += 1
+	if not a%100 == 0:
+		pass
+	var all_zero = true
+	for i in 7:
+		if GlobalMainLoop.days[i] != 0:
+			all_zero = false
+			break
+	if all_zero:
+		clear_days()
+		
+	for i in range(7):
+		if GlobalMainLoop.days[i] == -1:
+			add_cross_at_index(i)
+		elif GlobalMainLoop.days[i] == 1:
+			add_tick_at_index(i)
 	pass
 
 func clear_days():
@@ -43,4 +59,6 @@ func add_cross_at_index(index):
 	texture_array[index].texture = CROSS
 
 func add_tick_at_index(index):
-	texture_array[index].texture = CROSS
+	texture_array[index].texture = TICK
+func clear_days():
+	pass

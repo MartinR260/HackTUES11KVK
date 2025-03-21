@@ -4,7 +4,7 @@ var button_click_sfx : AudioStreamRandomizer = AudioStreamRandomizer.new()
 var audio_player = AudioStreamPlayer.new()
 
 @onready var http_request: HTTPRequest = $HTTPRequest
-@onready var exit_anim = $"../AnimationPlayer"
+@onready var exit_anim = $"../AnimationPlayer3"
 
 func _ready() -> void:
 	button_click_sfx.add_stream(0, load("res://sfx/mouseclicks/mouse-button-click-308449.mp3"))
@@ -20,11 +20,12 @@ func _on_button_up() -> void:
 	
 	await _accept_http()
 
-	exit_anim.play("readyanim", -1, -1)
+	exit_anim.play("exit")
 	await exit_anim.animation_finished
 	
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
+		GlobalMainLoop.days[GlobalMainLoop.den] = 1
 		get_tree().change_scene_to_file("res://Redirect.tscn")
 	else:
 		get_tree().change_scene_to_file("res://ChatTradeMenu.tscn")
