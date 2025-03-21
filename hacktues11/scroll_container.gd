@@ -14,6 +14,7 @@ const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 @onready var trader: TextureRect = $"../Trader"
 @onready var price_amount: Label = $"../OfferInfo/priceAmount"
 
+@onready var ready_anim: AnimationPlayer = $"../AnimationPlayer"
 
 # A variable to hold the label we create for the AI response.
 var current_response_label: Label = null
@@ -88,6 +89,7 @@ func load_items():
 	
 	
 func _ready() -> void:
+	trader.visible = false
 	await load_items()
 	await get_offer()
 	await get_money()
@@ -107,6 +109,11 @@ func _ready() -> void:
 			
 	if item_:
 		item_icon.texture = load("res://assets/items/" + item_["type"] + ".png")
+	
+	trader.visible = true
+	
+	ready_anim.play("readyanim")
+	await ready_anim.animation_finished
 	
 	# Configure the timer
 	loading_timer.wait_time = 0.5  # Adjust interval as needed.
