@@ -5,6 +5,8 @@ var button_click_sfx : AudioStreamRandomizer = AudioStreamRandomizer.new()
 var audio_player = AudioStreamPlayer.new()
 
 @onready var http_request: HTTPRequest = $HTTPRequest
+@onready var exit_anim = $"../AnimationPlayer"
+@onready var icon_anim = $"../AnimationPlayer2"
 
 func _ready() -> void:
 	button_click_sfx.add_stream(0, load("res://sfx/Gunshot Sound Effect.mp3"))
@@ -17,7 +19,11 @@ func _on_button_up() -> void:
 	
 	await _decline_http()
 	# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
-
+	
+	exit_anim.play("readyanim", -1, -1)
+	icon_anim.play("exiticon")
+	await exit_anim.animation_finished
+	
 	if get_tree().current_scene.name == "ChatTradeMenu":
 		# get_tree().change_scene_to_file("res://PickTradeMenu.tscn")
 		GlobalMainLoop.days[GlobalMainLoop.den] = -1

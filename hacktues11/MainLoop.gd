@@ -56,7 +56,7 @@ func update_purse():
 	if err != OK:
 		print("Error making HTTP request:", err)
 
-func _on_request_completed_purse(result, response_code, headers, body):
+func _on_request_completed_purse(_result, _response_code, _headers, body):
 	# print("Request completed with response code:", response_code)
 	var response_text = body.get_string_from_utf8()
 	# print("Response:", response_text)

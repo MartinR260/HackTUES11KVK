@@ -33,3 +33,10 @@ def get_all_item_idx():
         for f in os.listdir(item_path)
         if f.endswith(".json")
     ]
+
+def get_all_items():
+    return [
+        get_item(f[:-5])
+        for f in os.listdir(item_path)
+        if f.endswith(".json")
+    ]

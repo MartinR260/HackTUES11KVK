@@ -10,9 +10,9 @@ import Generate.NPC as npc_gen
 import Generate.Item as item_gen
 from baza.offers import get_all_offers
 
-num_people = 5
-num_items = 5
-num_offers = 10
+num_people = 15
+num_items = 15
+num_offers = 20
 
 num_images = 6
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     if len(names) < num_people:
         for i in range(num_people - len(names)):
-            npc_gen.generate_random_npc(random.randint(0, num_images))
+            npc_gen.generate_random_npc(random.randint(0, num_images - 1))
 
 
     curr_num_items = get_num_items()

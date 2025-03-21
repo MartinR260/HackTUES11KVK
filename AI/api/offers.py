@@ -3,7 +3,7 @@ import random
 from flask import request, jsonify
 from Generate import Memory as memo_gen
 from api.api import app
-from baza.item import get_item
+from baza.item import get_item, get_all_item_idx, get_all_items
 from baza.npc import save_person, get_person
 from baza.offers import get_all_offers, get_offer
 
@@ -37,6 +37,11 @@ def get_offers():
 def get_current_offer():
     global active_offer
     return jsonify({"offer": active_offer["offer"], "npc": active_offer["npc"]})
+
+@app.route("/api/items", methods=['GET'])
+def get_items():
+    return jsonify({"content": get_all_items()})
+
 
 @app.route('/api/offer/select', methods=['POST'])
 def select_offer():
