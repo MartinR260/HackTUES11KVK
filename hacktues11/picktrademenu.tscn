@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cvtexwvb4brbv"]
+[gd_scene load_steps=37 format=3 uid="uid://dj0jgj0446rjr"]
 
 [ext_resource type="Script" uid="uid://dcscl8ojlyfja" path="res://PickTradeMenu.gd" id="1_d5g8s"]
 [ext_resource type="Texture2D" uid="uid://4qt7w27wtt6x" path="res://assets/green_button.png" id="1_g6ba8"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ch040h5d1rgav" path="res://assets/w.png" id="16_xeod5"]
 [ext_resource type="Texture2D" uid="uid://6lxnqlaapgme" path="res://assets/f.png" id="17_4w0rk"]
 [ext_resource type="Texture2D" uid="uid://c1r2r3uyxtyen" path="res://assets/s.png" id="18_2mqhj"]
+[ext_resource type="Texture2D" uid="uid://443xejgjjxlf" path="res://assets/yellow_button.png" id="20_pt7to"]
 
 [sub_resource type="Animation" id="Animation_2aaya"]
 length = 0.001
@@ -236,6 +237,18 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_tf2gi"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-264, -376)]
+}
 
 [sub_resource type="Animation" id="Animation_bcuo2"]
 resource_name = "move"
@@ -324,6 +337,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(-104, 184), Vector2(-104, 300)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureButton:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-264, -256), Vector2(-264, -376)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tf2gi"]
 _data = {
@@ -333,6 +358,18 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_pt7to"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-264, -376)]
+}
 
 [sub_resource type="Animation" id="Animation_v27uu"]
 resource_name = "load"
@@ -421,6 +458,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(-104, 300), Vector2(-104, 184)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureButton:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-264, -376), Vector2(-264, -256)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8fcr4"]
 _data = {
@@ -454,9 +503,9 @@ offset_bottom = 770.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="TradeInfo" type="NinePatchRect" parent="."]
-offset_left = -1362.0
+offset_left = -362.0
 offset_top = -190.0
-offset_right = -512.0
+offset_right = 488.0
 offset_bottom = 151.0
 texture = ExtResource("2_w86nt")
 patch_margin_left = 8
@@ -587,18 +636,18 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
 offset_left = 136.0
-offset_top = 300.0
+offset_top = 168.0
 offset_right = 264.0
-offset_bottom = 364.0
+offset_bottom = 232.0
 texture_normal = ExtResource("1_g6ba8")
 texture_pressed = ExtResource("3_whtp2")
 stretch_mode = 0
 
 [node name="RejectTrade" type="TextureButton" parent="."]
 offset_left = 328.0
-offset_top = 300.0
+offset_top = 168.0
 offset_right = 456.0
-offset_bottom = 364.0
+offset_bottom = 232.0
 texture_normal = ExtResource("2_gppls")
 texture_pressed = ExtResource("5_wiyrn")
 stretch_mode = 0
@@ -607,9 +656,9 @@ stretch_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -224.0
+offset_left = -56.0
 offset_top = -40.0
-offset_right = -224.0
+offset_right = -56.0
 offset_bottom = -40.0
 grow_horizontal = 1
 grow_vertical = 1
@@ -617,9 +666,9 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="7DayTracker" type="TextureRect" parent="."]
-offset_left = 600.0
+offset_left = -20.0
 offset_top = -250.0
-offset_right = 1108.0
+offset_right = 488.0
 offset_bottom = -158.0
 texture = ExtResource("12_jhr2b")
 stretch_mode = 4
@@ -683,9 +732,9 @@ texture = ExtResource("18_2mqhj")
 
 [node name="moneyLabel" type="Label" parent="."]
 offset_left = -328.0
-offset_top = 300.0
+offset_top = 182.0
 offset_right = -118.0
-offset_bottom = 340.0
+offset_bottom = 222.0
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 40
@@ -693,9 +742,9 @@ text = "Money:"
 
 [node name="moneyAmount" type="Label" parent="."]
 offset_left = -104.0
-offset_top = 300.0
+offset_top = 184.0
 offset_right = 36.0
-offset_bottom = 340.0
+offset_bottom = 224.0
 theme_override_colors/font_color = Color(0, 0.85, 0.0991668, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("3_g6ba8")
@@ -712,5 +761,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_8fcr4")
 }
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -264.0
+offset_top = -376.0
+offset_right = -136.0
+offset_bottom = -312.0
+texture_normal = ExtResource("20_pt7to")
+
 [connection signal="button_up" from="AcceptTrade" to="." method="_on_accept_trade_button_up"]
 [connection signal="button_up" from="RejectTrade" to="." method="_on_reject_trade_button_up"]
+[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]

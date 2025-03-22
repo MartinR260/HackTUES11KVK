@@ -26,6 +26,8 @@ if __name__ == "__main__":
         "vehicle"
     ]
 
+    # def get_all_people_names():
+    #     return [f[:-5] for f in os.listdir(people_path) if f.endswith(".json")]
     names = get_all_people_names()
 
     if len(names) < num_people:
@@ -33,6 +35,8 @@ if __name__ == "__main__":
             npc_gen.generate_random_npc(random.randint(0, num_images - 1))
 
 
+    # def get_num_items():
+    #     return len([f for f in os.listdir(item_path) if f.endswith(".json")])
     curr_num_items = get_num_items()
     if curr_num_items < num_items:
         for i in range(num_items - curr_num_items):
@@ -40,6 +44,10 @@ if __name__ == "__main__":
 
 
 
+    # def get_all_offers():
+    #     return [
+    #         [json.load(open(f, "r")), os.path.basename(os.path.dirname(f))]
+    #         for f in glob.glob(offers_path + "**/*.json", recursive=True)
     curr_num_offers = len(get_all_offers())
     if curr_num_offers < num_offers:
         for i in range(num_offers - curr_num_offers):

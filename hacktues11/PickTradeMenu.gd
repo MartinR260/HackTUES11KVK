@@ -178,3 +178,7 @@ func reload():
 			
 	if item_:
 		item_icon.texture = load("res://assets/items/" + item_["type"] + ".png")
+
+
+func _on_texture_button_button_up() -> void:
+	get_tree().change_scene_to_file("res://CreditMenu.tscn")
