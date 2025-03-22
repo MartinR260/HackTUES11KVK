@@ -503,9 +503,9 @@ offset_bottom = 770.0
 color = Color(0.588235, 0.807843, 0.878431, 1)
 
 [node name="TradeInfo" type="NinePatchRect" parent="."]
-offset_left = -362.0
+offset_left = -1362.0
 offset_top = -190.0
-offset_right = 488.0
+offset_right = -512.0
 offset_bottom = 151.0
 texture = ExtResource("2_w86nt")
 patch_margin_left = 8
@@ -636,18 +636,18 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="AcceptTrade" type="TextureButton" parent="."]
 offset_left = 136.0
-offset_top = 168.0
+offset_top = 300.0
 offset_right = 264.0
-offset_bottom = 232.0
+offset_bottom = 364.0
 texture_normal = ExtResource("1_g6ba8")
 texture_pressed = ExtResource("3_whtp2")
 stretch_mode = 0
 
 [node name="RejectTrade" type="TextureButton" parent="."]
 offset_left = 328.0
-offset_top = 168.0
+offset_top = 300.0
 offset_right = 456.0
-offset_bottom = 232.0
+offset_bottom = 364.0
 texture_normal = ExtResource("2_gppls")
 texture_pressed = ExtResource("5_wiyrn")
 stretch_mode = 0
@@ -656,9 +656,9 @@ stretch_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -56.0
+offset_left = -224.0
 offset_top = -40.0
-offset_right = -56.0
+offset_right = -224.0
 offset_bottom = -40.0
 grow_horizontal = 1
 grow_vertical = 1
@@ -666,9 +666,9 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="7DayTracker" type="TextureRect" parent="."]
-offset_left = -20.0
+offset_left = 600.0
 offset_top = -250.0
-offset_right = 488.0
+offset_right = 1108.0
 offset_bottom = -158.0
 texture = ExtResource("12_jhr2b")
 stretch_mode = 4
@@ -732,9 +732,9 @@ texture = ExtResource("18_2mqhj")
 
 [node name="moneyLabel" type="Label" parent="."]
 offset_left = -328.0
-offset_top = 182.0
+offset_top = 300.0
 offset_right = -118.0
-offset_bottom = 222.0
+offset_bottom = 340.0
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("3_g6ba8")
 theme_override_font_sizes/font_size = 40
@@ -742,9 +742,9 @@ text = "Money:"
 
 [node name="moneyAmount" type="Label" parent="."]
 offset_left = -104.0
-offset_top = 184.0
+offset_top = 300.0
 offset_right = 36.0
-offset_bottom = 224.0
+offset_bottom = 340.0
 theme_override_colors/font_color = Color(0, 0.85, 0.0991668, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("3_g6ba8")

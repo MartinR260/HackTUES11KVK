@@ -10,6 +10,13 @@ from baza.offers import get_all_offers, get_offer
 money = 1000
 active_offer = None
 
+
+spent_money = 0
+bargain_wins = 0
+independent_price_sum = 0
+bargain_npcs = set()
+
+
 @app.route('/api/purse', methods=['GET'])
 def get_purse():
     global money
@@ -46,6 +53,7 @@ def get_items():
 @app.route('/api/offer/select', methods=['POST'])
 def select_offer():
     global active_offer
+    global bargain_npcs
 
     offer_id = request.get_json().get('offer_id')
     npc_name = request.get_json().get('npc_name')
@@ -59,15 +67,25 @@ def select_offer():
         "messages": []
     }
 
+    bargain_npcs.add(npc_name)
+
     return jsonify({"success": True, "active_offer": active_offer})
 
 @app.route('/api/offer/accept', methods=['POST'])
 def accept_offer():
     global money
     global active_offer
+    global spent_money
+    global independent_price_sum
+    global bargain_wins
 
     if active_offer is None:
         return jsonify({"error": "No active offer."}), 400
+
+    spent_money += active_offer["offer"]["price"]
+    independent_price_sum += get_item(active_offer["offer"]["item_id"])["price"]
+    bargain_wins += active_offer["offer"]["original_price"] - active_offer["offer"]["price"]
+
 
     money -= active_offer["offer"]["price"]
     # money -= active_offer["offer"][""]
@@ -120,3 +138,21 @@ def decline_offer():
 
     active_offer = None
     return jsonify(response)
+
+
+
+
+
+@app.route('/api/summary', methods=['GET'])
+def get_summary():
+    global spent_money
+    global bargain_wins
+    global independent_price_sum
+    global bargain_npcs
+
+    return jsonify({
+        "spent_money": spent_money,
+        "bargain_wins": bargain_wins,
+        "independent_price_sum": independent_price_sum,
+        "bargain_npcs": list(bargain_npcs)
+    })
