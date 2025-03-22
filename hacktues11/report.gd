@@ -1,9 +1,11 @@
 extends TextureRect
 @onready var v_box_container: VBoxContainer = $VBoxContainer
-@onready var money_spent_label: Label = $MoneySpentLabel
+@onready var money_spent_label: Label = $MoneySpentAmmount
 @onready var items_base_price_ammount: Label = $ItemsBasePriceAmmount
 @onready var conclusion: Label = $Conclusion
 @onready var http_request: HTTPRequest = $HTTPRequest
+@onready var debt_ammount: Label = $DebtAmmount
+
 
 const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 
@@ -16,6 +18,8 @@ func _ready() -> void:
 	change_money_spent(summary.spent_money)
 	change_items_base_price(summary.independent_price_sum)
 	gen_conclusion(summary.spent_money, summary.independent_price_sum)
+	
+	debt_ammount.text = "$" + str(int(GlobalMainLoop.debt))
 #{
 	#"spent_money": spent_money,
 	#"bargain_wins": bargain_wins,
