@@ -23,7 +23,10 @@ def get_summary(Offer_Data):
         # "model": "gemma3:12b",
         # "model": "llama3.2:1b",
         "model": model.model,
-        "seed": random.randint(1, 10 ** 18),
+        # "seed": random.randint(1, 10 ** 18),
+        "options": {
+            "seed": random.randint(1, 10 ** 5),
+        },
         # "messages": [ ],
         "prompt": prompt,
         "keep_alive": "30m",

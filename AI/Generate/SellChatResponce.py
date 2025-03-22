@@ -23,7 +23,10 @@ def get_Responce_gemma():
         # "model": "llama3.2:1b",
         "model": model.model,
         # "model": "gemma3:12b",
-        "seed": random.randint(1, 10 ** 18),
+        # "seed": random.randint(1, 10 ** 18),
+        "options": {
+            "seed": random.randint(1, 10 ** 5),
+        },
         "messages": offers.active_offer["messages"],
         "keep_alive": "30m",
         "stream": False,
