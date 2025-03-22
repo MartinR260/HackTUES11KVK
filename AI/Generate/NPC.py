@@ -12,16 +12,19 @@ from utils import Attributes, Deceitful, Personality, Naivety, TalkingStyle, Con
 import utils as utils
 
 # url  = "http://localhost:11434/api/chat"
-url  = "http://localhost:11434/api/generate"
+url = "http://localhost:11434/api/generate"
+
 
 def ask_question(question, fmt=None):
     data = {
         # "model": "llama3.2:1b",
         "model": model.model,
         "prompt": question,
-        "seed": random.randint(1, 10 ** 18),
+        "options": {
+            "seed": random.randint(1, 10 ** 5),
+        },
         "keep_alive": "30m",
-        "stream": False
+        "stream": False,
     }
 
     if fmt:
@@ -30,9 +33,12 @@ def ask_question(question, fmt=None):
     response = requests.post(url, json=data)
     return response.json().get("response", "")
 
+
 def generate_npc_data(image_id, attributes):
     name_prompt = (
-        "Generate a typical name for a " + ("male" if image_id < 3 else "female") + " from a country of choice."
+        "Generate a typical name for a "
+        + ("male" if image_id < 3 else "female")
+        + " from a country of choice."
         "Output only the name with no additional text."
     )
     name = ask_question(name_prompt).strip()
@@ -59,28 +65,26 @@ def generate_npc_data(image_id, attributes):
     )
     description = ask_question(personality_prompt).strip()
 
-    print("Generated an NPC")
+    print("Generated an NPC " + name)
 
     return name, info, description
 
+
 def generate_offer_data(npc_parsed, item_parsed):
     prompt = (
-            f"You have this NPC:\n{npc_parsed}.\n"
-            f"That wants to sell this item:\n{item_parsed}\n"
-            "Provide an offer for the item in JSON format with the following keys:\n"
-            # "- 'price': a number formatted as a float 0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
-            "- 'price': between 10 and 10000"
-            "- 'description': a short description of the item as if the NPC is trying to sell it. Use the language the NPC would use.\n"
-            # "Return only the JSON, with no extra text."
+        f"You have this NPC:\n{npc_parsed}.\n"
+        f"That wants to sell this item:\n{item_parsed}\n"
+        "Provide an offer for the item in JSON format with the following keys:\n"
+        # "- 'price': a number formatted as a float 0.00 (be sure not to set it too low, base it on the NPC's attributes and deceitfulness).\n"
+        "- 'price': between 10 and 10000"
+        "- 'description': a short description of the item as if the NPC is trying to sell it. Use the language the NPC would use.\n"
+        # "Return only the JSON, with no extra text."
     )
 
     json_schema = {
         "type": "object",
-        "properties": {
-            "price": {"type": "integer"},
-            "description": {"type": "string"}
-        },
-        "required": ["price", "description"]
+        "properties": {"price": {"type": "integer"}, "description": {"type": "string"}},
+        "required": ["price", "description"],
     }
 
     response_text = ask_question(prompt, fmt=json_schema)
@@ -94,17 +98,20 @@ def generate_random_npc(image_id):
         random.choice(list(Deceitful)),
         random.choice(list(Personality)),
         random.choice(list(Naivety)),
-        random.choice(list(TalkingStyle)))
+        random.choice(list(TalkingStyle)),
+    )
 
     name, info, description = generate_npc_data(image_id, attributes)
-    return create_person(image_id, name, info, description, random.uniform(0, 1), attributes)
+    return create_person(
+        image_id, name, info, description, random.uniform(0, 1), attributes
+    )
+
 
 def generate_offer(npc_name):
     item_id = random.choice(get_all_item_idx())
 
     price, description = generate_offer_data(
-        get_person_str(npc_name),
-        f"Name: {item_id}\n"
+        get_person_str(npc_name), f"Name: {item_id}\n"
     )
 
     offer = {
@@ -112,18 +119,19 @@ def generate_offer(npc_name):
         "starting_price": price,
         "item_id": item_id,
         "description": description,
-        "quantity": 1 # zar nqkoj den != 1
+        "quantity": 1,  # zar nqkoj den != 1
     }
 
     save_offer(npc_name, offer)
     return offer
+
 
 def generate_sellOffer(npc_name):
     item_id = random.choice(get_all_item_idx())
 
     price, description = generate_offer_data(
         get_person_str(npc_name),
-        f"Name: {item_id}\n"
+        f"Name: {item_id}\n",
         # f"Condition: {item['condition']}\n"
     )
 
@@ -132,8 +140,7 @@ def generate_sellOffer(npc_name):
         "starting_price": price,
         "item_id": item_id,
         "description": description,
-        "quantity": 1 # zar nqkoj den != 1
+        "quantity": 1,  # zar nqkoj den != 1
     }
 
     return offer
-
