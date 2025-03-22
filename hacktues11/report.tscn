@@ -31,6 +31,33 @@ offset_right = 231.0
 offset_bottom = 248.0
 rotation = -0.0174533
 
+[node name="DebtLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 227.0
+offset_right = 206.0
+offset_bottom = 243.0
+rotation = 0.0174533
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "Debt:"
+vertical_alignment = 1
+
+[node name="DebtAmmount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 248.0
+offset_right = 205.0
+offset_bottom = 264.0
+rotation = 0.0174533
+theme_override_colors/font_color = Color(0.717647, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_g5hm7")
+theme_override_font_sizes/font_size = 16
+text = "$500"
+vertical_alignment = 1
+
 [node name="MoneySpentLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 22.2792
@@ -98,7 +125,7 @@ color = Color(0.49667, 0.487187, 0.487186, 1)
 layout_mode = 0
 offset_left = 37.0
 offset_top = 419.0
-offset_right = 267.0
+offset_right = 261.0
 offset_bottom = 473.0
 rotation = -0.0349066
 scale = Vector2(0.9, 0.9)
@@ -109,3 +136,4 @@ text = "You got the items
 for equal the
 base price!"
 vertical_alignment = 1
+autowrap_mode = 3
