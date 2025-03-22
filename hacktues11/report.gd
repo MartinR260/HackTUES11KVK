@@ -7,7 +7,15 @@ extends TextureRect
 
 const PIXEL_OPERATOR_8 = preload("res://assets/fonts/PixelOperator8.ttf")
 
+func _ready() -> void:
+	var summary = await get_summary()
 
+	for name in summary.bargain_npcs:
+		add_person_to_list(name)
+
+	change_money_spent(summary.spent_money)
+	change_items_base_price(summary.independent_price_sum)
+	gen_conclusion(summary.spent_money, summary.independent_price_sum)
 #{
 	#"spent_money": spent_money,
 	#"bargain_wins": bargain_wins,
@@ -46,10 +54,10 @@ func add_person_to_list(name):
 	v_box_container.add_child(label)
 
 func change_money_spent(num):
-	money_spent_label.text = "$" + str(num)
+	money_spent_label.text = "$" + str(int(num))
 	
 func change_items_base_price(num):
-	items_base_price_ammount.text = "$" + str(num)
+	items_base_price_ammount.text = "$" + str(int(num))
 
 	
 func gen_conclusion(spent, base):
