@@ -84,7 +84,7 @@ def accept_offer():
 
     spent_money += active_offer["offer"]["price"]
     independent_price_sum += get_item(active_offer["offer"]["item_id"])["price"]
-    bargain_wins += active_offer["offer"]["original_price"] - active_offer["offer"]["price"]
+    bargain_wins += active_offer["offer"]["starting_price"] - active_offer["offer"]["price"]
 
 
     money -= active_offer["offer"]["price"]
