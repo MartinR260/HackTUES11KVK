@@ -14,7 +14,7 @@ def create_item(type, image_id):
         "required": ["name", "price"]
     }
 
-    res = json.loads(ask_question("Create an item for simple trading game with this specification " + type, json_schema))
+    res = json.loads(ask_question("Create a super basic item for a trading game." + type, json_schema))
     save_item(type, res["name"], image_id, res["price"])
 
     print("Generated an Item")

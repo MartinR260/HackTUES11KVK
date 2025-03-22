@@ -28,11 +28,12 @@ if __name__ == "__main__":
 
     # def get_all_people_names():
     #     return [f[:-5] for f in os.listdir(people_path) if f.endswith(".json")]
-    names = get_all_people_names()
 
+    names = get_all_people_names()
     if len(names) < num_people:
         for i in range(num_people - len(names)):
             npc_gen.generate_random_npc(random.randint(0, num_images - 1), names)
+            names = get_all_people_names()
 
 
     # def get_num_items():
@@ -40,7 +41,10 @@ if __name__ == "__main__":
     curr_num_items = get_num_items()
     if curr_num_items < num_items:
         for i in range(num_items - curr_num_items):
-            item_gen.create_item(random.choice(item_types), random.randint(0, curr_num_items))
+            # item_gen.create_item(random.choice(item_types), random.randint(0, curr_num_items))
+            a = item_types[random.randint(0,len(item_types)-1)]
+            item_gen.create_item(a, random.randint(0, curr_num_items))
+            print(a)
 
 
 
