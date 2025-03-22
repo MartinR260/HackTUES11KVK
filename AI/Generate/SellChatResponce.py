@@ -26,12 +26,12 @@ def get_Responce_gemma():
         # "seed": random.randint(1, 10 ** 18),
         "options": {
             "seed": random.randint(1, 10 ** 5),
+            "temperature":offers.active_offer["npc"]["temperature"],
         },
         "messages": offers.active_offer["messages"],
         "keep_alive": "30m",
         "stream": False,
         "format": json_schema,
-        "temperature":offers.active_offer["npc"]["temperature"],
     }
 
     # url = "http://192.168.100.99:11434/api/chat"

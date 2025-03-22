@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     if len(names) < num_people:
         for i in range(num_people - len(names)):
-            npc_gen.generate_random_npc(random.randint(0, num_images - 1))
+            npc_gen.generate_random_npc(random.randint(0, num_images - 1), names)
 
 
     # def get_num_items():

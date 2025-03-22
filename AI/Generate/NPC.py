@@ -1,4 +1,5 @@
 import json
+from os import name
 
 import requests
 import random
@@ -19,6 +20,7 @@ def ask_question(question, fmt=None):
     data = {
         # "model": "llama3.2:1b",
         "model": model.model,
+        # "prompt": question + "\n" + str(random.randint(1, 10 ** 5)),
         "prompt": question,
         "options": {
             "seed": random.randint(1, 10 ** 5),
@@ -33,14 +35,22 @@ def ask_question(question, fmt=None):
     response = requests.post(url, json=data)
     return response.json().get("response", "")
 
+def iter_string(names):
+    str = ""
+    for i in names:
+        str += i + " " 
+    return str
 
-def generate_npc_data(image_id, attributes):
+
+def generate_npc_data(image_id, attributes, names):
     name_prompt = (
         "Generate a typical name for a "
         + ("male" if image_id < 3 else "female")
         + " from a country of choice."
-        "Output only the name with no additional text."
+        + " That is not: " + iter_string(names) +
+        ". Output only the name with no additional text."
     )
+    print(name_prompt)
     name = ask_question(name_prompt).strip()
 
     info_prompt = (
@@ -93,7 +103,7 @@ def generate_offer_data(npc_parsed, item_parsed):
     return float(result["price"]), result["description"]
 
 
-def generate_random_npc(image_id):
+def generate_random_npc(image_id, names):
     attributes = Attributes(
         random.choice(list(Deceitful)),
         random.choice(list(Personality)),
@@ -101,7 +111,8 @@ def generate_random_npc(image_id):
         random.choice(list(TalkingStyle)),
     )
 
-    name, info, description = generate_npc_data(image_id, attributes)
+    print(names)
+    name, info, description = generate_npc_data(image_id, attributes, names)
     return create_person(
         image_id, name, info, description, random.uniform(0, 1), attributes
     )
@@ -112,7 +123,8 @@ def generate_offer(npc_name):
 
     price, description = generate_offer_data(
         get_person_str(npc_name),
-        f"Name: {item_id}\nReal price: {get_item(item_id)["price"]}\n"
+        # f"Name: {item_id}\nReal price: {get_item(item_id)["price"]}\n"
+        f"Name: {item_id}\nReal price: {get_item(item_id)['price']}\n"
     )
 
     offer = {
