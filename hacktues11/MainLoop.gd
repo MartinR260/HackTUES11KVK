@@ -14,6 +14,8 @@ var den = 0
 
 var days = [0, 0 , 0 , 0 , 0, 0, 0]
 
+var debt = 0
+
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)

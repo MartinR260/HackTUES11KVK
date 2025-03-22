@@ -25,7 +25,7 @@ def get_purse():
 @app.route('/api/purse', methods=['POST'])
 def set_purse():
     global money
-    message = request.get_json().get('message')
+    message = request.get_json().get('money')
     money = int(message)
     return jsonify({"money": money})
 
