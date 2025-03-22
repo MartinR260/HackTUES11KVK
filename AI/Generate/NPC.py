@@ -4,7 +4,7 @@ import requests
 import random
 
 import model
-from baza.item import get_all_item_idx
+from baza.item import get_all_item_idx, get_item
 from baza.npc import *
 from baza.offers import save_offer
 
@@ -104,7 +104,7 @@ def generate_offer(npc_name):
 
     price, description = generate_offer_data(
         get_person_str(npc_name),
-        f"Name: {item_id}\n"
+        f"Name: {item_id}\nReal price: {get_item(item_id)["price"]}\n"
     )
 
     offer = {
